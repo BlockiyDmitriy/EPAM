@@ -8,7 +8,7 @@ namespace Medialibrary
 {
     class MedialibraryOfWork
     {
-        public void Work(AllMedia all)
+        public void Work(File all)
         {
             all.Playlist();
         }

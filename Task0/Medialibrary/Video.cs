@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Video : AllMedia
+    class Video : File
     {
-        IOption option;
-        public Video(string name, string author, string quality)
-            : base(name, author, quality)
+        private string Genre { get; set; }
+        public int FrameWidth { get; set; }
+        public int FrameHeight { get; set; }
+        private double Duration { get; set; }
+        public Video(string type, string name, string author,
+            string quality, int size, string location,
+            string genre, int frameWidth, int frameHeight, double duration)
+            : base(type, name, author, quality, size, location)
         {
-            option = new Option();
+            this.Genre = genre;
+            this.FrameWidth = frameWidth;
+            this.FrameHeight = frameHeight;
+            this.Duration = duration;
         }
         public override void Playlist()
         {

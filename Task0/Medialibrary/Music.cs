@@ -6,17 +6,23 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Music : AllMedia
+    class Music : File
     {
-        IOption option;
-
         public string Genre { get; set; }
+        public string Artist { get; set; }
+        public string Album { get; set; }
+        public string Year { get; set; }
         public double Duration { get; set; }
-        public Music(string name, string author, string quality, string genre, double duration)
-            : base(name, author, quality)
+
+        public Music(string type, string name, string author,
+            string quality, int size, string location,
+            string genre, string artist, string album, string year, double duration)
+            : base(type, name, author, quality, size, location)
         {
-            option = new Option();
             this.Genre = genre;
+            this.Artist = artist;
+            this.Album = album;
+            this.Year = year;
             this.Duration = duration;
         }
         public override void Playlist()

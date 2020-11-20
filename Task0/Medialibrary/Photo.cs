@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Photo : AllMedia
+    class Photo : File
     {
-        IOption option;
-        public Photo(string name, string author, string quality)
-            : base(name, author, quality)
+
+        public int Width { get; set; }
+
+        public int Height { get; set; }
+        public Photo(string type, string name, string author,
+            string quality, int size, string location,
+            int width, int height)
+            : base(type, name, author, quality, size, location)
         {
-            option = new Option();
+            this.Width = width;
+            this.Height = height;
         }
         public override void Playlist()
         {

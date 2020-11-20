@@ -12,9 +12,9 @@ namespace Medialibrary
         {
             MedialibraryOfWork ofWork = new MedialibraryOfWork();
 
-            Photo photo = new Photo("Photo", "author", "quality");
-            Music music = new Music("Music", "author", "quality", "genre", 3.12);
-            Video video = new Video("Video", "author", "quality");
+            Photo photo = new Photo("jpg", "MyPhoto", "Sasha", "1920x1080", 200, @"E:\MyPhotos", 1920, 1080);
+            Music music = new Music("mp3", "MyMusic", "Sergey", "320 кбит/с", 15, @"E:\MyMusic", "Rock", "Malcolm", "Blow Up Your Video", "1990", 3.12);
+            Video video = new Video("mp4", "MyVido", "Dima", "FullHD", 10000, @"E:\MyVideo", "Fiction", 1920, 1080, 120.50);
 
             ofWork.Work(photo);
             ofWork.Work(music);
