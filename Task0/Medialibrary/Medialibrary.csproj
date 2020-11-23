@@ -43,7 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IOption.cs" />
+    <Compile Include="Interfaces\File\IAudioParam.cs" />
+    <Compile Include="Interfaces\File\IFile.cs" />
+    <Compile Include="Interfaces\File\IMusic.cs" />
+    <Compile Include="Interfaces\File\IPhoto.cs" />
+    <Compile Include="Interfaces\File\IVideo.cs" />
+    <Compile Include="Interfaces\IOption.cs" />
     <Compile Include="MedialibraryOfWork.cs" />
     <Compile Include="Music.cs" />
     <Compile Include="Option.cs" />

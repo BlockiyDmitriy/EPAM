@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Medialibrary.Interfaces.File;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Photo : File
+    class Photo : File, IPhoto
     {
-
         public int Width { get; set; }
 
         public int Height { get; set; }
@@ -19,10 +19,6 @@ namespace Medialibrary
         {
             this.Width = width;
             this.Height = height;
-        }
-        public override void Playlist()
-        {
-
         }
     }
 }

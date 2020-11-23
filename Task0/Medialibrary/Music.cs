@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Medialibrary.Interfaces.File;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Music : File
+    class Music : File, IMusic
     {
         public string Genre { get; set; }
         public string Artist { get; set; }
@@ -24,10 +25,6 @@ namespace Medialibrary
             this.Album = album;
             this.Year = year;
             this.Duration = duration;
-        }
-        public override void Playlist()
-        {
-
         }
     }
 }
