@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Medialibrary.Interfaces.File;
+using Medialibrary.Interfaces.Playlist;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +8,17 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Option : IOption
+    class Playlist<TFile> : IPlaylist<TFile> where TFile : IFile
     {
-        public void Add()
+        public Playlist()
+        {
+        }
+        public void AddFile(TFile file)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Search()
+        public void DeleteFile(TFile file)
         {
             throw new NotImplementedException();
         }

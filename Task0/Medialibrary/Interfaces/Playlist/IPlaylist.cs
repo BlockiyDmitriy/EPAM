@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Medialibrary
+namespace Medialibrary.Interfaces.Playlist
 {
-    class MedialibraryOfWork
+    interface IPlaylist<TFile> : IPlaylistFunctionality<TFile>
     {
-        public void Work(File all)
-        {
-            all.Playlist();
-        }
     }
 }
