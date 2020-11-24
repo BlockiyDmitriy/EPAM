@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary.Interfaces.File
 {
-    internal interface IPhoto : IFile
+    public interface IPhoto : IFile
     {
         int Width { get; set; }
         int Height { get; set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary.Interfaces.Medialibrary
 {
-    interface IMedialibraryFunctionality
+    public interface IMedialibraryFunctionality
     {
         void AddFileToMedialibrary(IFile file);
         void DeleteFileFromMedialibrary(IFile file);

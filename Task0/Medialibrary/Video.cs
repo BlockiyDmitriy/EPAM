@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Video : File, IVideo
+    public class Video : File, IVideo
     {
         public string Genre { get; set; }
         public int FrameWidth { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary.Interfaces.Playlist
 {
-    interface IPlaylist<TFile> : IPlaylistFunctionality<TFile>
+    public interface IPlaylist<TFile> : IPlaylistFunctionality<TFile>
     {
     }
 }

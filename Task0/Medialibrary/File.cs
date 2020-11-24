@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    abstract class File : IFile
+    public abstract class File : IFile
     {
         public string Type { get; set; }
         public string Name { get; set; }

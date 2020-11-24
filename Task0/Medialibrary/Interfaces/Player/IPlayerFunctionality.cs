@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary.Interfaces.Player
 {
-    interface IPlayerFunctionality
+    public interface IPlayerFunctionality
     {
         void Play(ICollection<IFile> files);
         void PlayFile(IFile file);

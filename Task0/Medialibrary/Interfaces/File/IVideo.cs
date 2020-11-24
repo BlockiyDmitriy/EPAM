@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary.Interfaces.File
 {
-    internal interface IVideo : IAudioParam
+    public interface IVideo : IAudioParam
     {
         int FrameWidth { get; set; }
         int FrameHeight { get; set; }

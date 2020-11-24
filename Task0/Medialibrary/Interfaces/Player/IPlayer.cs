@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary.Interfaces.Player
 {
-    interface IPlayer : IPlayerFunctionality
+    public interface IPlayer : IPlayerFunctionality
     {       
     }
 }

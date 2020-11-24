@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary.Interfaces.Medialibrary
 {
-    interface IMedialibrary : IMedialibraryFunctionality
+    public interface IMedialibrary : IMedialibraryFunctionality
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary.Interfaces.File
 {
-    internal interface IAudioParam : IFile
+    public interface IAudioParam : IFile
     {
         string Genre { get; set; }
         double Duration { get; set; }

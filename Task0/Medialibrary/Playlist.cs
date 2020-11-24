@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Playlist<TFile> : IPlaylist<TFile> where TFile : IFile
+    public class Playlist<TFile> : IPlaylist<TFile> where TFile : IFile
     {
         public Playlist()
         {

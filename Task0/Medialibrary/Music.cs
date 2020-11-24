@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Music : File, IMusic
+    public class Music : File, IMusic
     {
         public string Genre { get; set; }
         public string Artist { get; set; }

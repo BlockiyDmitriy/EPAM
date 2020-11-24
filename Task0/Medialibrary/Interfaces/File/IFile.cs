@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary.Interfaces.File
 {
-    internal interface IFile
+    public interface IFile
     {
         string Type { get; set; }
         string Name { get; set; }

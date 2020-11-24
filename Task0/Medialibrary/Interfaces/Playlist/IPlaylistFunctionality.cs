@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary.Interfaces.Playlist
 {
-    interface IPlaylistFunctionality<TFile>
+    public interface IPlaylistFunctionality<TFile>
     {
         void AddFile(TFile file);
         void DeleteFile(TFile file);

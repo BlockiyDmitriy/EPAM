@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Medialibrary : IMedialibrary
+    public class Medialibrary : IMedialibrary
     {
-        ICollection<IFile> MediaFiles { get; set; }
-        ICollection<IPlaylist<IFile>> PlaylistsFiles { get; set; }
-        IPlayer Player { get; set; }
+        private ICollection<IFile> MediaFiles { get; set; }
+        private ICollection<IPlaylist<IFile>> PlaylistsFiles { get; set; }
+        private IPlayer Player { get; set; }
         public Medialibrary(IPlayer player)
         {
             MediaFiles = new Collection<IFile>();

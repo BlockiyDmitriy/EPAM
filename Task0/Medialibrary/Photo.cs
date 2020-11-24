@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Photo : File, IPhoto
+    public class Photo : File, IPhoto
     {
         public int Width { get; set; }
 

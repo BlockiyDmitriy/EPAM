@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Medialibrary
 {
-    class Player : IPlayer
+    public class Player : IPlayer
     {
         public Player()
         {
