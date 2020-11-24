@@ -1,11 +1,9 @@
-﻿using Medialibrary.Interfaces.File;
+﻿using System;
+using System.Collections.Generic;
+
+using Medialibrary.Interfaces.File;
 using Medialibrary.Interfaces.Player;
 using Medialibrary.Interfaces.Playlist;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Medialibrary
 {
