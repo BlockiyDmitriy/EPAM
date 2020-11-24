@@ -17,6 +17,8 @@ namespace Medialibrary.Interfaces.Medialibrary
         void CreatePlaylist(IPlaylist<IFile> playlist);
         void RemovePlaylist(IPlaylist<IFile> playlist);
         List<IFile> Search(string name);
+        void Play();
+        void PlayFile(IFile file);
         void PlayPlaylist(IPlaylist<IFile> playlist);
     }
 }

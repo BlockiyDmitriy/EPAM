@@ -13,7 +13,7 @@ namespace Medialibrary
     {
         static void Main(string[] args)
         {
-            IMedialibrary ofWork = new Medialibrary();
+            IMedialibrary ofWork = new Medialibrary(new Player());
 
             IPlaylist<IFile> playlist = new Playlist<IFile>();
 

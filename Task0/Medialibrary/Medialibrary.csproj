@@ -50,11 +50,14 @@
     <Compile Include="Interfaces\File\IVideo.cs" />
     <Compile Include="Interfaces\Medialibrary\IMedialibraryFunctionality.cs" />
     <Compile Include="Interfaces\Medialibrary\IMedialibrary.cs" />
+    <Compile Include="Interfaces\Player\IPlayer.cs" />
+    <Compile Include="Interfaces\Player\IPlayerFunctionality.cs" />
     <Compile Include="Interfaces\Playlist\IPlaylist.cs" />
     <Compile Include="Interfaces\Playlist\IPlaylistFunctionality.cs" />
     <Compile Include="Medialibrary.cs" />
     <Compile Include="Music.cs" />
     <Compile Include="Photo.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Playlist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

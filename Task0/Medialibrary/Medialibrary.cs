@@ -1,5 +1,6 @@
 ﻿using Medialibrary.Interfaces.File;
 using Medialibrary.Interfaces.Medialibrary;
+using Medialibrary.Interfaces.Player;
 using Medialibrary.Interfaces.Playlist;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,12 @@ namespace Medialibrary
     {
         ICollection<IFile> MediaFiles { get; set; }
         ICollection<IPlaylist<IFile>> PlaylistsFiles { get; set; }
-        public Medialibrary()
+        IPlayer Player { get; set; }
+        public Medialibrary(IPlayer player)
         {
             MediaFiles = new Collection<IFile>();
             PlaylistsFiles = new Collection<IPlaylist<IFile>>();
+            Player = player;
         }
         public void AddFileToMedialibrary(IFile file)
         {
@@ -54,6 +57,16 @@ namespace Medialibrary
             throw new NotImplementedException();
         }
 
+
+        public void Play()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlayFile(IFile file)
+        {
+            throw new NotImplementedException();
+        }
         public void PlayPlaylist(IPlaylist<IFile> playlist)
         {
             throw new NotImplementedException();
