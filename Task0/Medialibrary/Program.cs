@@ -10,7 +10,7 @@ namespace Medialibrary
         {
             IMedialibrary ofWork = new Medialibrary(new Player());
 
-            IPlaylist<IFile> playlist = new Playlist<IFile>();
+            IPlaylist<IFile> playlist = new Playlist<IFile>("Name");
 
             IPhoto photo = new Photo("jpg", "MyPhoto", "Sasha", "1920x1080", 200, @"E:\MyPhotos", 1920, 1080);
             IMusic music = new Music("mp3", "MyMusic", "Sergey", "320 кбит/с", 15, @"E:\MyMusic", "Rock", "Malcolm", "Blow Up Your Video", "1990", 3.12);

@@ -7,8 +7,10 @@ namespace Medialibrary
 {
     public class Playlist<TFile> : IPlaylist<TFile> where TFile : IFile
     {
-        public Playlist()
+        public string Name { get; set; }
+        public Playlist(string name)
         {
+            this.Name = name;
         }
         public void AddFile(TFile file)
         {

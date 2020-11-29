@@ -22,52 +22,61 @@ namespace Medialibrary
         }
         public void AddFileToMedialibrary(IFile file)
         {
-            throw new NotImplementedException();
+            MediaFiles.Add(file);
         }
 
         public void AddFileToPlaylist(IPlaylist<IFile> playlist, IFile file)
         {
-            throw new NotImplementedException();
+            playlist.AddFile(file);
         }
 
         public void CreatePlaylist(IPlaylist<IFile> playlist)
         {
-            throw new NotImplementedException();
+            PlaylistsFiles.Add(playlist);
         }
 
         public void DeleteFileFromMedialibrary(IFile file)
         {
-            throw new NotImplementedException();
+            MediaFiles.Remove(file);
         }
 
         public void RemoveFileFromPlaylist(IPlaylist<IFile> playlist, IFile file)
         {
-            throw new NotImplementedException();
+            playlist.DeleteFile(file);
         }
 
         public void RemovePlaylist(IPlaylist<IFile> playlist)
         {
-            throw new NotImplementedException();
+            PlaylistsFiles.Remove(playlist);
         }
 
         public List<IFile> Search(string name)
         {
-            throw new NotImplementedException();
+            List<IFile> matchedFiles = new List<IFile>();
+
+            foreach (var file in MediaFiles)
+            {
+                if (file.Name.Contains(name))
+                {
+                    matchedFiles.Add(file);
+                }
+            }
+            return matchedFiles;
         }
 
 
         public void Play()
         {
-            throw new NotImplementedException();
+            Player.Play(MediaFiles);
         }
 
         public void PlayFile(IFile file)
         {
-            throw new NotImplementedException();
+            Player.PlayFile(file);
         }
         public void PlayPlaylist(IPlaylist<IFile> playlist)
         {
-            throw new NotImplementedException();
+            Player.PlayPlaylist(playlist);
         }
     }
 }
