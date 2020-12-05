@@ -9,11 +9,10 @@ namespace TaxiStation
 {
     public class Engine
     {
-        private TypeEngine TypeEngine { get; set; }
-        private int Power { get; set; }
+        public int Power { get; private set; }
         public Engine(int power)
         {
-            Power = power;
+            this.Power = power;
         }
     }
 }

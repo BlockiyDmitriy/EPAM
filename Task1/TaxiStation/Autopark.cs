@@ -9,19 +9,60 @@ namespace TaxiStation
 {
     class Autopark : IAutopark
     {
-        public int CalculateCarsCost(List<Car> cars)
+        public int CalculateCarsCost(ICollection<Car> cars)
         {
-            throw new NotImplementedException();
+            int sum = 0;
+            foreach (Car car in cars)
+            {
+                sum = sum + car.Price;
+            }
+            return sum;
         }
 
-        public List<Car> SearchBySpeed(List<Car> cars)
+        public ICollection<Car> SearchBySpeed(ICollection<Car> cars, int min, int max)
         {
-            throw new NotImplementedException();
+            ICollection<Car> carSelection = new List<Car>();
+
+            foreach (Car car in cars)
+            {
+                if (car.MaxSpeed >= min && car.MaxSpeed <= max)
+                {
+                    carSelection.Add(car);
+                }
+            }
+
+            return carSelection;
         }
 
-        public List<Car> SortByFuelConsumption(List<Car> cars, int minSpeed, int maxSpeed)
+        public ICollection<Car> SortByFuelConsumption(ICollection<Car> cars)
         {
-            throw new NotImplementedException();
+            ICollection<GasCar> gasCars = new List<GasCar>();
+            ICollection<ElectroCar> electroCars = new List<ElectroCar>();
+            ICollection<PetrolCar> petrolCars = new List<PetrolCar>();
+
+            if (cars.Count == 0)
+            {
+                //Nothing to sort
+            }
+
+            foreach (Car car in cars)
+            {
+                if (car is ElectroCar)
+                {
+                    electroCars.Add(car as ElectroCar);
+                }
+                else if (car is GasCar)
+                {
+                    gasCars.Add(car as GasCar);
+                }
+                else if (car is PetrolCar)
+                {
+                    petrolCars.Add(car as PetrolCar);
+                }
+            }
+            //попробовать реализовать сортировку с помощью Linq
+
+            return null;
         }
     }
 }

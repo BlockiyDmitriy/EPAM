@@ -15,14 +15,31 @@ namespace TaxiStation
         public Engine Engine { get; set; }
 
         public int Price { get; set; }
-
+        public string Number { get; set; }
+        public string Color { get; set; }
         public string Model { get; set; }
         public int MinSpeed { get; set; }
         public int MaxSpeed { get; set; }
 
-        public Car(Engine engine)
+        public int Weight { get; set; }
+
+
+        public Car(Brand brand, TypeCar typeCar, Engine engine, int price, string number,string color, string model, int minSpeed, int maxSpeed, int weigtht)
         {
+            this.Brand = brand;
+            this.Type = typeCar;
             this.Engine = engine;
+            this.Price = price;
+            this.Number = number;
+            this.Color = color;
+            this.Model = model;
+            this.MinSpeed = minSpeed;
+            this.MaxSpeed = maxSpeed;
+            this.Weight = weigtht;
+        }
+        public virtual double GetHoursePowerPerTon()
+        {
+            return Engine.Power / Weight;
         }
     }
 }

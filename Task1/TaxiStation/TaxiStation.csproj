@@ -45,12 +45,14 @@
   <ItemGroup>
     <Compile Include="Autopark.cs" />
     <Compile Include="Car.cs" />
+    <Compile Include="ElectroCar.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Enum\Brand.cs" />
     <Compile Include="Enum\TypeCar.cs" />
-    <Compile Include="Enum\TypeEngine.cs" />
+    <Compile Include="GasCar.cs" />
     <Compile Include="Interfaces\IAutopark.cs" />
     <Compile Include="Interfaces\IAutoparkFuntionality.cs" />
+    <Compile Include="PetrolCar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
