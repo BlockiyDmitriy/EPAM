@@ -4,19 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaxiStation.Enum;
+using TaxiStation.Interfaces.FuelEngines;
 
 namespace TaxiStation
 {
-    public class GasCar : Car
+    public class GasCar : Car, IFuelEngines
     {
         public int TankCapacity { set; get; }
-        public int FuelEconomy { set; get; }
-        public GasCar(int tankCapacity, int fuelEconomy,
-            Brand brand, TypeCar typeCar, Engine engine, int price, string number,string color, string model, int minSpeed, int maxSpeed, int weigtht)
+        public float FuelConsuption { set; get; }
+        public GasCar(Brand brand, TypeCar typeCar, Engine engine, int price, string number,string color, string model, int minSpeed, int maxSpeed, int weigtht,
+            int tankCapacity, float fuelConsuption)
             : base(brand, typeCar, engine, price, number, color, model, minSpeed, maxSpeed, weigtht)
         {
             this.TankCapacity = tankCapacity;
-            this.FuelEconomy = fuelEconomy;
+            this.FuelConsuption = fuelConsuption;
         }
         public override double GetHoursePowerPerTon()
         {
