@@ -48,12 +48,9 @@
     <Compile Include="ElectroCar.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Enum\Brand.cs" />
-    <Compile Include="Enum\TypeCar.cs" />
+    <Compile Include="Enum\BodyCar.cs" />
     <Compile Include="GasCar.cs" />
     <Compile Include="Interfaces\Autopark\IAutopark.cs" />
-    <Compile Include="Interfaces\Autopark\IAutoparkFuntionality.cs" />
-    <Compile Include="Interfaces\FuelEngines\IFuelEngines.cs" />
-    <Compile Include="Interfaces\FuelEngines\IFuelEnginesParam.cs" />
     <Compile Include="PetrolCar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

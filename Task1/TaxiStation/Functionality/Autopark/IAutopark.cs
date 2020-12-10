@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaxiStation.Interfaces
 {
-    public interface IAutoparkFuntionality
+    public interface IAutopark
     {
         int CalculateCarsCost(ICollection<Car> cars);
         ICollection<Car> SearchBySpeed(ICollection<Car> cars, int minSpeed, int maxSpeed);

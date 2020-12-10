@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaxiStation.Enum
 {
-    public enum TypeCar
+    public enum BodyCar
     {
         SUV,
         Cabriolet,

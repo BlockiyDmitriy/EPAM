@@ -10,7 +10,7 @@ namespace TaxiStation
     public abstract class Car
     {
         public Brand Brand { get; set; }
-        public TypeCar Type { get; set; }
+        public BodyCar Type { get; set; }
 
         public Engine Engine { get; set; }
 
@@ -24,7 +24,7 @@ namespace TaxiStation
         public int Weight { get; set; }
 
 
-        public Car(Brand brand, TypeCar typeCar, Engine engine, int price, string number,string color, string model, int minSpeed, int maxSpeed, int weigtht)
+        public Car(Brand brand, BodyCar typeCar, Engine engine, int price, string number,string color, string model, int minSpeed, int maxSpeed, int weigtht)
         {
             this.Brand = brand;
             this.Type = typeCar;

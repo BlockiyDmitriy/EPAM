@@ -9,6 +9,10 @@ namespace TaxiStation
 {
     class Autopark : IAutopark
     {
+        public Autopark()
+        {
+
+        }
         public int CalculateCarsCost(ICollection<Car> cars)
         {
             int sum = 0;
@@ -74,8 +78,8 @@ namespace TaxiStation
             result.AddRange(resultGasCars);
             result.AddRange(resultElectroCars);
             result.AddRange(resultPetrolCars);
-
-            return null;
+                
+            return result;
         }
     }
 }
