@@ -10,6 +10,5 @@ namespace TaxiStation.Interfaces
     {
         int CalculateCarsCost(ICollection<Car> cars);
         ICollection<Car> SearchBySpeed(ICollection<Car> cars, int minSpeed, int maxSpeed);
-        ICollection<Car> SortByFuelConsumption(ICollection<Car> cars);
     }
 }

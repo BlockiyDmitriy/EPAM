@@ -23,5 +23,27 @@ namespace TaxiStation
         {
             return base.GetHoursePowerPerTon();
         }
+        public override void SortByFuelConsumption(ICollection<Car> cars)
+        {
+            ICollection<ElectroCar> gasCars = new List<ElectroCar>();
+
+            if (cars.Count == 0)
+            {                
+                //Nothing to sort
+            }
+
+            foreach (Car car in cars)
+            {
+                if (car is GasCar)
+                {
+                    gasCars.Add(car as ElectroCar);
+                }
+            }
+            var resultGasCars = from i in gasCars
+                                orderby i.LifeTime
+                                select i;
+            List<Car> result = new List<Car>();
+            result.AddRange(resultGasCars);
+        }
     }
 }

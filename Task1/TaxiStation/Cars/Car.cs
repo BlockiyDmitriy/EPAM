@@ -41,5 +41,9 @@ namespace TaxiStation
         {
             return Engine.Power / Weight;
         }
+        public virtual void SortByFuelConsumption(ICollection<Car> cars)
+        {
+            throw new Exception();
+        }
     }
 }

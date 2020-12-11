@@ -43,16 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Autopark.cs" />
-    <Compile Include="Car.cs" />
-    <Compile Include="ElectroCar.cs" />
-    <Compile Include="Engine.cs" />
-    <Compile Include="Enum\Brand.cs" />
-    <Compile Include="Enum\BodyCar.cs" />
-    <Compile Include="GasCar.cs" />
-    <Compile Include="Interfaces\Autopark\IAutopark.cs" />
-    <Compile Include="PetrolCar.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="FunctionalityAutopark\Autopark.cs" />
+    <Compile Include="Cars\Car.cs" />
+    <Compile Include="FunctionalityAutopark\SortedOfWork.cs" />
+    <Compile Include="TypeCars\ElectroCar.cs" />
+    <Compile Include="EngineCar\Engine.cs" />
+    <Compile Include="BodyBrandCars\Brand.cs" />
+    <Compile Include="BodyBrandCars\BodyCar.cs" />
+    <Compile Include="TypeCars\GasCar.cs" />
+    <Compile Include="Functionality\Autopark\IAutopark.cs" />
+    <Compile Include="TypeCars\PetrolCar.cs" />
+    <Compile Include="Preaentation\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

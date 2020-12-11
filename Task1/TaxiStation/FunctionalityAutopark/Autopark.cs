@@ -38,48 +38,5 @@ namespace TaxiStation
             return carSelection;
         }
 
-        public ICollection<Car> SortByFuelConsumption(ICollection<Car> cars)
-        {
-            //уменьшить кол-во повтор строк
-            ICollection<GasCar> gasCars = new List<GasCar>();
-            ICollection<ElectroCar> electroCars = new List<ElectroCar>();
-            ICollection<PetrolCar> petrolCars = new List<PetrolCar>();
-
-            if (cars.Count == 0)
-            {
-                //Nothing to sort
-            }
-
-            foreach (Car car in cars)
-            {
-                if (car is ElectroCar)
-                {
-                    electroCars.Add(car as ElectroCar);
-                }
-                else if (car is GasCar)
-                {
-                    gasCars.Add(car as GasCar);
-                }
-                else if (car is PetrolCar)
-                {
-                    petrolCars.Add(car as PetrolCar);
-                }
-            }
-            var resultGasCars = from i in gasCars
-                         orderby i.FuelConsuption
-                         select i;
-            var resultElectroCars = from i in electroCars
-                         orderby i.LifeTime
-                         select i;
-            var resultPetrolCars = from i in petrolCars
-                         orderby i.FuelConsuption
-                         select i;
-            List<Car> result = new List<Car>();
-            result.AddRange(resultGasCars);
-            result.AddRange(resultElectroCars);
-            result.AddRange(resultPetrolCars);
-                
-            return result;
-        }
     }
 }
