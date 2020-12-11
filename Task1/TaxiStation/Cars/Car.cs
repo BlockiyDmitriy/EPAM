@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaxiStation.Enum;
+using TaxiStation.Functionality;
 
 namespace TaxiStation
 {
-    public abstract class Car
+    public abstract class Car : IHoursePowerPerTon
     {
         public Brand Brand { get; set; }
         public BodyCar Type { get; set; }
@@ -24,7 +25,7 @@ namespace TaxiStation
         public int Weight { get; set; }
 
 
-        public Car(Brand brand, BodyCar typeCar, Engine engine, int price, string number,string color, string model, int minSpeed, int maxSpeed, int weigtht)
+        public Car(Brand brand, BodyCar typeCar, Engine engine, int price, string number, string color, string model, int minSpeed, int maxSpeed, int weigtht)
         {
             this.Brand = brand;
             this.Type = typeCar;
@@ -36,10 +37,6 @@ namespace TaxiStation
             this.MinSpeed = minSpeed;
             this.MaxSpeed = maxSpeed;
             this.Weight = weigtht;
-        }
-        public virtual double GetHoursePowerPerTon()
-        {
-            return Engine.Power / Weight;
         }
         public virtual void SortByFuelConsumption(ICollection<Car> cars)
         {

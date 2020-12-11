@@ -18,10 +18,6 @@ namespace TaxiStation
             this.TankCapacity = tankCapacity;
             this.FuelConsuption = fuelConsuption;
         }
-        public override double GetHoursePowerPerTon()
-        {
-            return base.GetHoursePowerPerTon();
-        }
         public override void SortByFuelConsumption(ICollection<Car> cars)
         {
             ICollection<PetrolCar> gasCars = new List<PetrolCar>();

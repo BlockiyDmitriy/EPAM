@@ -46,6 +46,7 @@
     <Compile Include="FunctionalityAutopark\Autopark.cs" />
     <Compile Include="Cars\Car.cs" />
     <Compile Include="FunctionalityAutopark\SortedOfWork.cs" />
+    <Compile Include="Functionality\IHoursePowerPerTon.cs" />
     <Compile Include="TypeCars\ElectroCar.cs" />
     <Compile Include="EngineCar\Engine.cs" />
     <Compile Include="BodyBrandCars\Brand.cs" />

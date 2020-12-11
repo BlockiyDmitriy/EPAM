@@ -19,10 +19,6 @@ namespace TaxiStation
             this.ChargingTime = chargingTime;
             this.LifeTime = lifeTime;
         }
-        public override double GetHoursePowerPerTon()
-        {
-            return base.GetHoursePowerPerTon();
-        }
         public override void SortByFuelConsumption(ICollection<Car> cars)
         {
             ICollection<ElectroCar> gasCars = new List<ElectroCar>();
