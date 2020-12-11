@@ -30,7 +30,7 @@ namespace TaxiStation
 
             foreach (Car car in cars)
             {
-                if (car is GasCar)
+                if (car is ElectroCar)
                 {
                     gasCars.Add(car as ElectroCar);
                 }

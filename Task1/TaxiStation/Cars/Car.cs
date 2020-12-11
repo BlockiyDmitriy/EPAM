@@ -8,7 +8,7 @@ using TaxiStation.Functionality;
 
 namespace TaxiStation
 {
-    public abstract class Car : IHoursePowerPerTon
+    public abstract class Car
     {
         public Brand Brand { get; set; }
         public BodyCar Type { get; set; }
