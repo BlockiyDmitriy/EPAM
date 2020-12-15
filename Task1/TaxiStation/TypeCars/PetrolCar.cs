@@ -20,7 +20,7 @@ namespace TaxiStation
         }
         public override void SortByFuelConsumption(ICollection<Car> cars)
         {
-            ICollection<PetrolCar> gasCars = new List<PetrolCar>();
+            ICollection<PetrolCar> petrolCars = new List<PetrolCar>();
 
             if (cars.Count == 0)
             {
@@ -31,14 +31,16 @@ namespace TaxiStation
             {
                 if (car is PetrolCar)
                 {
-                    gasCars.Add(car as PetrolCar);
+                    petrolCars.Add(car as PetrolCar);
                 }
             }
-            var resultGasCars = from i in gasCars
+            var resultGasCars = from i in petrolCars
                                 orderby i.FuelConsuption
                                 select i;
             List<Car> result = new List<Car>();
             result.AddRange(resultGasCars);
         }
+
+
     }
 }

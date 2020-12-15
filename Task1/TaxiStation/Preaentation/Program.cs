@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaxiStation.Enum;
 using TaxiStation.FunctionalityAutopark;
+using TaxiStation.Interfaces;
 
 namespace TaxiStation
 {
@@ -12,7 +13,7 @@ namespace TaxiStation
     {
         static void Main(string[] args)
         {
-            Autopark autopark = new Autopark();
+            IAutopark autopark = new Autopark();
             ElectroCar electroCar = new ElectroCar(Brand.Audi, BodyCar.Sedan, new Engine(244), 21000, "Red",
             "1111AB", "A8", 0, 320, 2000, 60, 600);
             GasCar gasCar = new GasCar(Brand.Audi, BodyCar.Sedan, new Engine(244), 21000, "Black",

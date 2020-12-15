@@ -21,7 +21,7 @@ namespace TaxiStation
         }
         public override void SortByFuelConsumption(ICollection<Car> cars)
         {
-            ICollection<ElectroCar> gasCars = new List<ElectroCar>();
+            ICollection<ElectroCar> electroCar = new List<ElectroCar>();
 
             if (cars.Count == 0)
             {                
@@ -32,10 +32,10 @@ namespace TaxiStation
             {
                 if (car is ElectroCar)
                 {
-                    gasCars.Add(car as ElectroCar);
+                    electroCar.Add(car as ElectroCar);
                 }
             }
-            var resultGasCars = from i in gasCars
+            var resultGasCars = from i in electroCar
                                 orderby i.LifeTime
                                 select i;
             List<Car> result = new List<Car>();
