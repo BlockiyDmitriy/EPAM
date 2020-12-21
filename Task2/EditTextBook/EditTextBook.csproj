@@ -45,9 +45,17 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sentences\Sentence.cs" />
+    <Compile Include="Sentences\TypeOfSentence.cs" />
+    <Compile Include="Separators\CyrillicsSeparator.cs" />
+    <Compile Include="Separators\DigitSeparator.cs" />
+    <Compile Include="Separators\PunctuationSeparator.cs" />
+    <Compile Include="Words\Word.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

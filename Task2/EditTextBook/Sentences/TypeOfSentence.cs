@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditTextBook
+namespace EditTextBook.Sentences
 {
-    class Program
+    public enum TypeOfSentence
     {
-        static void Main(string[] args)
-        {
-
-        }
+        interrogative,
+        exclamatory,
+        declarative
     }
 }
