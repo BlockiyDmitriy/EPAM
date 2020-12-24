@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditTextBook.Separators
+namespace EditTextBook.Model.Separators
 {
-    class CyrillicsSeparator
+    internal class CyrillicsSeparator
     {
         private string[] russianSeparator = new string[]{ "а", "у", "о", "ы", "и", "э", "я", "ю", "ё", "е" };
 

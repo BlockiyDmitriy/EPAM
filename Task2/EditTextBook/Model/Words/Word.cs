@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditTextBook.Words
+namespace EditTextBook.Model.Words
 {
-    public class Word
+    internal class Word
     {
         public string symbals;
         public char punctuationMarkBefore;

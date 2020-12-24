@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditTextBook.Separators
+namespace EditTextBook.Model.Separators
 {
-    class DigitSeparator
+    internal class DigitSeparator
     {
         private string[] arabicSeparator = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 

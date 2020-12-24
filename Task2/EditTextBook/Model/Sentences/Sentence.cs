@@ -1,14 +1,15 @@
-﻿using EditTextBook.Words;
+﻿using EditTextBook.Model.Words;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditTextBook.Sentences
+namespace EditTextBook.Model.Sentences
 {
-    public class Sentence : IComparable<Sentence>
-    {
+    internal class Sentence : IComparable<Sentence>
+    {       
+
         public List<Word> words = new List<Word>();
         public TypeOfSentence type = TypeOfSentence.declarative;
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditTextBook.Separators
+namespace EditTextBook.Model.Separators
 {
-    class PunctuationSeparator
+    internal class PunctuationSeparator
     {
         private string[] repeatPunctuationSeparator = new string[] { "\"", "'" };
 

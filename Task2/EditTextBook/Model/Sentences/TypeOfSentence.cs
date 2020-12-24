@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditTextBook.Sentences
+namespace EditTextBook.Model.Sentences
 {
-    public enum TypeOfSentence
+    internal enum TypeOfSentence
     {
         interrogative,
         exclamatory,

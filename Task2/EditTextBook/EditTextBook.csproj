@@ -43,14 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IO\FileServices\IOF.cs" />
+    <Compile Include="Model\MySorted\MySortedDictionary.cs" />
+    <Compile Include="Model\MySorted\MyValue.cs" />
+    <Compile Include="Model\Texts\Text.cs" />
+    <Compile Include="Model\Words\Word.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sentences\Sentence.cs" />
-    <Compile Include="Sentences\TypeOfSentence.cs" />
-    <Compile Include="Separators\CyrillicsSeparator.cs" />
-    <Compile Include="Separators\DigitSeparator.cs" />
-    <Compile Include="Separators\PunctuationSeparator.cs" />
-    <Compile Include="Words\Word.cs" />
+    <Compile Include="Model\Sentences\Sentence.cs" />
+    <Compile Include="Model\Sentences\TypeOfSentence.cs" />
+    <Compile Include="Model\Separators\CyrillicsSeparator.cs" />
+    <Compile Include="Model\Separators\DigitSeparator.cs" />
+    <Compile Include="Model\Separators\PunctuationSeparator.cs" />
+    <Compile Include="Services\TextParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
