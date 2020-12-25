@@ -118,7 +118,7 @@ namespace EditTextBook.Model.Texts
         public void Concordance(StreamWriter writer, int numOfLines)
         {
             int currentPage = 1;
-            string temp_str = "";
+            string tempStr = "";
             SortedDictionary<string, MyValue> dictionary = new SortedDictionary<string, MyValue>();//MySortedDictionary();
             MyValue temp = new MyValue();
             int lines = numOfLines;
@@ -131,21 +131,21 @@ namespace EditTextBook.Model.Texts
                 }
                 for (int j = 0; j < sentences[i].Length; j++)
                 {
-                    temp_str = sentences[i].words[j].symbals;
-                    if (dictionary.TryGetValue(temp_str.ToLower(), out temp))
+                    tempStr = sentences[i].words[j].symbals;
+                    if (dictionary.TryGetValue(tempStr.ToLower(), out temp))
                     {
                         temp.pageNumbers.Add(currentPage);
                         temp.numOfRepetitions++;
-                        dictionary[temp_str.ToLower()] = temp;
+                        dictionary[tempStr.ToLower()] = temp;
                     }
                     else
                     {
                         temp = new MyValue();
                         temp.pageNumbers.Add(currentPage);
                         temp.numOfRepetitions = 1;
-                        dictionary.Add(temp_str.ToLower(), temp);
+                        dictionary.Add(tempStr.ToLower(), temp);
                     }
-                    temp_str = "";
+                    tempStr = "";
                 }
             }
             char ch, pre_ch = ' ';

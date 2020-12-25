@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EditTextBook.MySorted.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditTextBook.MySorted.Model
+namespace EditTextBook.Services.Model
 {
     internal class MySortedDictionary : SortedDictionary<string, MyValue>
     {
