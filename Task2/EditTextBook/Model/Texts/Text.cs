@@ -118,7 +118,7 @@ namespace EditTextBook.Model.Texts
         public void Concordance(StreamWriter writer, int numOfLines)
         {
             int currentPage = 1;
-            string tempStr = "";
+            string tempStr;
             SortedDictionary<string, MyValue> dictionary = new SortedDictionary<string, MyValue>();//MySortedDictionary();
             MyValue temp = new MyValue();
             int lines = numOfLines;

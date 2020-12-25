@@ -12,7 +12,6 @@ namespace EditTextBook.Model.Words
         public char punctuationMarkBefore;
         public List<char> punctuationMarkAfter = new List<char>();
         public bool PresenceOfLineFeed = false;
-        public Word() { }
         public int Length { get { return symbals.Length; } }
 
         public override string ToString()
