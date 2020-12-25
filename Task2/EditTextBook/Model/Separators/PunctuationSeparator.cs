@@ -8,49 +8,33 @@ namespace EditTextBook.Model.Separators
 {
     internal class PunctuationSeparator
     {
-        private string[] repeatPunctuationSeparator = new string[] { "\"", "'" };
+        private char[] separator = new char[] { ' ', '\t', '\n', '\r' };
 
-        private string[] endPunctuationSeparator = new string[] { "!", ".", "?", "...", "?!", "!?" };
+        private char[] myPunctuationSeparator = new char[] { ':', ';', '\'', '\'', ',', '!', '?', '.'};
 
-        private string[] innerPunctuationSeparator = new string[] { ",", ";", ":" };
+        private char[] endSentenceSeparator = new char[] { '!', '?', '.', ';' };
 
-        private string[] openPunctuationSeparator = new string[] { "<", "(", "[", "{", "„", "«", "‘" };
+        private char[] codeSymbolSeparator = new char[] { '{', '}', ')', '(', '[', ']', '$', '=' };
+        public PunctuationSeparator() { }
 
-        private string[] closePunctuationSeparator = new string[] { ")", ">", "]", "}", "“", "»", "’" };
-
-        private string[] operationPunctuationSeparator = new string[] { "*", "/", "+", "=", "==", "!=", ">=", "=<" };
-
-        public IEnumerable<string> RepeatPunctuationSeparator()
+        public IEnumerable<char> RepeatPunctuationSeparator()
         {
-            return repeatPunctuationSeparator.AsEnumerable();
+            return separator.AsEnumerable();
         }
-        public IEnumerable<string> EndPunctuationSeparator()
+        public IEnumerable<char> MyPunctuationSeparator()
         {
-            return endPunctuationSeparator.AsEnumerable();
+            return myPunctuationSeparator.AsEnumerable();
         }
-        public IEnumerable<string> InnerPunctuationSeparator()
+        public IEnumerable<char> EndSentenceSeparator()
         {
-            return innerPunctuationSeparator.AsEnumerable();
+            return endSentenceSeparator.AsEnumerable();
         }
-        public IEnumerable<string> OpenPunctuationSeparator()
+        public IEnumerable<char> CodeSymbolSeparator()
         {
-            return openPunctuationSeparator.AsEnumerable();
+            return codeSymbolSeparator.AsEnumerable();
         }
-        public IEnumerable<string> ClosePunctuationSeparator()
-        {
-            return closePunctuationSeparator.AsEnumerable();
-        }
-        public IEnumerable<string> OperationPunctuationSeparator()
-        {
-            return operationPunctuationSeparator.AsEnumerable();
-        }
-        public IEnumerable<string> All()
-        {
-            return repeatPunctuationSeparator.Concat(EndPunctuationSeparator())
-                                             .Concat(InnerPunctuationSeparator())
-                                             .Concat(OpenPunctuationSeparator())
-                                             .Concat(ClosePunctuationSeparator())
-                                             .Concat(OperationPunctuationSeparator());
-        }
+        public IEnumerable<char> All() => separator.Concat(MyPunctuationSeparator())
+                                                   .Concat(EndSentenceSeparator())
+                                                   .Concat(CodeSymbolSeparator());
     }
 }

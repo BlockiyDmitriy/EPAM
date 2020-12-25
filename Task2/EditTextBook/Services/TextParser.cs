@@ -1,4 +1,5 @@
 ﻿using EditTextBook.Model.Sentences;
+using EditTextBook.Model.Separators;
 using EditTextBook.Model.Texts;
 using EditTextBook.Model.Words;
 using System;
@@ -11,39 +12,59 @@ namespace EditTextBook.Services
 {
     internal class TextParser
     {
+        private readonly PunctuationSeparator punctuationSeparator;
+        public TextParser()
+        {
+            punctuationSeparator = new PunctuationSeparator();
+        }
         public bool IsSeparator(char temp)
         {
-            if (temp == ' ' || temp == '\t' || temp == '\n' || temp == '\r')
-                return true;
+            var separator = punctuationSeparator.RepeatPunctuationSeparator();
+            foreach (var item in separator)
+            {
+                if (temp == item)
+                {
+                    return true;
+                }
+            }
             return false;
         }
 
-        static bool IsAPunctuationMark(char temp)
+        public bool IsPunctuationMark(char temp)
         {
-            if (temp == ':' || temp == ';' || temp == '"' || temp == '\'' || temp == ',' || temp == '!' || temp == '?' || temp == '.')
+            var separator = punctuationSeparator.MyPunctuationSeparator();
+            foreach (var item in separator)
             {
-                return true;
+                if (temp == item)
+                {
+                    return true;
+                }
             }
             return false;
         }
 
         public bool EndOfSentence(char temp)
         {
-            if (temp == '!' || temp == '?' || temp == '.' || temp == ';')
+            var separator = punctuationSeparator.EndSentenceSeparator();
+            foreach (var item in separator)
             {
-                return true;
+                if (temp == item)
+                {
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
-        static bool IsCodeSymbols(char temp)
+        public bool IsCodeSymbols(char temp)
         {
-            if (temp == '{' || temp == '}' || temp == ')' || temp == '(' || temp == '[' || temp == ']' || temp == '$' || temp == '=')
+            var separator = punctuationSeparator.CodeSymbolSeparator();
+            foreach (var item in separator)
             {
-                return true;
+                if (temp == item)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -56,11 +77,11 @@ namespace EditTextBook.Services
             Word word = new Word();
             for (int i = 0; i < txt.Length; i++)
             {
-                if (!IsAPunctuationMark(txt[i]) && !IsSeparator(txt[i]) && !IsCodeSymbols(txt[i]))
+                if (!IsPunctuationMark(txt[i]) && !IsSeparator(txt[i]) && !IsCodeSymbols(txt[i]))
                 {
                     word.symbals += txt[i];
                 }
-                else if (IsAPunctuationMark(txt[i]))
+                else if (IsPunctuationMark(txt[i]))
                 {
                     if (word.symbals == null)
                         word.punctuationMarkBefore = txt[i];
@@ -77,7 +98,7 @@ namespace EditTextBook.Services
                 {
                     if (txt[i] == '\r' && word.symbals != null)
                     {
-                        word.PresenceOfLineFeed = true;
+                        word.presenceOfLineFeed = true;
                         newSentence = true;
                     }
                 }
