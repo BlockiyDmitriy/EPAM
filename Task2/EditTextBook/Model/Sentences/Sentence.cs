@@ -13,6 +13,7 @@ namespace EditTextBook.Model.Sentences
         public List<Word> words = new List<Word>();
         public TypeOfSentence type = TypeOfSentence.declarative;
 
+        public int Length { get { return words.Count; } }
         public void Add(Word word)
         {
             words.Add(word);
@@ -21,7 +22,6 @@ namespace EditTextBook.Model.Sentences
         {
             words.RemoveAt(position);
         }
-        public int Length { get { return words.Count; } }
         public void GetType(char ch)
         {
             if (ch == '?')
@@ -46,9 +46,13 @@ namespace EditTextBook.Model.Sentences
             for (int i = 0; i < Length; i++)
             {
                 if (isPresenseOfLineFeed)
+                { 
                     sentence += words[i].ToString();
+                }
                 else
+                { 
                     sentence += words[i].symbals;
+                }
                 if (i != (Length - 1))
                 {
                     sentence += " ";

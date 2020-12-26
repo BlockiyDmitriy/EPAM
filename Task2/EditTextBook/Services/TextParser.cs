@@ -19,7 +19,7 @@ namespace EditTextBook.Services
         }
         public bool IsSeparator(char temp)
         {
-            var separator = punctuationSeparator.RepeatPunctuationSeparator();
+            var separator = punctuationSeparator.Separator();
             foreach (var item in separator)
             {
                 if (temp == item)
@@ -79,16 +79,20 @@ namespace EditTextBook.Services
             {
                 if (!IsPunctuationMark(txt[i]) && !IsSeparator(txt[i]) && !IsCodeSymbols(txt[i]))
                 {
-                    word.symbals += txt[i];
+                    word.symbols += txt[i];
                 }
                 else if (IsPunctuationMark(txt[i]))
                 {
-                    if (word.symbals == null)
+                    if (word.symbols == null)
+                    {
                         word.punctuationMarkBefore = txt[i];
+                    }
                     else
+                    {
                         word.punctuationMarkAfter.Add(txt[i]);
+                    }
 
-                    if (EndOfSentence(txt[i]) && word.symbals != null)
+                    if (EndOfSentence(txt[i]) && word.symbols != null)
                     {
                         sentence.GetType(txt[i]);
                         newSentence = true;
@@ -96,13 +100,13 @@ namespace EditTextBook.Services
                 }
                 else
                 {
-                    if (txt[i] == '\r' && word.symbals != null)
+                    if (txt[i] == '\r' && word.symbols != null)
                     {
                         word.presenceOfLineFeed = true;
                         newSentence = true;
                     }
                 }
-                if ((IsSeparator(txt[i]) || i == (txt.Length - 1) || IsCodeSymbols(txt[i]) || txt[i] == '.') && word.symbals != null)
+                if ((IsSeparator(txt[i]) || i == (txt.Length - 1) || IsCodeSymbols(txt[i]) || txt[i] == '.') && word.symbols != null)
                 {
                     sentence.Add(word);
                     if (newSentence)

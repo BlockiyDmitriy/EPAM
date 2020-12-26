@@ -1,0 +1,15 @@
+﻿using EditTextBook.Model.Symbols;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EditTextBook.Model.Words.Contract
+{
+    internal interface IWord
+    {
+        Symbol symbol { get;}
+        int length { get; }
+    }
+}
