@@ -8,6 +8,6 @@ namespace EditTextBook.Model.Symbols
 {
     internal interface ISentenceItem
     {
-
+        //string chars { get; set; }
     }
 }

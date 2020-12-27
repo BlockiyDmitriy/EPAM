@@ -1,4 +1,5 @@
-﻿using EditTextBook.Model.Symbols;
+﻿using EditTextBook.Model.Sentences;
+using EditTextBook.Model.Symbols;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace EditTextBook.Model.Texts.Contract
 {
-    interface IText : ISentenceItem
+    interface IText
     {
-        ICollection<ISentenceItem> sentences { get; set; }
-        void Add(ISentenceItem sentence);
-        void Delete(ISentenceItem position);
+        List<Sentence> sentences { get; set; }
+        void Add(Sentence sentence);
+        void Delete(int position);
     }
 }

@@ -9,6 +9,9 @@ namespace EditTextBook.Model.Words.Contract
 {
     internal interface IWord : ISentenceItem
     {
+        char punctuationMarkBefore { get; set; }
+        List<char> punctuationMarkAfter { get; set; }
+        bool presenceOfLineFeed { get; set; }
         Symbol symbol { get; set; }
         int length { get; set; }
     }

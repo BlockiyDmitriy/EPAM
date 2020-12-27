@@ -1,4 +1,5 @@
 ﻿using EditTextBook.Model.Sentences;
+using EditTextBook.Model.Sentences.Contract;
 using EditTextBook.Model.Separators;
 using EditTextBook.Model.Texts;
 using EditTextBook.Model.Words;

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="IO\FileServices\IOF.cs" />
     <Compile Include="Model\Sentences\Contract\ISentence.cs" />
+    <Compile Include="Model\Separators\ConsonantSeparator.cs" />
     <Compile Include="Model\Symbols\ISentenceItem.cs" />
     <Compile Include="Model\Symbols\Symbol.cs" />
     <Compile Include="Model\Texts\Contract\IText.cs" />

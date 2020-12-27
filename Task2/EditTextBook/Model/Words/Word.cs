@@ -13,8 +13,14 @@ namespace EditTextBook.Model.Words
         private IEnumerable<Symbol> symbols;
 
         public char punctuationMarkBefore { get; set; }
-        public List<char> punctuationMarkAfter = new List<char>();
-        public bool presenceOfLineFeed = false;
+        public List<char> punctuationMarkAfter { get; set; }
+        public bool presenceOfLineFeed { get; set; } = false;
+
+        public Word()
+        {
+            symbols = new List<Symbol>();
+            punctuationMarkAfter = new List<char>();
+        }
 
         public Symbol symbol
         {

@@ -15,8 +15,7 @@ namespace EditTextBook.Model.Separators
         private char[] endSentenceSeparator = new char[] { '!', '?', '.', ';' };
 
         private char[] codeSymbolSeparator = new char[] { '{', '}', ')', '(', '[', ']', '$', '=' };
-        public PunctuationSeparator() { }
-
+        
         public IEnumerable<char> Separator()
         {
             return separator.AsEnumerable();

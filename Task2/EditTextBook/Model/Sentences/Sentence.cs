@@ -10,24 +10,29 @@ using System.Threading.Tasks;
 
 namespace EditTextBook.Model.Sentences
 {
-    internal class Sentence : ISentence, IComparable<Sentence>
+    internal class Sentence : ISentence
     {
 
-        public ICollection<ISentenceItem> words = new List<ISentenceItem>();
-        public TypeOfSentence type = TypeOfSentence.declarative;
+        public List<Word> words { get; set; }
+        public TypeOfSentence type { get; set; }
 
+        public Sentence()
+        {
+            words = new List<Word>();
+            type = TypeOfSentence.declarative;
+        }
         public int Length 
         { 
             get { return words.Count; }
             set { Length = value; }
         }
-        public void Add(ISentenceItem word)
+        public void Add(Word word)
         {
             words.Add(word);
         }
-        public void Delete(ISentenceItem position)
+        public void Delete(int position)
         {
-            words.Remove(position);
+            words.RemoveAt(position);
         }
         public void GetType(char ch)
         {
@@ -67,11 +72,6 @@ namespace EditTextBook.Model.Sentences
                 }
             }
             return sentence.ToString();
-        }
-
-        public int CompareTo(Sentence other)
-        {
-            return words.Count.CompareTo(other.words.Count);
         }
     }
 }

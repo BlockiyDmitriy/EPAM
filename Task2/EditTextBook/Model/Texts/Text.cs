@@ -1,4 +1,5 @@
 ﻿using EditTextBook.Model.Sentences;
+using EditTextBook.Model.Separators;
 using EditTextBook.Model.Symbols;
 using EditTextBook.Model.Texts.Contract;
 using EditTextBook.Model.Words;
@@ -14,26 +15,25 @@ namespace EditTextBook.Model.Texts
 {
     internal class Text : IText
     {
-        public ICollection<ISentenceItem> Sentences = new List<ISentenceItem>();
-        public bool IsWordBegWithConsLetter(Word word)
+        public List<Sentence> Sentences;
+        private ConsonantSeparator consonantSeparator;
+
+        public Text()
         {
-            List<char> consonantLetters = new List<char> { 'b', 'c', 'd', 'f', 'g', 'h', 'g', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z' };
-            if (consonantLetters.Contains(Char.ToLower(word.symbol.Content)))
-            {
-                return true;
-            }
-            return false;
+            Sentences = new List<Sentence>();
+            consonantSeparator = new ConsonantSeparator();
         }
 
-        public void Add(ISentenceItem sentence)
+
+        public void Add(Sentence sentence)
         {
             sentences.Add(sentence);
         }
-        public void Delete(ISentenceItem position)
+        public void Delete(int position)
         {
-            sentences.Remove(position);
+            sentences.RemoveAt(position);
         }
-        public ICollection<ISentenceItem> sentences 
+        public List<Sentence> sentences 
         { 
             get { return Sentences; }
             set { Sentences = value; }
@@ -41,6 +41,15 @@ namespace EditTextBook.Model.Texts
 
         public int Length { get { return sentences.Count; } }
 
+        public bool IsWordBegWithConsLetter(Word word)
+        {
+            var consonantLetters = consonantSeparator.ConsonantLattersSeparator();
+            if (consonantLetters.Contains(Char.ToLower(word.symbol.Content.ToCharArray().ElementAt(0))))
+            {
+                return true;
+            }
+            return false;
+        }
 
         public void SortedByWordCount()
         {
@@ -51,8 +60,7 @@ namespace EditTextBook.Model.Texts
             StringBuilder text = new StringBuilder();
             for (int i = 0; i < Length; i++)
             {
-                //text.Append(sentences.ElementAt(i).ToString(isPresenceOfLineFeed));
-                text += sentences[i].ToString(isPresenceOfLineFeed) + " ";
+                text.Append(sentences.ElementAt(i).ToString(isPresenceOfLineFeed)).Append(" ");
                 if (!isPresenceOfLineFeed)
                 {
                     text.Append("\r\n");
@@ -117,7 +125,7 @@ namespace EditTextBook.Model.Texts
             {
                 if (sentences[numOfSentence - 1].words[i].length == len)
                 {
-                    sentences[numOfSentence - 1].words[i].symbol = subStr;
+                    sentences[numOfSentence - 1].words[i].symbol.Content = subStr;
                 }
             }
         }
@@ -137,7 +145,7 @@ namespace EditTextBook.Model.Texts
                 }
                 for (int j = 0; j < sentences[i].Length; j++)
                 {
-                    tempStr = sentences[i].words[j].symbol;
+                    tempStr = sentences[i].words[j].symbol.Content;
                     if (dictionary.TryGetValue(tempStr.ToLower(), out temp))
                     {
                         temp.pageNumbers.Add(currentPage);

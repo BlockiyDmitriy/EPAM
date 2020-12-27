@@ -1,4 +1,5 @@
 ﻿using EditTextBook.Model.Symbols;
+using EditTextBook.Model.Words;
 using EditTextBook.Model.Words.Contract;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,11 @@ namespace EditTextBook.Model.Sentences.Contract
 {
     internal interface ISentence
     {
+        List<Word> words { get; set; }
+        TypeOfSentence type { get; set; }
         int Length { get; set; }
-        void Add(ISentenceItem word);
-        void Delete(ISentenceItem position);
+        void Add(Word word);
+        void Delete(int position);
+        void GetType(char ch);
     }
 }
