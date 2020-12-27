@@ -10,9 +10,8 @@ namespace EditTextBook.Model.Symbols
     {
         public string Content { get; set; }
 
-        public Symbol(string content)
+        public Symbol()
         {
-            Content = content;
         }
     }
 }

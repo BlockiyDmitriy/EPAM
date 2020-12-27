@@ -10,27 +10,26 @@ namespace EditTextBook.Model.Words
 {
     internal class Word : IWord
     {
-        private IEnumerable<Symbol> symbols;
-
+        private Symbol symbols;
         public char punctuationMarkBefore { get; set; }
         public List<char> punctuationMarkAfter { get; set; }
         public bool presenceOfLineFeed { get; set; } = false;
 
         public Word()
         {
-            symbols = new List<Symbol>();
+            symbols = new Symbol();
             punctuationMarkAfter = new List<char>();
         }
 
         public Symbol symbol
         {
-            get { return symbols.First(); }
+            get { return symbols; }
             set { symbol = value; }
         }
 
         public int length
         {
-            get { return symbols.Count(); }
+            get { return symbols.Content.Length; }
             set { length = value; }
         }
 

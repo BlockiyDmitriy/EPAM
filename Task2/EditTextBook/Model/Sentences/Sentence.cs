@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EditTextBook.Model.Sentences
 {
-    internal class Sentence : ISentence
+    internal class Sentence : ISentence, IComparable<Sentence>
     {
 
         public List<Word> words { get; set; }
@@ -72,6 +72,10 @@ namespace EditTextBook.Model.Sentences
                 }
             }
             return sentence.ToString();
+        }
+        public int CompareTo(Sentence other)
+        {
+            return words.Count.CompareTo(other.words.Count);
         }
     }
 }
