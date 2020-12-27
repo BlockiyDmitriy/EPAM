@@ -18,32 +18,7 @@ namespace EditTextBook.Services
         {
             punctuationSeparator = new PunctuationSeparator();
         }
-        public bool IsSeparator(char temp)
-        {
-            var separator = punctuationSeparator.Separator();
-            foreach (var item in separator)
-            {
-                if (temp == item)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool IsPunctuationMark(char temp)
-        {
-            var separator = punctuationSeparator.MyPunctuationSeparator();
-            foreach (var item in separator)
-            {
-                if (temp == item)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
+       
         public bool EndOfSentence(char temp)
         {
             var separator = punctuationSeparator.EndSentenceSeparator();
@@ -56,10 +31,9 @@ namespace EditTextBook.Services
             }
             return false;
         }
-
-        public bool IsCodeSymbols(char temp)
+       
+        public bool CheckSeparator(IEnumerable<char> separator, char temp)
         {
-            var separator = punctuationSeparator.CodeSymbolSeparator();
             foreach (var item in separator)
             {
                 if (temp == item)
@@ -78,11 +52,13 @@ namespace EditTextBook.Services
             Word word = new Word();
             for (int i = 0; i < txt.Length; i++)
             {
-                if (!IsPunctuationMark(txt[i]) && !IsSeparator(txt[i]) && !IsCodeSymbols(txt[i]))
+                if (!CheckSeparator(punctuationSeparator.MyPunctuationSeparator(), txt[i]) &&
+                    !CheckSeparator(punctuationSeparator.Separator(), txt[i]) &&
+                    !CheckSeparator(punctuationSeparator.CodeSymbolSeparator(), txt[i]))
                 {
                     word.symbol.Content += txt[i];
                 }
-                else if (IsPunctuationMark(txt[i]))
+                else if (!CheckSeparator(punctuationSeparator.MyPunctuationSeparator(), txt[i]))
                 {
                     if (word.symbol.Content == null)
                     {
@@ -93,7 +69,7 @@ namespace EditTextBook.Services
                         word.punctuationMarkAfter.Add(txt[i]);
                     }
 
-                    if (EndOfSentence(txt[i]) && word.symbol.Content != null)
+                    if (CheckSeparator(punctuationSeparator.EndSentenceSeparator(), txt[i]) && word.symbol.Content != null)
                     {
                         sentence.GetType(txt[i]);
                         newSentence = true;
@@ -107,7 +83,10 @@ namespace EditTextBook.Services
                         newSentence = true;
                     }
                 }
-                if ((IsSeparator(txt[i]) || i == (txt.Length - 1) || IsCodeSymbols(txt[i]) || txt[i] == '.') && word.symbol.Content != null)
+                if (((CheckSeparator(punctuationSeparator.Separator(), txt[i]) ||
+                    i == (txt.Length - 1) ||
+                    (CheckSeparator(punctuationSeparator.CodeSymbolSeparator(), txt[i])) ||
+                    txt[i] == '.') && word.symbol.Content != null))
                 {
                     sentence.Add(word);
                     if (newSentence)
