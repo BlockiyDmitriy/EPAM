@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="IO\FileServices\IOF.cs" />
     <Compile Include="Model\Sentences\Contract\ISentence.cs" />
+    <Compile Include="Model\Symbols\ISentenceItem.cs" />
     <Compile Include="Model\Symbols\Symbol.cs" />
+    <Compile Include="Model\Texts\Contract\IText.cs" />
     <Compile Include="Model\Words\Contract\IWord.cs" />
     <Compile Include="Services\MySortedDictionary.cs" />
     <Compile Include="Model\MySorted\MyValue.cs" />

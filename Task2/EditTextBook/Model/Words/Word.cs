@@ -16,19 +16,16 @@ namespace EditTextBook.Model.Words
         public List<char> punctuationMarkAfter = new List<char>();
         public bool presenceOfLineFeed = false;
 
-        public Word()
-        {
-
-        }
-
         public Symbol symbol
         {
             get { return symbols.First(); }
+            set { symbol = value; }
         }
 
         public int length
         {
             get { return symbols.Count(); }
+            set { length = value; }
         }
 
         public override string ToString()

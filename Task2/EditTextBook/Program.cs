@@ -40,6 +40,8 @@ namespace EditTextBook
                 //подстрокой, длина которойможет не совпадать с длиной слова
                 string sub = "hello";
                 text.WordsReplaceWithSubstring(numOfSentences, len, sub);
+
+                writeToAnswerTXT.Close();
             };
             using (StreamWriter writeToConcordanceTXT = new StreamWriter(concBook))
             {

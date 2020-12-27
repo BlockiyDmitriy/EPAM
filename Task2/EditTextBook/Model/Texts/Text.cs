@@ -1,4 +1,6 @@
 ﻿using EditTextBook.Model.Sentences;
+using EditTextBook.Model.Symbols;
+using EditTextBook.Model.Texts.Contract;
 using EditTextBook.Model.Words;
 using EditTextBook.MySorted.Model;
 using System;
@@ -10,52 +12,56 @@ using System.Threading.Tasks;
 
 namespace EditTextBook.Model.Texts
 {
-    internal class Text
+    internal class Text : IText
     {
-        public List<Sentence> sentences = new List<Sentence>();
-        public Text() { }
-
-        // вынести в класс "символ"
+        public ICollection<ISentenceItem> Sentences = new List<ISentenceItem>();
         public bool IsWordBegWithConsLetter(Word word)
         {
             List<char> consonantLetters = new List<char> { 'b', 'c', 'd', 'f', 'g', 'h', 'g', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z' };
-            if (consonantLetters.Contains(Char.ToLower(word.symbals[0])))
+            if (consonantLetters.Contains(Char.ToLower(word.symbol.Content)))
             {
                 return true;
             }
             return false;
         }
 
-        public void Add(Sentence sentence)
+        public void Add(ISentenceItem sentence)
         {
             sentences.Add(sentence);
         }
-        public void Delete(int position)
+        public void Delete(ISentenceItem position)
         {
-            sentences.RemoveAt(position);
+            sentences.Remove(position);
+        }
+        public ICollection<ISentenceItem> sentences 
+        { 
+            get { return Sentences; }
+            set { Sentences = value; }
         }
 
         public int Length { get { return sentences.Count; } }
+
 
         public void SortedByWordCount()
         {
             sentences.Sort();
         }
-        public string ToString(bool isPresenseOfLineFeed)
+        public string ToString(bool isPresenceOfLineFeed)
         {
-            string text = "";
+            StringBuilder text = new StringBuilder();
             for (int i = 0; i < Length; i++)
             {
-                text += sentences[i].ToString(isPresenseOfLineFeed) + " ";
-                if (!isPresenseOfLineFeed)
+                //text.Append(sentences.ElementAt(i).ToString(isPresenceOfLineFeed));
+                text += sentences[i].ToString(isPresenceOfLineFeed) + " ";
+                if (!isPresenceOfLineFeed)
                 {
-                    text += "\r\n";
+                    text.Append("\r\n");
                 }
             }
-            return text;
+            return text.ToString();
         }
 
-        //слова в вопросительном вопросе без повторов
+        //слова в вопросительном без повторов
         public void PrintWordsInInterrogativeWithoutRepetitions(StreamWriter writer, int len)
         {
             HashSet<string> hash = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -65,7 +71,7 @@ namespace EditTextBook.Model.Texts
                 {
                     for (int j = 0; j < sentences[i].Length; j++)
                     {
-                        if (len == sentences[i].words[j].Length)
+                        if (len == sentences[i].words[j].length)
                         {
                             hash.Add(sentences[i].words[j].ToString());
                         }
@@ -83,7 +89,7 @@ namespace EditTextBook.Model.Texts
             {
                 for (int j = 0; j < sentences[i].Length; j++)
                 {
-                    if (sentences[i].words[j].symbals == null)
+                    if (sentences[i].words[j].symbol == null)
                     {
                         Delete(i);
                     }
@@ -97,7 +103,7 @@ namespace EditTextBook.Model.Texts
             {
                 for (int j = 0; j < sentences[i].Length; j++)
                 {
-                    if (len == sentences[i].words[j].Length && IsWordBegWithConsLetter(sentences[i].words[j]))
+                    if (len == sentences[i].words[j].length && IsWordBegWithConsLetter(sentences[i].words[j]))
                     {
                         sentences[i].Delete(j);
                     }
@@ -109,9 +115,9 @@ namespace EditTextBook.Model.Texts
         {
             for (int i = 0; i < sentences[numOfSentence - 1].Length; i++)
             {
-                if (sentences[numOfSentence - 1].words[i].Length == len)
+                if (sentences[numOfSentence - 1].words[i].length == len)
                 {
-                    sentences[numOfSentence - 1].words[i].symbals = subStr;
+                    sentences[numOfSentence - 1].words[i].symbol = subStr;
                 }
             }
         }
@@ -131,7 +137,7 @@ namespace EditTextBook.Model.Texts
                 }
                 for (int j = 0; j < sentences[i].Length; j++)
                 {
-                    tempStr = sentences[i].words[j].symbals;
+                    tempStr = sentences[i].words[j].symbol;
                     if (dictionary.TryGetValue(tempStr.ToLower(), out temp))
                     {
                         temp.pageNumbers.Add(currentPage);

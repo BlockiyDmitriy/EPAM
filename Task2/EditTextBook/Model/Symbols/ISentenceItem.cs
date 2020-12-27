@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace EditTextBook.Model.Symbols
 {
-    internal class Symbol
+    internal interface ISentenceItem
     {
-        public string Content { get; set; }
 
-        public Symbol(string content)
-        {
-            Content = content;
-        }
     }
 }

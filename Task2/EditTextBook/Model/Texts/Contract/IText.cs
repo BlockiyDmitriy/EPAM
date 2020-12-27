@@ -1,17 +1,16 @@
 ﻿using EditTextBook.Model.Symbols;
-using EditTextBook.Model.Words.Contract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditTextBook.Model.Sentences.Contract
+namespace EditTextBook.Model.Texts.Contract
 {
-    internal interface ISentence
+    interface IText : ISentenceItem
     {
-        int Length { get; set; }
-        void Add(ISentenceItem word);
+        ICollection<ISentenceItem> sentences { get; set; }
+        void Add(ISentenceItem sentence);
         void Delete(ISentenceItem position);
     }
 }

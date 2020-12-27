@@ -79,11 +79,11 @@ namespace EditTextBook.Services
             {
                 if (!IsPunctuationMark(txt[i]) && !IsSeparator(txt[i]) && !IsCodeSymbols(txt[i]))
                 {
-                    word.symbols += txt[i];
+                    word.symbol.Content += txt[i];
                 }
                 else if (IsPunctuationMark(txt[i]))
                 {
-                    if (word.symbols == null)
+                    if (word.symbol.Content == null)
                     {
                         word.punctuationMarkBefore = txt[i];
                     }
@@ -92,7 +92,7 @@ namespace EditTextBook.Services
                         word.punctuationMarkAfter.Add(txt[i]);
                     }
 
-                    if (EndOfSentence(txt[i]) && word.symbols != null)
+                    if (EndOfSentence(txt[i]) && word.symbol.Content != null)
                     {
                         sentence.GetType(txt[i]);
                         newSentence = true;
@@ -100,13 +100,13 @@ namespace EditTextBook.Services
                 }
                 else
                 {
-                    if (txt[i] == '\r' && word.symbols != null)
+                    if (txt[i] == '\r' && word.symbol.Content != null)
                     {
                         word.presenceOfLineFeed = true;
                         newSentence = true;
                     }
                 }
-                if ((IsSeparator(txt[i]) || i == (txt.Length - 1) || IsCodeSymbols(txt[i]) || txt[i] == '.') && word.symbols != null)
+                if ((IsSeparator(txt[i]) || i == (txt.Length - 1) || IsCodeSymbols(txt[i]) || txt[i] == '.') && word.symbol.Content != null)
                 {
                     sentence.Add(word);
                     if (newSentence)

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace EditTextBook.Model.Words.Contract
 {
-    internal interface IWord
+    internal interface IWord : ISentenceItem
     {
-        Symbol symbol { get;}
-        int length { get; }
+        Symbol symbol { get; set; }
+        int length { get; set; }
     }
 }
