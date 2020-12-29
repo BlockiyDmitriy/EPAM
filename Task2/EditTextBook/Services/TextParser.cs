@@ -17,21 +17,7 @@ namespace EditTextBook.Services
         public TextParser()
         {
             punctuationSeparator = new PunctuationSeparator();
-        }
-       
-        public bool EndOfSentence(char temp)
-        {
-            var separator = punctuationSeparator.EndSentenceSeparator();
-            foreach (var item in separator)
-            {
-                if (temp == item)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-       
+        }       
         public bool CheckSeparator(IEnumerable<char> separator, char temp)
         {
             foreach (var item in separator)

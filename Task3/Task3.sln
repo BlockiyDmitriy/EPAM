@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATS", "ATS\ATS.csproj", "{8ED1A961-9AF2-4AB4-B59D-C4E818B8EE92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8ED1A961-9AF2-4AB4-B59D-C4E818B8EE92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED1A961-9AF2-4AB4-B59D-C4E818B8EE92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED1A961-9AF2-4AB4-B59D-C4E818B8EE92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED1A961-9AF2-4AB4-B59D-C4E818B8EE92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8E7A3B0-E7B6-4B6B-BB5A-5E4D2B881FA6}
+	EndGlobalSection
+EndGlobal
