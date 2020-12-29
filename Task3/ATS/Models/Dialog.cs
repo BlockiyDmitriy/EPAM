@@ -9,7 +9,7 @@ namespace ATS.Models
     //класс для отслеживания текущего разговора
     internal class Dialog
     {
-        public Dictionary<User, User> UserDialog { get; private set; }
+        private Dictionary<User, User> UserDialog { get; set; }
         private User Client { get; set; }
         private User Subscriber { get; set; }
         public int Price { get; private set; }
@@ -22,9 +22,13 @@ namespace ATS.Models
             this.Duration = duration;
             UserDialog = new Dictionary<User, User>(1);
         }
-        private void GetUsersInDialog()
+        public void AddUsersInDialog()
         {
             UserDialog.Add(Client, Subscriber);
+        }
+        public Dictionary<User,User>.ValueCollection GetUsersInDialog()
+        {
+            return UserDialog.Values;
         }
     }
 }
