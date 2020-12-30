@@ -4,17 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATS.Models
+namespace ATS.Models.BillingSystem
 {
     //класс для отслеживания текущего разговора
-    internal class Dialog
+    internal class DialogInformation
     {
         private Dictionary<User, User> UserDialog { get; set; }
         private User Client { get; set; }
         private User Subscriber { get; set; }
-        public int Price { get; private set; }
-        public int Duration { get; private set; }
-        public Dialog(User user, User subscriber, int price, int duration)
+        private int ClientNumber { get; set; }
+        private int SubscriberNumber { get; set; }
+        private int Price { get; set; }
+        private int Duration { get; set; }
+        public DialogInformation(User user, User subscriber, int price, int duration)
         {
             this.Client = user;
             this.Subscriber = subscriber;
@@ -26,9 +28,10 @@ namespace ATS.Models
         {
             UserDialog.Add(Client, Subscriber);
         }
-        public Dictionary<User,User>.ValueCollection GetUsersInDialog()
-        {
-            return UserDialog.Values;
-        }
+        public Dictionary<User, User>.ValueCollection GetUsersInDialog() => UserDialog.Values;
+        public int GetClientNumber() => ClientNumber;
+        public int GetSubscriberNumber() => SubscriberNumber;
+        public int GetPrice() => Price;
+        public int GetDuration => Duration;
     }
 }

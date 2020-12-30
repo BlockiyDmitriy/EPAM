@@ -44,11 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\PortState.cs" />
-    <Compile Include="Models\AutoTelephoneStaition.cs" />
-    <Compile Include="Models\Billing.cs" />
-    <Compile Include="Models\Dialog.cs" />
-    <Compile Include="Models\Terminal.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Controllers\AutoTelephoneStaition.cs" />
+    <Compile Include="Models\BillingSystem\Billing.cs" />
+    <Compile Include="Models\Controllers\Contracts\IAutoTelephoneStaition.cs" />
+    <Compile Include="Models\Controllers\Contracts\IPort.cs" />
+    <Compile Include="Models\Controllers\Contracts\ITerminal.cs" />
+    <Compile Include="Models\BillingSystem\DialogInformation.cs" />
+    <Compile Include="Models\Controllers\Port.cs" />
+    <Compile Include="Models\Controllers\Terminal.cs" />
+    <Compile Include="Models\BillingSystem\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

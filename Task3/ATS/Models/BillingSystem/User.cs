@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATS.Models
+namespace ATS.Models.BillingSystem
 {
     internal class User
     {
