@@ -10,17 +10,11 @@ namespace ATS.Models.BillingSystem
 
     internal class Billing
     {
-        private int Duration { get; set; }
-        private int Price { get; set; }
-        private User User { get; set; }
-        public Billing(int duration, int price, User user)
+        private IEnumerable<DialogInformation> DialogInformationl { get; set; }
+        public Billing(IEnumerable<DialogInformation> dialogInformation)
         {
-            this.Duration = duration;
-            this.Price = price;
-            this.User = user;
-        }
-        public int GetDuration() => Duration;
-        public int GetPrice() => Price;
-        public User GetUser() => User;
+            this.DialogInformationl = dialogInformation;
+        }                
+
     }
 }
