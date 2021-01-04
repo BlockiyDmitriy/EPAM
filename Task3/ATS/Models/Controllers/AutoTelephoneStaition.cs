@@ -11,6 +11,7 @@ namespace ATS.Models.Controllers
 {
     internal class AutoTelephoneStaition : IAutoTelephoneStaition
     {
+        private int Number { get; set; }
         private int AmountPorts { get; set; }
         private IEnumerable<int> EmployedPorts { get; set; }
         private IEnumerable<int> FreePorts { get; set; }
@@ -22,6 +23,7 @@ namespace ATS.Models.Controllers
             this.FreePorts = freePorts;
             this.AllCall = allCall;
         }
+        public int GetNumber() => Number;
         public int GetAmountPorts() => AmountPorts;
         public IEnumerator<int> GetEmployedPorts() => EmployedPorts.GetEnumerator();
         public IEnumerator<int> GetFreePorts() => FreePorts.GetEnumerator();

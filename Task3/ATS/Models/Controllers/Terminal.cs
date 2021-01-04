@@ -12,15 +12,14 @@ namespace ATS.Models.Controllers
     internal class Terminal : ITerminal
     {
         private int Number { get; set; }
-        private int ConnectPort { get; set; }
-        public Terminal(int number, int connectPort)
+        private IPort Port { get; set; }
+        public Terminal(int number, IPort port)
         {
             this.Number = number;
-            this.ConnectPort = connectPort;
+            this.Port = port;
         }
 
         public int GetNumberPort() => Number;
-
-        public int GetConnectPort() => ConnectPort;
+        public IPort GetPort() => Port;
     }
 }

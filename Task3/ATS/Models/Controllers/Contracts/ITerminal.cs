@@ -9,6 +9,6 @@ namespace ATS.Models.Controllers.Contracts
     internal interface ITerminal
     {
         int GetNumberPort();
-        int GetConnectPort();
+        IPort GetPort();
     }
 }

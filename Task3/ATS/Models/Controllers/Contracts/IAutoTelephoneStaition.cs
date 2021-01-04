@@ -9,6 +9,7 @@ namespace ATS.Models.Controllers.Contracts
 {
     internal interface IAutoTelephoneStaition
     {
+        int GetNumber();
         int GetAmountPorts();
         IEnumerator<int> GetEmployedPorts();
         IEnumerator<int> GetFreePorts();
