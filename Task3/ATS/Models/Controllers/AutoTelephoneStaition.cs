@@ -11,22 +11,14 @@ namespace ATS.Models.Controllers
 {
     internal class AutoTelephoneStaition : IAutoTelephoneStaition
     {
-        private int Number { get; set; }
-        private int AmountPorts { get; set; }
-        private IEnumerable<int> EmployedPorts { get; set; }
-        private IEnumerable<int> FreePorts { get; set; }
-        private IEnumerable<DialogInformation> AllCall { get; set; }
-        public AutoTelephoneStaition(int amountPorts, IEnumerable<int> employedPorts, IEnumerable<int> freePorts, IEnumerable<DialogInformation> allCall)
+        private IEnumerable<ITerminal> Terminals { get; set; }
+        private IEnumerable<IPort> Ports { get; set; }
+        public AutoTelephoneStaition(IEnumerable<IPort> ports, IEnumerable<ITerminal> terminals)
         {
-            this.AmountPorts = amountPorts;
-            this.EmployedPorts = employedPorts;
-            this.FreePorts = freePorts;
-            this.AllCall = allCall;
+            this.Terminals = terminals;
+            this.Ports = ports;
         }
-        public int GetNumber() => Number;
-        public int GetAmountPorts() => AmountPorts;
-        public IEnumerator<int> GetEmployedPorts() => EmployedPorts.GetEnumerator();
-        public IEnumerator<int> GetFreePorts() => FreePorts.GetEnumerator();
-        public IEnumerator<DialogInformation> GetAllPorts() => AllCall.GetEnumerator();
+        public IEnumerator<ITerminal> GetTerminal() => Terminals.GetEnumerator();
+        public IEnumerator<IPort> GetPorts() => Ports.GetEnumerator();
     }
 }

@@ -8,8 +8,7 @@ namespace ATS.Enums
 {
     internal enum PortState
     {
-        Connect,
-        Disconnect,
+        Free,
         InCall
     }
 }

@@ -11,15 +11,15 @@ namespace ATS.Models.Controllers
     //для работы терминала необходимо знать его номер, выдынный телефонной станцией и порт по которому он подключается.
     internal class Terminal : ITerminal
     {
-        private int Number { get; set; }
+        private string Number { get; set; }
         private IPort Port { get; set; }
-        public Terminal(int number, IPort port)
+        public Terminal(string number, IPort port)
         {
             this.Number = number;
             this.Port = port;
         }
 
-        public int GetNumberPort() => Number;
+        public string GetNumberPort() => Number;
         public IPort GetPort() => Port;
     }
 }

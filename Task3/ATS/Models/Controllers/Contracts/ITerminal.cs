@@ -8,7 +8,7 @@ namespace ATS.Models.Controllers.Contracts
 {
     internal interface ITerminal
     {
-        int GetNumberPort();
+        string GetNumberPort();
         IPort GetPort();
     }
 }
