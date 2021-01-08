@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATS.Models.Controllers.Contracts
+namespace ATS.Controllers
 {
-    internal interface ITerminal
+    internal class CallController
     {
-        string GetNumberPort();
-        IPort GetPort();
     }
 }

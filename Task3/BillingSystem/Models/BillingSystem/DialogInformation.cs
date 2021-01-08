@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATS.Models.BillingSystem
+namespace BillingSystem.Models.BillingSystem
 {
     //класс для отслеживания текущего разговора
     internal class DialogInformation

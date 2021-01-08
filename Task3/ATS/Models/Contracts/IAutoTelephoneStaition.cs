@@ -1,4 +1,4 @@
-﻿using ATS.Models.BillingSystem;
+﻿using ATS.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace ATS.Models.Controllers.Contracts
 {
     internal interface IAutoTelephoneStaition
     {
-        IEnumerator<ITerminal> GetTerminal();
-        IEnumerator<IPort> GetPorts();
+        TerminalController GetTerminal();
+        PortController GetPorts();
     }
 }

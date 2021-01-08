@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8ED1A961-9AF2-4AB4-B59D-C4E818B8EE92}</ProjectGuid>
+    <ProjectGuid>{E42D9CEA-0546-41B6-BC70-2C4E54D22217}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ATS</RootNamespace>
-    <AssemblyName>ATS</AssemblyName>
+    <RootNamespace>BillingSystem</RootNamespace>
+    <AssemblyName>BillingSystem</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,24 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CallController.cs" />
-    <Compile Include="Enums\PortState.cs" />
-    <Compile Include="Models\AutoTelephoneStaition.cs" />
-    <Compile Include="Models\Contracts\IAutoTelephoneStaition.cs" />
-    <Compile Include="Models\Contracts\IPort.cs" />
-    <Compile Include="Models\Contracts\ITerminal.cs" />
-    <Compile Include="Models\PhoneNumber.cs" />
-    <Compile Include="Models\Port.cs" />
-    <Compile Include="Models\Terminal.cs" />
+    <Compile Include="Models\BillingSystem\Billing.cs" />
+    <Compile Include="Models\BillingSystem\DialogInformation.cs" />
+    <Compile Include="Models\BillingSystem\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ATSService.cs" />
-    <Compile Include="Controllers\PortController.cs" />
-    <Compile Include="Controllers\TerminalController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
