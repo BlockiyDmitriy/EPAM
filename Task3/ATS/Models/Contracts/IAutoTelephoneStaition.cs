@@ -1,4 +1,4 @@
-﻿using ATS.Controllers;
+﻿using ATS.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,6 @@ namespace ATS.Models.Controllers.Contracts
 {
     internal interface IAutoTelephoneStaition
     {
-        TerminalController GetTerminal();
         PortController GetPorts();
     }
 }

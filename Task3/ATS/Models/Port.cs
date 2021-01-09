@@ -10,15 +10,42 @@ namespace ATS.Models
 {
     internal class Port : IPort
     {
-        private int NumberPort { get; set; }
         private PortState PortState { get; set; }
 
-        public Port(int numberPort)
-        {
-            this.NumberPort = numberPort;
-            this.PortState = PortState;
-        }
-        public int GetCountPort() => NumberPort;
+
         public PortState GetPortState() => PortState;
+
+        public event EventHandler<ITerminal> OutGoingCall;
+        public event EventHandler InComingCall;
+        public event EventHandler Answer;
+        public event EventHandler Drop;
+        
+        public void BindEvent(ITerminal terminal)
+        {
+            terminal.OutGoingCall += OnOutGoingCall;
+            terminal.InComingCall += OnInComingCall;
+            terminal.Answer += OnAnswer;
+            terminal.Drop += OnDrop;
+        }
+        private void OnOutGoingCall(object sender, ITerminal terminal)
+        {
+            PortState = PortState.Busy;
+            OutGoingCall?.Invoke(this, terminal);
+        }
+        private void OnInComingCall(object sender, EventArgs args)
+        {
+            PortState = PortState.Busy;
+            InComingCall?.Invoke(this, args);
+        }
+        private void OnAnswer(object sender, EventArgs args)
+        {
+            PortState = PortState.InCall;
+            Answer?.Invoke(this, args);
+        }
+        private void OnDrop(object sender, EventArgs args)
+        {
+            PortState = PortState.Free;
+            Drop?.Invoke(this, args);
+        }
     }
 }

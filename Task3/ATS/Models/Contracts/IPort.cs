@@ -10,6 +10,10 @@ namespace ATS.Models.Controllers.Contracts
     internal interface IPort
     {
         PortState GetPortState();
-        int GetCountPort();
+
+        event EventHandler<ITerminal> OutGoingCall;
+        event EventHandler InComingCall;
+        event EventHandler Answer;
+        event EventHandler Drop;
     }
 }

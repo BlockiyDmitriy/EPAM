@@ -6,17 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATS.Controllers.Services
+namespace ATS.Services.Services
 {
     internal class ATSService
     {
-        public void OnATS(object sender, IAutoTelephoneStaition autoTelephoneStaition)
-        {
-            Connect();
-        }
-        private void Connect()
-        {
-            Console.WriteLine("Port connect to ATS");
-        }
+
     }
 }

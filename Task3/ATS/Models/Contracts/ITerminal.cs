@@ -10,12 +10,10 @@ namespace ATS.Models.Controllers.Contracts
     {
         PhoneNumber GetNumber();
         IPort GetPort();
+
         event EventHandler<ITerminal> OutGoingCall;
         event EventHandler InComingCall;
         event EventHandler Answer;
         event EventHandler Drop;
-        void Call(ITerminal phoneNumber);
-        void AnswerCall();
-        void DropCall();
     }
 }

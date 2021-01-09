@@ -9,6 +9,7 @@ namespace ATS.Enums
     internal enum PortState
     {
         Free,
+        Busy,
         InCall
     }
 }

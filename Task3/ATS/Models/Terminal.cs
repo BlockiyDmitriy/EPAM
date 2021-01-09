@@ -9,8 +9,8 @@ namespace ATS.Models
 {
     internal class Terminal : ITerminal
     {
-        private PhoneNumber PhoneNumber { get; set; }
-        private IPort Port { get; set; }
+        public PhoneNumber PhoneNumber { get; private set; }
+        public IPort Port { get; private set; }
         public Terminal(PhoneNumber number)
         {
             this.PhoneNumber = number;
@@ -22,6 +22,7 @@ namespace ATS.Models
         public event EventHandler InComingCall;
         public event EventHandler Answer;
         public event EventHandler Drop;
+
         protected virtual void OnOutGoingCall(object sender, ITerminal turget)
         {            
             OutGoingCall?.Invoke(this, turget);
