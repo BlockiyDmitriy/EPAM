@@ -1,4 +1,5 @@
-﻿using ATS.Models;
+﻿using ATS.Enums;
+using ATS.Models;
 using ATS.Models.Controllers.Contracts;
 using System;
 using System.Collections.Generic;
@@ -8,18 +9,29 @@ using System.Threading.Tasks;
 
 namespace ATS.Services
 {
-    internal class PortController
+    internal class PortService
     {
-        private IDictionary<PhoneNumber, IPort> Ports { get; set; }
+        private ICollection<IPort> _Ports;
 
-        public PortController()
+        public PortService()
         {
-            Ports = new Dictionary<PhoneNumber, IPort>();
+            _Ports = new List<IPort>();
         }
-
-        public IPort GeneratePort()
+        public void AddPort(IPort port)
         {
-            return null;
+            _Ports.Add(port);
+        }
+        public void CreatePort()
+        {
+            AddPort(new Port());
+        }
+        public IPort GetFreePort()
+        {
+            return _Ports.Where(x => x.GetPortState() == PortState.Free).FirstOrDefault();
+        }
+        public IPort GetPortPhone(PhoneNumber phoneNumber)
+        {
+            return _Ports.FirstOrDefault(x => x.GetTerminal().GetNumber().Equals(phoneNumber));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATS.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,13 @@ namespace ATS.Models.Controllers.Contracts
         PhoneNumber GetNumber();
         IPort GetPort();
 
-        event EventHandler<ITerminal> OutGoingCall;
-        event EventHandler InComingCall;
+
+        event EventHandler<PhoneNumber> OutGoingCall;
+        event EventHandler<PhoneNumber> InComingCall;
         event EventHandler Answer;
         event EventHandler Drop;
+        void Call(PhoneNumber phoneNumber);
+        void AnswerCall();
+        void DropCall();
     }
 }

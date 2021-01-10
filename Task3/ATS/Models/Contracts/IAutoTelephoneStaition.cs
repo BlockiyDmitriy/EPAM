@@ -9,6 +9,6 @@ namespace ATS.Models.Controllers.Contracts
 {
     internal interface IAutoTelephoneStaition
     {
-        PortController GetPorts();
+        PortService GetPorts();
     }
 }

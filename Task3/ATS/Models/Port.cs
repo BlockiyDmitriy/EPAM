@@ -11,40 +11,40 @@ namespace ATS.Models
     internal class Port : IPort
     {
         private PortState PortState { get; set; }
-
-
+        private ITerminal Terminal { get; set; } 
+        public Port()
+        {
+            PortState = PortState.Free;
+        }
+        public ITerminal GetTerminal() => Terminal;
         public PortState GetPortState() => PortState;
 
-        public event EventHandler<ITerminal> OutGoingCall;
-        public event EventHandler InComingCall;
+        public event EventHandler<PhoneNumber> OutGoingCall;
+        public event EventHandler<PhoneNumber> InComingCall;
         public event EventHandler Answer;
         public event EventHandler Drop;
         
-        public void BindEvent(ITerminal terminal)
+        public void BindEventHundlerForTerminal(ITerminal terminal)
         {
             terminal.OutGoingCall += OnOutGoingCall;
             terminal.InComingCall += OnInComingCall;
             terminal.Answer += OnAnswer;
             terminal.Drop += OnDrop;
         }
-        private void OnOutGoingCall(object sender, ITerminal terminal)
+        private void OnOutGoingCall(object sender, PhoneNumber phoneNumber)
         {
-            PortState = PortState.Busy;
-            OutGoingCall?.Invoke(this, terminal);
+            OutGoingCall?.Invoke(this, phoneNumber);
         }
-        private void OnInComingCall(object sender, EventArgs args)
+        private void OnInComingCall(object sender, PhoneNumber phoneNumber)
         {
-            PortState = PortState.Busy;
-            InComingCall?.Invoke(this, args);
+            InComingCall?.Invoke(this, phoneNumber);
         }
         private void OnAnswer(object sender, EventArgs args)
         {
-            PortState = PortState.InCall;
             Answer?.Invoke(this, args);
         }
         private void OnDrop(object sender, EventArgs args)
         {
-            PortState = PortState.Free;
             Drop?.Invoke(this, args);
         }
     }

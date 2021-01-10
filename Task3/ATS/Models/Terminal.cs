@@ -9,27 +9,28 @@ namespace ATS.Models
 {
     internal class Terminal : ITerminal
     {
-        public PhoneNumber PhoneNumber { get; private set; }
-        public IPort Port { get; private set; }
+        private PhoneNumber PhoneNumber { get; set; }
+        private IPort Port { get; set; }
         public Terminal(PhoneNumber number)
         {
+            Port = new Port();
             this.PhoneNumber = number;
         }
         public PhoneNumber GetNumber() => PhoneNumber;
         public IPort GetPort() => Port;
 
-        public event EventHandler<ITerminal> OutGoingCall;
-        public event EventHandler InComingCall;
+        public event EventHandler<PhoneNumber> OutGoingCall;
+        public event EventHandler<PhoneNumber> InComingCall;
         public event EventHandler Answer;
         public event EventHandler Drop;
 
-        protected virtual void OnOutGoingCall(object sender, ITerminal turget)
+        protected virtual void OnOutGoingCall(object sender, PhoneNumber phoneNumber)
         {            
-            OutGoingCall?.Invoke(this, turget);
+            OutGoingCall?.Invoke(this, phoneNumber);
         }
-        protected virtual void OnInComingCall(object sender, EventArgs args)
+        protected virtual void OnInComingCall(object sender, PhoneNumber phoneNumber)
         {
-            InComingCall?.Invoke(this, args);
+            InComingCall?.Invoke(this, phoneNumber);
         }
         protected virtual void OnAnswer(object sender, EventArgs args)
         {
@@ -40,13 +41,18 @@ namespace ATS.Models
             Drop?.Invoke(this, args);
         }
 
-        public void Call(ITerminal phoneNumber)
+        public void Call(PhoneNumber phoneNumber)
         {
             if ((Port.GetPortState() == Enums.PortState.Free) &&
                 (phoneNumber != null))
             {
                 OnOutGoingCall(this, phoneNumber);
             }            
+        }
+        public void GetCall(PhoneNumber phoneNumber)
+        {
+            
+            OnInComingCall(this, phoneNumber);
         }
         public void AnswerCall()
         {

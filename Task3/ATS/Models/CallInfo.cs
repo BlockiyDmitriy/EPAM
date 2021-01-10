@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATS.Models.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +7,22 @@ using System.Threading.Tasks;
 
 namespace ATS.Models
 {
-    internal class CallInfo
+    internal class CallInfo: ICallInfo
     {
-        public PhoneNumber Source { get; private set; }
-        public PhoneNumber Target { get; private set; }
-        public DateTime Started { get; private set; }
-        public TimeSpan Duration { get; private set; }
+        private PhoneNumber Source { get; set; }
+        private PhoneNumber Target { get; set; }
+        private DateTime Started { get; set; }
+        private TimeSpan Duration { get; set; }
 
-        public CallInfo(PhoneNumber source, PhoneNumber target, DateTime started, TimeSpan duration)
+
+        public PhoneNumber GetPhoneNumber() => Source;
+        public PhoneNumber GetTarget() => Target;
+        public DateTime GetStarted() => Started;
+        public TimeSpan GetDuration() => Duration;
+
+        public override string ToString()
         {
-            this.Source = source;
-            this.Target = target;
-            this.Started = started;
-            this.Duration = duration;
+            return ($"{0},{1},{2},{3}", Source, Target, Started, Duration).ToString();
         }
     }
 }

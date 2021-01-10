@@ -11,12 +11,14 @@ namespace ATS.Models
 {
     internal class AutoTelephoneStaition : IAutoTelephoneStaition
     {
-        private PortController Ports { get; set; }
+        private PortService Port { get; set; }
+        private CallService Call { get; set; }
         public AutoTelephoneStaition()
         {
-            this.Ports = new PortController();
+            this.Port = new PortService();
         }
-        public PortController GetPorts() => Ports;
+        public PortService GetPorts() => Port;
+        public CallService GetCall() => Call;
 
         public void BindPortEvent()
         {

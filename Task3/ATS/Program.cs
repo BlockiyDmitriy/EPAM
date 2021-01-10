@@ -1,7 +1,4 @@
-﻿
-using ATS.Services;
-using ATS.Services.Services;
-using ATS.Models;
+﻿using ATS.Models;
 using ATS.Models.Controllers.Contracts;
 using System;
 using System.Collections.Generic;
@@ -18,6 +15,8 @@ namespace ATS
             PhoneNumber number1 = new PhoneNumber("+375331234567");
 
             ITerminal terminal1 = new Terminal(number1);
+
+
         }
     }
 }
