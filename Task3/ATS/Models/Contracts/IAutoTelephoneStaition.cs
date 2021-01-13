@@ -1,4 +1,5 @@
 ﻿using ATS.Services;
+using ATS.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Models.Controllers.Contracts
 {
-    internal interface IAutoTelephoneStaition
+    internal interface IAutoTelephoneStaition: ICallService, IPortService
     {
         PortService GetPorts();
     }

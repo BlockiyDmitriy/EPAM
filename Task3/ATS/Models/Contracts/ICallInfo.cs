@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Models.Contracts
 {
-    interface ICallInfo
+    internal interface ICallInfo
     {
         PhoneNumber GetPhoneNumber();
         PhoneNumber GetTarget();

@@ -1,5 +1,6 @@
 ﻿using ATS.Models;
 using ATS.Models.Contracts;
+using ATS.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Services
 {
-    internal class CallService
+    internal class CallService: ICallService
     {
         private ICollection<ICallInfo> _CallInfos { get; set; }
         public CallService()
@@ -27,7 +28,7 @@ namespace ATS.Services
         {
             _CallInfos.Remove(callInfo);
         }
-        public ICallInfo GetCalLInfo(string from, string to)
+        public ICallInfo GetCallInfo(string from, string to)
         {
             return _CallInfos.FirstOrDefault(x => x.GetPhoneNumber().Equals(from) && x.GetTarget().Equals(to));
         }

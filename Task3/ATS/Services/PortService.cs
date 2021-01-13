@@ -1,6 +1,7 @@
 ﻿using ATS.Enums;
 using ATS.Models;
 using ATS.Models.Controllers.Contracts;
+using ATS.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Services
 {
-    internal class PortService
+    internal class PortService: IPortService
     {
         private ICollection<IPort> _Ports;
 
