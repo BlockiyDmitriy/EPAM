@@ -17,6 +17,7 @@ namespace ATS.Models
         {
             Port = new Port();
             this.PhoneNumber = number;
+            RegisterEventHandlerForTerminal();
         }
         public PhoneNumber GetNumberFrom() => From;
         public PhoneNumber GetNumberTo() => To;
@@ -28,6 +29,35 @@ namespace ATS.Models
         public event EventHandler Answer;
         public event EventHandler Drop;
 
+        protected virtual void RegisterEventHandlerForTerminal()
+        {
+            OutGoingCall += (sender, phone) =>
+            {
+                var caller = sender as Terminal;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"{caller.GetNumber()} calls to {phone.GetNumber()}");
+                Console.ForegroundColor = ConsoleColor.White;
+            };
+            InComingCall += (sender, phone) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                var answerer = sender as Terminal;
+                Console.WriteLine($"{answerer.GetNumber()} is calling {phone.GetNumber()}");
+                Console.ForegroundColor = ConsoleColor.White;
+            };
+            Answer += (sender, e) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Call is started by {(sender as Terminal).GetNumber()}");
+                Console.ForegroundColor = ConsoleColor.White;
+            };
+            Drop += (sender, e) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Call is rejected by {(sender as Terminal).GetNumber()}");
+                Console.ForegroundColor = ConsoleColor.White;
+            };
+        }
         protected virtual void OnOutGoingCall(object sender, PhoneNumber phoneNumber)
         {            
             OutGoingCall?.Invoke(this, phoneNumber);
