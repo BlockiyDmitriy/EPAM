@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Models
 {
-    internal class PhoneNumber
+    public class PhoneNumber
     {
         private readonly string _PhoneNumber;
 

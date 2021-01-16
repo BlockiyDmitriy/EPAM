@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Models
 {
-    internal class Terminal : ITerminal
+    public class Terminal : ITerminal
     {
         private PhoneNumber From { get; set; }
         private PhoneNumber To { get; set; }

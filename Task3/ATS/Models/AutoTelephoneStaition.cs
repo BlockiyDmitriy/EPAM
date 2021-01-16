@@ -11,7 +11,7 @@ using ATS.Models.Contracts;
 
 namespace ATS.Models
 {
-    internal class AutoTelephoneStaition : IAutoTelephoneStaition
+    public class AutoTelephoneStaition : IAutoTelephoneStaition
     {
         private IPortService Port { get; set; }
         private ICallService Call { get; set; }

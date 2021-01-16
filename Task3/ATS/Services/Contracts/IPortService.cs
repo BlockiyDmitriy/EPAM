@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Services.Contracts
 {
-    internal interface IPortService
+    public interface IPortService
     {
         void AddPort(IPort port);
         void CreatePort();

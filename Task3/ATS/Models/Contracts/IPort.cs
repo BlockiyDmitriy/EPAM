@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Models.Controllers.Contracts
 {
-    internal interface IPort
+    public interface IPort
     {
         PortState GetPortState();
         ITerminal GetTerminal();

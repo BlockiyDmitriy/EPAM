@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Models.Controllers.Contracts
 {
-    internal interface ITerminal
+    public interface ITerminal
     {
         PhoneNumber GetNumberFrom();
         PhoneNumber GetNumberTo();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Models
 {
-    internal class CallInfo: ICallInfo
+    public class CallInfo: ICallInfo
     {
         private PhoneNumber Source { get; set; }
         private PhoneNumber Target { get; set; }

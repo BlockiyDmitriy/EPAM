@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Services
 {
-    internal class PortService: IPortService
+    public class PortService: IPortService
     {
         private ICollection<IPort> _Ports;
 

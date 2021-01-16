@@ -43,14 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\BillingSystem\Billing.cs" />
-    <Compile Include="Models\BillingSystem\DialogInformation.cs" />
-    <Compile Include="Models\BillingSystem\User.cs" />
+    <Compile Include="Models\Billing.cs" />
+    <Compile Include="Models\DialogInformation.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ATS\ATS.csproj">
+      <Project>{8ed1a961-9af2-4ab4-b59d-c4e818b8ee92}</Project>
+      <Name>ATS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Services
 {
-    internal class CallService: ICallService
+    public class CallService: ICallService
     {
         private ICollection<ICallInfo> _CallInfos { get; set; }
 

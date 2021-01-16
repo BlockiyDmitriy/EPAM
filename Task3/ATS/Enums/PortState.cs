@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Enums
 {
-    internal enum PortState
+    enum PortState
     {
         Free,
         Busy,

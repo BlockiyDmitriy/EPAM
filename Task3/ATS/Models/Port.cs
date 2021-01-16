@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Models
 {
-    internal class Port : IPort
+    public class Port : IPort
     {
 
         private PortState PortState { get; set; }

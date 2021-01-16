@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Models.Controllers.Contracts
 {
-    internal interface IAutoTelephoneStaition: ICallService, IPortService
+    public interface IAutoTelephoneStaition: ICallService, IPortService
     {
         IPortService GetPorts();
         ICallService GetCall();

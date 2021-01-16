@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Services.Contracts
 {
-    internal interface ICallService
+    public interface ICallService
     {
         void AddCallInfo(ICallInfo callInfo);
         void CreateCallInfo();
