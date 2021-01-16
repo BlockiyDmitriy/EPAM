@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATS.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace ATS.Models.Contracts
         PhoneNumber GetTarget();
         DateTime GetStarted();
         TimeSpan GetDuration();
+        CallState GetCallState();
     }
 }

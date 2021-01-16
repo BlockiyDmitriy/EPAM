@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\CallState.cs" />
     <Compile Include="Models\CallInfo.cs" />
     <Compile Include="Models\Contracts\ICallInfo.cs" />
     <Compile Include="Enums\PortState.cs" />

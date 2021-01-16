@@ -11,6 +11,7 @@ namespace ATS.Models.Controllers.Contracts
     {
         PortState GetPortState();
         ITerminal GetTerminal();
+        void ChangePortState(PortState portState);
 
         event EventHandler<PhoneNumber> OutGoingCall;
         event EventHandler<PhoneNumber> InComingCall;

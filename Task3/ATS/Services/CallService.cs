@@ -12,10 +12,7 @@ namespace ATS.Services
     internal class CallService: ICallService
     {
         private ICollection<ICallInfo> _CallInfos { get; set; }
-        public CallService()
-        {
 
-        }
         public void AddCallInfo(ICallInfo callInfo)
         {
             _CallInfos.Add(callInfo);
@@ -32,5 +29,6 @@ namespace ATS.Services
         {
             return _CallInfos.FirstOrDefault(x => x.GetPhoneNumber().Equals(from) && x.GetTarget().Equals(to));
         }
+
     }
 }

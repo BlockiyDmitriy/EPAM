@@ -9,6 +9,8 @@ namespace ATS.Models
 {
     internal class Terminal : ITerminal
     {
+        private PhoneNumber From { get; set; }
+        private PhoneNumber To { get; set; }
         private PhoneNumber PhoneNumber { get; set; }
         private IPort Port { get; set; }
         public Terminal(PhoneNumber number)
@@ -16,6 +18,8 @@ namespace ATS.Models
             Port = new Port();
             this.PhoneNumber = number;
         }
+        public PhoneNumber GetNumberFrom() => From;
+        public PhoneNumber GetNumberTo() => To;
         public PhoneNumber GetNumber() => PhoneNumber;
         public IPort GetPort() => Port;
 
@@ -51,7 +55,6 @@ namespace ATS.Models
         }
         public void GetCall(PhoneNumber phoneNumber)
         {
-            
             OnInComingCall(this, phoneNumber);
         }
         public void AnswerCall()

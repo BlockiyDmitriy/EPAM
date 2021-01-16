@@ -13,15 +13,16 @@ namespace ATS.Models
 {
     internal class AutoTelephoneStaition : IAutoTelephoneStaition
     {
-        private PortService Port { get; set; }
-        private CallService Call { get; set; }
+        private IPortService Port { get; set; }
+        private ICallService Call { get; set; }
         public AutoTelephoneStaition()
         {
             this.Port = new PortService();
+            this.Call = new CallService();
         }
 
-        public PortService GetPorts() => Port;
-        public CallService GetCall() => Call;
+        public IPortService GetPorts() => Port;
+        public ICallService GetCall() => Call;
 
         public void AddCallInfo(ICallInfo callInfo)
         {
@@ -45,6 +46,7 @@ namespace ATS.Models
 
         public void AddPort(IPort port)
         {
+            BindPortEvent(port);
             Port.AddPort(port);
         }
 
@@ -72,19 +74,53 @@ namespace ATS.Models
         }
         private void OnOutGoingCall(object sender, PhoneNumber phoneNumber)
         {
+            var caller = sender is Terminal ? sender as Terminal : throw new Exception();
+            ICallInfo callInfo = new CallInfo(caller.GetNumber(), phoneNumber, DateTime.Now, TimeSpan.Zero);
+            Call.AddCallInfo(callInfo);
 
+            var answerer = GetPortPhone(phoneNumber).GetTerminal();
+            if (answerer.GetPort().GetPortState() == Enums.PortState.Free)
+            {
+                answerer.GetCall(caller.GetNumber());
+            }
         }
         private void OnInCommingCall(object sender, PhoneNumber phoneNumber)
         {
-
+            if (sender is Terminal)
+            {
+                var inCommintTerminalCall = sender as Terminal;
+                inCommintTerminalCall.GetPort().ChangePortState(Enums.PortState.Busy);
+            }
         }
         private void OnAnswer(object sender, EventArgs args)
         {
-
+            var caller = GetPortPhone((sender as Terminal).GetNumberFrom()).GetTerminal();
+            var info = Call.GetCallInfo(caller.GetNumberFrom().GetNumber(), caller.GetNumberTo().GetNumber());
+            var started = info.GetStarted();
+            ICallInfo callInfo = new CallInfo(started);
         }
         private void OnDrop(object sender, EventArgs args)
         {
+            if (sender is Terminal)
+            {
+                if (((sender as Terminal).GetNumberFrom() != null) &&
+                    ((sender as Terminal).GetNumberTo() != null))
+                {
+                    var caller = GetPortPhone((sender as Terminal).GetNumberFrom()).GetTerminal();
+                    var info = Call.GetCallInfo(caller.GetNumberFrom().GetNumber(), caller.GetNumberTo().GetNumber());
+                    var answerer = GetPortPhone(caller.GetNumberTo()).GetTerminal();
 
+                    if (caller.GetPort().GetPortState() == Enums.PortState.Busy)
+                    {
+                        var state = Enums.PortState.Free;
+                    }
+                    if (answerer.GetPort().GetPortState() == Enums.PortState.Busy)
+                    {
+                        var state = Enums.PortState.Free;
+                    }
+                    Call.AddCallInfo(info);
+                }
+            }
         }
 
     }

@@ -10,6 +10,7 @@ namespace ATS.Models
 {
     internal class Port : IPort
     {
+
         private PortState PortState { get; set; }
         private ITerminal Terminal { get; set; } 
         public Port()
@@ -18,6 +19,10 @@ namespace ATS.Models
         }
         public ITerminal GetTerminal() => Terminal;
         public PortState GetPortState() => PortState;
+        public void ChangePortState(PortState portState)
+        {
+            this.PortState = portState;
+        }
 
         public event EventHandler<PhoneNumber> OutGoingCall;
         public event EventHandler<PhoneNumber> InComingCall;

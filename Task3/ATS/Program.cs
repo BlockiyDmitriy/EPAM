@@ -12,11 +12,14 @@ namespace ATS
     {
         static void Main(string[] args)
         {
-            PhoneNumber number1 = new PhoneNumber("+375331234567");
+            PhoneNumber number = new PhoneNumber("+375331234567");
 
-            ITerminal terminal1 = new Terminal(number1);
+            ITerminal terminal = new Terminal(number);
+            IPort port = new Port();
+            IAutoTelephoneStaition autoTelephoneStaition = new AutoTelephoneStaition();
 
-
+            autoTelephoneStaition.AddPort(port);
+            terminal.Call(number);
         }
     }
 }

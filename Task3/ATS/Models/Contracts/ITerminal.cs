@@ -9,6 +9,8 @@ namespace ATS.Models.Controllers.Contracts
 {
     internal interface ITerminal
     {
+        PhoneNumber GetNumberFrom();
+        PhoneNumber GetNumberTo();
         PhoneNumber GetNumber();
         IPort GetPort();
 
@@ -18,6 +20,7 @@ namespace ATS.Models.Controllers.Contracts
         event EventHandler Answer;
         event EventHandler Drop;
         void Call(PhoneNumber phoneNumber);
+        void GetCall(PhoneNumber phoneNumber);
         void AnswerCall();
         void DropCall();
     }
