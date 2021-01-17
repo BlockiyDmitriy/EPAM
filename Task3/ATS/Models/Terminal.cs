@@ -28,7 +28,21 @@ namespace ATS.Models
         public event EventHandler<PhoneNumber> InComingCall;
         public event EventHandler Answer;
         public event EventHandler Drop;
+        public event EventHandler<IPort> ConnectingToPort;
 
+        public void ConnectToPort(IPort port)
+        {
+            if (port.GetPortState() == Enums.PortState.Free && Port == null)
+            {
+                Port = port;
+                Port.ChangePortState(Enums.PortState.ConnectedTerminal);
+                OnConnect(port);
+            }
+            else
+            {
+                Console.WriteLine($"Port is busy");
+            }
+        }
         protected virtual void RegisterEventHandlerForTerminal()
         {
             OutGoingCall += (sender, phone) =>
@@ -57,6 +71,17 @@ namespace ATS.Models
                 Console.WriteLine($"Call is rejected by {(sender as Terminal).GetNumber()}");
                 Console.ForegroundColor = ConsoleColor.White;
             };
+            ConnectingToPort += (sender, e) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                var terminal = sender as Terminal;
+                Console.WriteLine($"Terminal {terminal.GetNumber()} connected to port");
+                Console.ForegroundColor = ConsoleColor.White;
+            };
+        }
+        protected virtual void OnConnect(IPort port)
+        {
+            ConnectingToPort?.Invoke(this, port);
         }
         protected virtual void OnOutGoingCall(object sender, PhoneNumber phoneNumber)
         {            

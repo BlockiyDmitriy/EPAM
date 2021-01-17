@@ -13,6 +13,7 @@ namespace ATS.Services
     {
         private ICollection<ICallInfo> _CallInfos { get; set; }
 
+        public event EventHandler<ICallInfo> Call;
         public void AddCallInfo(ICallInfo callInfo)
         {
             _CallInfos.Add(callInfo);
@@ -28,6 +29,11 @@ namespace ATS.Services
         public ICallInfo GetCallInfo(string from, string to)
         {
             return _CallInfos.FirstOrDefault(x => x.GetPhoneNumber().Equals(from) && x.GetTarget().Equals(to));
+        }
+
+        protected virtual void OnCall(object sender, ICallInfo call)
+        {
+            Call?.Invoke(sender, call);
         }
 
     }

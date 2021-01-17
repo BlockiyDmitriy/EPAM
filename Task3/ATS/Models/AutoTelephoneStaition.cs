@@ -15,14 +15,28 @@ namespace ATS.Models
     {
         private IPortService Port { get; set; }
         private ICallService Call { get; set; }
+        private ITerminalService TerminalService { get; set; }
         public AutoTelephoneStaition()
         {
+            TerminalService = new TeriminalService();
             this.Port = new PortService();
             this.Call = new CallService();
+        }
+        public AutoTelephoneStaition(ICollection<IPort> ports, ICollection<ITerminal> terminals) : this()
+        {
+            foreach (var item in ports)
+            {
+                AddPort(item);
+            }
+            foreach (var terminal in terminals)
+            {
+                AddTerminal(terminal);
+            }
         }
 
         public IPortService GetPorts() => Port;
         public ICallService GetCall() => Call;
+        public ITerminalService GetTerminal() => TerminalService;
 
         public void AddCallInfo(ICallInfo callInfo)
         {
@@ -49,6 +63,11 @@ namespace ATS.Models
             BindPortEvent(port);
             Port.AddPort(port);
         }
+        public void AddTerminal(ITerminal terminal)
+        {
+            BindPortEvent(terminal);
+            TerminalService.AddTerminal(terminal);
+        }
 
         public void CreatePort()
         {
@@ -64,7 +83,13 @@ namespace ATS.Models
         {
             return Port.GetPortPhone(phoneNumber);
         }
-
+        private void BindPortEvent(ITerminal terminal)
+        {
+            terminal.OutGoingCall += OnOutGoingCall;
+            terminal.InComingCall += OnInCommingCall;
+            terminal.Answer += OnAnswer;
+            terminal.Drop += OnDrop;
+        }
         private void BindPortEvent(IPort port)
         {
             port.OutGoingCall += OnOutGoingCall;

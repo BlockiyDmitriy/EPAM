@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATS.Enums
 {
-    enum CallState
+    public enum CallState
     {
         Outgoing,
         Incoming,

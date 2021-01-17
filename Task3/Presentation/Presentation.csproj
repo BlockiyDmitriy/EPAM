@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E42D9CEA-0546-41B6-BC70-2C4E54D22217}</ProjectGuid>
+    <ProjectGuid>{69143E14-6399-46F5-869C-BF5ECAA075D3}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>BillingSystem</RootNamespace>
-    <AssemblyName>BillingSystem</AssemblyName>
+    <RootNamespace>Presentation</RootNamespace>
+    <AssemblyName>Presentation</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,16 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Billing.cs" />
-    <Compile Include="Models\Contracts\IBilling.cs" />
-    <Compile Include="Models\Contracts\IUser.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\CallService.cs" />
-    <Compile Include="Service\Contracts\ICallService.cs" />
-    <Compile Include="Service\Contracts\IUserService.cs" />
-    <Compile Include="Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -64,6 +53,10 @@
     <ProjectReference Include="..\ATS\ATS.csproj">
       <Project>{8ed1a961-9af2-4ab4-b59d-c4e818b8ee92}</Project>
       <Name>ATS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BillingSystem\BillingSystem.csproj">
+      <Project>{e42d9cea-0546-41b6-bc70-2c4e54d22217}</Project>
+      <Name>BillingSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

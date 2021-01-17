@@ -9,6 +9,7 @@ namespace ATS.Services.Contracts
 {
     public interface ICallService
     {
+        event EventHandler<ICallInfo> Call;
         void AddCallInfo(ICallInfo callInfo);
         void CreateCallInfo();
         void RemoveCallInfo(ICallInfo callInfo);

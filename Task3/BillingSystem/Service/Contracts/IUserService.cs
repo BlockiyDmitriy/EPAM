@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATS.Enums
+namespace BillingSystem.Service.Contracts
 {
-    public enum PortState
+    public interface IUserService
     {
-        Free,
-        Busy,
-        InCall,
-        ConnectedTerminal
     }
 }

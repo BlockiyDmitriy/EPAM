@@ -23,5 +23,6 @@ namespace ATS.Models.Controllers.Contracts
         void GetCall(PhoneNumber phoneNumber);
         void AnswerCall();
         void DropCall();
+        void ConnectToPort(IPort port);
     }
 }

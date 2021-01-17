@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace ATS.Models
 {
-    public class CallInfo: ICallInfo
+    public class CallInfo : ICallInfo
     {
         private PhoneNumber Source { get; set; }
         private PhoneNumber Target { get; set; }
         private DateTime Started { get; set; }
         private TimeSpan Duration { get; set; }
         private CallState CallState { get; set; }
-        public CallInfo() : this(null,null,DateTime.Now, TimeSpan.Zero) { }
+        public CallInfo() : this(null, null, DateTime.Now, TimeSpan.Zero) { }
         public CallInfo(DateTime dateTime) : this(null, null, dateTime, TimeSpan.Zero) { }
         public CallInfo(PhoneNumber source, PhoneNumber target, DateTime started, TimeSpan duration)
         {

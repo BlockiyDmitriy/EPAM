@@ -59,7 +59,9 @@
     <Compile Include="Services\CallService.cs" />
     <Compile Include="Services\Contracts\ICallService.cs" />
     <Compile Include="Services\Contracts\IPortService.cs" />
+    <Compile Include="Services\Contracts\ITerminalService.cs" />
     <Compile Include="Services\PortService.cs" />
+    <Compile Include="Services\TeriminalService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
