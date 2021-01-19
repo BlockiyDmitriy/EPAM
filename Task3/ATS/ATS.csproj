@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Enums\CallState.cs" />
     <Compile Include="Models\CallInfo.cs" />
+    <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\Contracts\ICallInfo.cs" />
     <Compile Include="Enums\PortState.cs" />
     <Compile Include="Models\AutoTelephoneStaition.cs" />

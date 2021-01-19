@@ -18,7 +18,7 @@ namespace ATS.Models.Controllers.Contracts
         void AddCallInfo(ICallInfo callInfo);
         void CreateCallInfo();
         void RemoveCallInfo(ICallInfo callInfo);
-        ICallInfo GetCallInfo(string from, string to);
+        ICallInfo GetCallInfo(Connection connection);
 
         void AddPort(IPort port);
         void CreatePort();

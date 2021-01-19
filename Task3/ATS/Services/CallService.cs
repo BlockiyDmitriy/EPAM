@@ -9,11 +9,17 @@ using System.Threading.Tasks;
 
 namespace ATS.Services
 {
-    public class CallService: ICallService
+    public class CallService : ICallService
     {
         private ICollection<ICallInfo> _CallInfos { get; set; }
 
         public event EventHandler<ICallInfo> Call;
+
+        public CallService()
+        {
+            this._CallInfos = new List<ICallInfo>();
+        }
+
         public void AddCallInfo(ICallInfo callInfo)
         {
             _CallInfos.Add(callInfo);
@@ -26,9 +32,9 @@ namespace ATS.Services
         {
             _CallInfos.Remove(callInfo);
         }
-        public ICallInfo GetCallInfo(string from, string to)
+        public ICallInfo GetCallInfo(Connection connection)
         {
-            return _CallInfos.FirstOrDefault(x => x.GetPhoneNumber().Equals(from) && x.GetTarget().Equals(to));
+            return _CallInfos.FirstOrDefault(x => x.GetPhoneNumber().Equals(connection.GetNumberFrom()) && x.GetTarget().Equals(connection.GetNumberTo()));
         }
 
         protected virtual void OnCall(object sender, ICallInfo call)

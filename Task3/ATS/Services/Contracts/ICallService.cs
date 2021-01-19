@@ -1,4 +1,5 @@
-﻿using ATS.Models.Contracts;
+﻿using ATS.Models;
+using ATS.Models.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace ATS.Services.Contracts
         void AddCallInfo(ICallInfo callInfo);
         void CreateCallInfo();
         void RemoveCallInfo(ICallInfo callInfo);
-        ICallInfo GetCallInfo(string from, string to);
+        ICallInfo GetCallInfo(Connection connection);
     }
 }

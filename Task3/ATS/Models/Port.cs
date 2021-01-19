@@ -10,13 +10,20 @@ namespace ATS.Models
 {
     public class Port : IPort
     {
-
         private PortState PortState { get; set; }
-        private ITerminal Terminal { get; set; } 
+        private ITerminal Terminal { get; set; }
+        public Port(ITerminal terminal)
+        {
+            BindTerminalToPort(terminal);
+            PortState = PortState.Free;
+            this.Terminal = terminal;
+        }
+
         public Port()
         {
             PortState = PortState.Free;
         }
+
         public ITerminal GetTerminal() => Terminal;
         public PortState GetPortState() => PortState;
         public void ChangePortState(PortState portState)
@@ -29,26 +36,26 @@ namespace ATS.Models
         public event EventHandler Answer;
         public event EventHandler Drop;
         
-        public void BindEventHundlerForTerminal(ITerminal terminal)
+        protected virtual void BindTerminalToPort(ITerminal terminal)
         {
             terminal.OutGoingCall += OnOutGoingCall;
             terminal.InComingCall += OnInComingCall;
             terminal.Answer += OnAnswer;
             terminal.Drop += OnDrop;
         }
-        private void OnOutGoingCall(object sender, PhoneNumber phoneNumber)
+        protected void OnOutGoingCall(object sender, PhoneNumber phoneNumber)
         {
             OutGoingCall?.Invoke(this, phoneNumber);
         }
-        private void OnInComingCall(object sender, PhoneNumber phoneNumber)
+        protected void OnInComingCall(object sender, PhoneNumber phoneNumber)
         {
             InComingCall?.Invoke(this, phoneNumber);
         }
-        private void OnAnswer(object sender, EventArgs args)
+        protected void OnAnswer(object sender, EventArgs args)
         {
             Answer?.Invoke(this, args);
         }
-        private void OnDrop(object sender, EventArgs args)
+        protected void OnDrop(object sender, EventArgs args)
         {
             Drop?.Invoke(this, args);
         }

@@ -50,13 +50,12 @@ namespace BillingSystem.Models.BillingSystem
 
         public void RegisterUser(IUser user)
         {
-            var freeNumber = PhoneNumbers.FirstOrDefault(x => x.Value.Equals(true)).Key;
+            PhoneNumber freeNumber = PhoneNumbers.FirstOrDefault(x => x.Value.Equals(true)).Key;
             PhoneNumbers[freeNumber] = false;
-            var phoneNumber = freeNumber;
-            var terminal = Station.GetTerminal().GetFreeTerminal();
-            var tarif = Tarif;
-            Users.Add(user);
+            ITerminal terminal = new Terminal(freeNumber);
+            IUser user1 = new User(Station.GetTerminal().GetFreeTerminal(), Tarif);
 
+            Users.Add(user);
         }
 
         public IPort GetFreePort()

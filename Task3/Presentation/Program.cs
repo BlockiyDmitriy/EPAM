@@ -18,7 +18,6 @@ namespace Presentation
     {
         static void Main(string[] args)
         {
-            IPort port = new Port();
 
             PhoneNumber number1 = new PhoneNumber("+111111111111");
             PhoneNumber number2 = new PhoneNumber("+222222222222");
@@ -28,11 +27,19 @@ namespace Presentation
             ITerminal terminal2 = new Terminal(number2);
             ITerminal terminal3 = new Terminal(number3);
 
-            IAutoTelephoneStaition autoTelephoneStaition = new AutoTelephoneStaition(new List<IPort>() { new Port(), new Port() }, new List<ITerminal>() { terminal1, terminal2, terminal3 });
+            IPort port1 = new Port(terminal1);
+            IPort port2 = new Port(terminal2);
 
-            autoTelephoneStaition.AddPort(port);
+            IAutoTelephoneStaition autoTelephoneStaition = new AutoTelephoneStaition(
+                new List<IPort>() { port1, port2 });
 
-            Billing system = new Billing(autoTelephoneStaition, new List<PhoneNumber>() { number1, number2, number3 });
+            terminal1.Call(number2);
+            terminal2.AnswerCall();
+
+            Billing system = new Billing(autoTelephoneStaition, new List<PhoneNumber>()
+            {
+                number1, number2, number3
+            });
 
             IUser user1 = new User("qqqq", 111);
             IUser user2 = new User("wwww", 222);

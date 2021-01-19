@@ -9,26 +9,29 @@ namespace ATS.Models
 {
     public class Terminal : ITerminal
     {
-        private PhoneNumber From { get; set; }
-        private PhoneNumber To { get; set; }
         private PhoneNumber PhoneNumber { get; set; }
         private IPort Port { get; set; }
+        private Connection Connection { get; set; }
+
         public Terminal(PhoneNumber number)
         {
-            Port = new Port();
+            this.Port = new Port(this);
             this.PhoneNumber = number;
-            RegisterEventHandlerForTerminal();
+            BindToTerminal();
         }
-        public PhoneNumber GetNumberFrom() => From;
-        public PhoneNumber GetNumberTo() => To;
         public PhoneNumber GetNumber() => PhoneNumber;
         public IPort GetPort() => Port;
+        public Connection GetConnection() => Connection;
 
         public event EventHandler<PhoneNumber> OutGoingCall;
         public event EventHandler<PhoneNumber> InComingCall;
         public event EventHandler Answer;
         public event EventHandler Drop;
         public event EventHandler<IPort> ConnectingToPort;
+        public void RememberConnection(PhoneNumber from, PhoneNumber to)
+        {
+            Connection = new Connection(from, to);
+        }
 
         public void ConnectToPort(IPort port)
         {
@@ -43,39 +46,39 @@ namespace ATS.Models
                 Console.WriteLine($"Port is busy");
             }
         }
-        protected virtual void RegisterEventHandlerForTerminal()
+        protected virtual void BindToTerminal()
         {
             OutGoingCall += (sender, phone) =>
             {
                 var caller = sender as Terminal;
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"{caller.GetNumber()} calls to {phone.GetNumber()}");
+                Console.WriteLine($"{caller.GetNumber().GetNumber()} calls to {phone.GetNumber()}");
                 Console.ForegroundColor = ConsoleColor.White;
             };
             InComingCall += (sender, phone) =>
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 var answerer = sender as Terminal;
-                Console.WriteLine($"{answerer.GetNumber()} is calling {phone.GetNumber()}");
+                Console.WriteLine($"{answerer.GetNumber().GetNumber()} is calling {phone.GetNumber()}");
                 Console.ForegroundColor = ConsoleColor.White;
             };
             Answer += (sender, e) =>
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Call is started by {(sender as Terminal).GetNumber()}");
+                Console.WriteLine($"Call is started by {(sender as Terminal).GetNumber().GetNumber()}");
                 Console.ForegroundColor = ConsoleColor.White;
             };
             Drop += (sender, e) =>
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Call is rejected by {(sender as Terminal).GetNumber()}");
+                Console.WriteLine($"Call is drop by {(sender as Terminal).GetNumber().GetNumber()}");
                 Console.ForegroundColor = ConsoleColor.White;
             };
             ConnectingToPort += (sender, e) =>
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 var terminal = sender as Terminal;
-                Console.WriteLine($"Terminal {terminal.GetNumber()} connected to port");
+                Console.WriteLine($"Terminal {terminal.GetNumber().GetNumber()} connected to port");
                 Console.ForegroundColor = ConsoleColor.White;
             };
         }
@@ -106,7 +109,7 @@ namespace ATS.Models
                 (phoneNumber != null))
             {
                 OnOutGoingCall(this, phoneNumber);
-            }            
+            }
         }
         public void GetCall(PhoneNumber phoneNumber)
         {

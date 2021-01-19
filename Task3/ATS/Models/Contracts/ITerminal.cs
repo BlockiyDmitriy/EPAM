@@ -9,11 +9,10 @@ namespace ATS.Models.Controllers.Contracts
 {
     public interface ITerminal
     {
-        PhoneNumber GetNumberFrom();
-        PhoneNumber GetNumberTo();
         PhoneNumber GetNumber();
         IPort GetPort();
-
+        Connection GetConnection();
+        void RememberConnection(PhoneNumber from, PhoneNumber to);
 
         event EventHandler<PhoneNumber> OutGoingCall;
         event EventHandler<PhoneNumber> InComingCall;

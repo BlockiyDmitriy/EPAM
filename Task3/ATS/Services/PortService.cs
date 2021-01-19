@@ -12,8 +12,7 @@ namespace ATS.Services
 {
     public class PortService: IPortService
     {
-        private ICollection<IPort> _Ports;
-
+        private ICollection<IPort> _Ports { get; set; }
         public PortService()
         {
             _Ports = new List<IPort>();

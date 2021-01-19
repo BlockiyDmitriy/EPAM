@@ -1,4 +1,5 @@
-﻿using ATS.Models.Controllers.Contracts;
+﻿using ATS.Models;
+using ATS.Models.Controllers.Contracts;
 using BillingSystem.Models.Contracts;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,12 @@ namespace BillingSystem.Models
         private double Money { get; set; }
         private double Tarif { get; set; }
         private double Cost { get; set; }
+
+        public User(ITerminal terminal, double tarif)
+        {
+            this.Terminal = terminal;
+            this.Tarif = tarif;
+        }
         public User(string name, double money)
         {
             this.Id = Guid.NewGuid();
