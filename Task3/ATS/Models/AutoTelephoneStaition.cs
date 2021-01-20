@@ -105,36 +105,38 @@ namespace ATS.Models
             if (sender is Port)
             {
                 var inCommintTerminalCall = sender as Port;
-                inCommintTerminalCall.ChangePortState(Enums.PortState.Busy);
+                inCommintTerminalCall.GetTerminal().GetPort().ChangePortState(Enums.PortState.Busy);
                 inCommintTerminalCall.GetTerminal().RememberConnection(inCommintTerminalCall.GetTerminal().GetNumber(), phoneNumber);
             }
         }
         protected virtual void OnAnswer(object sender, EventArgs args)
-        {            
+        {
             var caller = GetPortPhone((sender as Port).GetTerminal().GetConnection().GetNumberFrom()).GetTerminal();
             var info = GetCallInfo(caller.GetConnection());
             var started = info.GetStarted();
-            new CallInfo(caller.GetNumber(), info.GetTarget(), started, TimeSpan.Zero);
+            ICallInfo callInfo = new CallInfo(caller.GetNumber(), info.GetTarget(), started, TimeSpan.Zero);
+            AddCallInfo(callInfo);
         }
         protected virtual void OnDrop(object sender, EventArgs args)
         {
             if (sender is Port)
             {
-                if ((sender as Port).GetTerminal().GetConnection() != null) 
+                if ((sender as Port).GetTerminal().GetConnection() != null)
                 {
                     var caller = GetPortPhone((sender as Port).GetTerminal().GetConnection().GetNumberFrom()).GetTerminal();
-                    var info = Call.GetCallInfo(caller.GetConnection());
+                    var info = GetCallInfo(caller.GetConnection());
                     var answerer = GetPortPhone(caller.GetConnection().GetNumberTo()).GetTerminal();
 
                     if (caller.GetPort().GetPortState() == Enums.PortState.Busy)
-                    {
-                        var state = Enums.PortState.Free;
+                    {                        
+                        AddPort(new Port(caller));
                     }
                     if (answerer.GetPort().GetPortState() == Enums.PortState.Busy)
-                    {
-                        var state = Enums.PortState.Free;
+                    {                       
+                        AddPort(new Port(answerer));
                     }
-                    Call.AddCallInfo(info);
+                    ICallInfo callInfo = new CallInfo(caller.GetNumber(), answerer.GetNumber(), info.GetStarted(), info.GetDuration());
+                    AddCallInfo(callInfo);
                 }
             }
         }
