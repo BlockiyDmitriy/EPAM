@@ -8,16 +8,16 @@ namespace ATS.Models
 {
     public class PhoneNumber
     {
-        private readonly string _PhoneNumber;
+        private string _PhoneNumber { get; set; }
 
         public PhoneNumber(string phoneNumber)
         {
             _PhoneNumber = phoneNumber;
         }
         public string GetNumber() => _PhoneNumber;
-        public bool Equals(PhoneNumber other)
+        public bool Equals( PhoneNumber other)
         {
-            return _PhoneNumber == other._PhoneNumber;
+            return this._PhoneNumber == other._PhoneNumber;
         }
     }
 }

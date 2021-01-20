@@ -34,7 +34,8 @@ namespace ATS.Services
         }
         public ICallInfo GetCallInfo(Connection connection)
         {
-            return _CallInfos.FirstOrDefault(x => x.GetPhoneNumber().Equals(connection.GetNumberFrom()) && x.GetTarget().Equals(connection.GetNumberTo()));
+            //return _CallInfos.FirstOrDefault(x => x.GetPhoneNumber().Equals(connection.GetNumberFrom()) && x.GetTarget().Equals(connection.GetNumberTo()));
+            return _CallInfos.FirstOrDefault();
         }
 
         protected virtual void OnCall(object sender, ICallInfo call)

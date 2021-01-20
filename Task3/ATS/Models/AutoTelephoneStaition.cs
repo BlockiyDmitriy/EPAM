@@ -88,7 +88,7 @@ namespace ATS.Models
 
             caller.GetTerminal().RememberConnection(caller.GetTerminal().GetNumber(), phoneNumber);
 
-            Call.AddCallInfo(callInfo);
+            AddCallInfo(callInfo);
 
             var answerer = GetPortPhone(phoneNumber).GetTerminal();
             if (answerer.GetPort().GetPortState() == Enums.PortState.Free)
@@ -112,9 +112,9 @@ namespace ATS.Models
         protected virtual void OnAnswer(object sender, EventArgs args)
         {            
             var caller = GetPortPhone((sender as Port).GetTerminal().GetConnection().GetNumberFrom()).GetTerminal();
-            var info = Call.GetCallInfo(caller.GetConnection());
+            var info = GetCallInfo(caller.GetConnection());
             var started = info.GetStarted();
-            ICallInfo callInfo = new CallInfo(info);
+            new CallInfo(caller.GetNumber(), info.GetTarget(), started, TimeSpan.Zero);
         }
         protected virtual void OnDrop(object sender, EventArgs args)
         {
