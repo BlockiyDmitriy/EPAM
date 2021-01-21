@@ -31,9 +31,9 @@ namespace Presentation
             IAutoTelephoneStaition autoTelephoneStaition = new AutoTelephoneStaition(
                 new List<IPort>() { port1, port2 });
 
-            terminal1.Call(number2);
-            terminal1.AnswerCall();
-            terminal1.DropCall();
+            //terminal1.Call(number2);
+            //terminal1.AnswerCall();
+            //terminal1.DropCall();
 
             Billing system = new Billing(autoTelephoneStaition, new List<PhoneNumber>()
             {
