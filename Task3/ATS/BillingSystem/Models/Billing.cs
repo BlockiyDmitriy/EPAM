@@ -19,13 +19,13 @@ namespace BillingSystem.Models.BillingSystem
         private IAutoTelephoneStaition Station { get; set; }
         private CallService CallService { get; set; }
         private double Tarif { get; set; }
-
+        public IUser GetUser(IUser user) => Users.Where(x => x.GetGuid() == user.GetGuid()).FirstOrDefault();
         public Billing(IAutoTelephoneStaition station, List<PhoneNumber> phones)
         {
             this.PhoneNumbers = new Dictionary<PhoneNumber, bool>();
             this.Users = new List<IUser>();
             this.Station = station;
-            CallService = new CallService();
+            this.CallService = new CallService();
             this.Tarif = 0.9;
             foreach (var item in phones)
             {
@@ -52,8 +52,9 @@ namespace BillingSystem.Models.BillingSystem
         {
             PhoneNumber freeNumber = PhoneNumbers.FirstOrDefault(x => x.Value.Equals(true)).Key;
             PhoneNumbers[freeNumber] = false;
-            ITerminal terminal = new Terminal(freeNumber);
-            IUser user1 = new User(Station.GetTerminal().GetFreeTerminal(), Tarif);
+            var terminal = Station.GetTerminal().GetFreeTerminal();
+            terminal = new Terminal(freeNumber);
+            user = new User(user.GetGuid(), user.GetName(), user.GetMoney(),terminal, Tarif);
 
             Users.Add(user);
         }

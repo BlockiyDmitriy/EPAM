@@ -84,7 +84,7 @@ namespace ATS.Models
         protected virtual void OnOutGoingCall(object sender, PhoneNumber phoneNumber)
         {
             var caller = sender as Port;
-            var callInfo = new CallInfo(caller.GetTerminal().GetNumber(), phoneNumber, DateTime.Now, TimeSpan.Zero);
+            var callInfo = new CallInfo(caller.GetTerminal().GetNumber(), phoneNumber, DateTime.Now, TimeSpan.Zero, null,0);
 
             caller.GetTerminal().RememberConnection(caller.GetTerminal().GetNumber(), phoneNumber);
 
@@ -114,7 +114,7 @@ namespace ATS.Models
             var caller = GetPortPhone((sender as Port).GetTerminal().GetConnection().GetNumberFrom()).GetTerminal();
             var info = GetCallInfo(caller.GetConnection());
             var started = info.GetStarted();
-            ICallInfo callInfo = new CallInfo(caller.GetNumber(), info.GetTarget(), started, TimeSpan.Zero);
+            ICallInfo callInfo = new CallInfo(caller.GetNumber(), info.GetTarget(), started, TimeSpan.Zero, null, 0);
             AddCallInfo(callInfo);
         }
         protected virtual void OnDrop(object sender, EventArgs args)
@@ -135,7 +135,7 @@ namespace ATS.Models
                     {                       
                         AddPort(new Port(answerer));
                     }
-                    ICallInfo callInfo = new CallInfo(caller.GetNumber(), answerer.GetNumber(), info.GetStarted(), info.GetDuration());
+                    ICallInfo callInfo = new CallInfo(caller.GetNumber(), answerer.GetNumber(), info.GetStarted(), info.GetDuration(), null, 0);
                     AddCallInfo(callInfo);
                 }
             }

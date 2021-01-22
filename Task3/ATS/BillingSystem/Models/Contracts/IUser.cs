@@ -14,6 +14,5 @@ namespace BillingSystem.Models.Contracts
         ITerminal GetTerminal();
         double GetMoney();
         double GetTarif();
-        double GetCost();
     }
 }

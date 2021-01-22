@@ -1,4 +1,6 @@
 ﻿using ATS.Enums;
+using BillingSystem.Models;
+using BillingSystem.Models.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +16,8 @@ namespace ATS.Models.Contracts
         DateTime GetStarted();
         TimeSpan GetDuration();
         CallState GetCallState();
+        IUser GetUser();
+        double GetCost();
+        string ToString();
     }
 }

@@ -1,5 +1,7 @@
 ﻿using ATS.Enums;
 using ATS.Models.Contracts;
+using BillingSystem.Models;
+using BillingSystem.Models.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +17,17 @@ namespace ATS.Models
         private DateTime Started { get; set; }
         private TimeSpan Duration { get; set; }
         private CallState CallState { get; set; }
-        public CallInfo() : this(null, null, DateTime.Now, TimeSpan.Zero) { }
-        public CallInfo(DateTime dateTime) : this(null, null, dateTime, TimeSpan.Zero) { }
-        public CallInfo(PhoneNumber source, PhoneNumber target, DateTime started, TimeSpan duration)
+        private IUser User { get; set; }
+        private double Cost { get; set; }
+        public CallInfo() : this(null, null, DateTime.Now, TimeSpan.Zero, null, 0) { }        
+        public CallInfo(PhoneNumber source, PhoneNumber target, DateTime started, TimeSpan duration, IUser user, double cost)
         {
             Source = source;
             Target = target;
             Started = started;
             Duration = duration;
+            User = user;
+            Cost = cost;
         }
 
         public PhoneNumber GetPhoneNumber() => Source;
@@ -30,6 +35,8 @@ namespace ATS.Models
         public DateTime GetStarted() => Started;
         public TimeSpan GetDuration() => Duration;
         public CallState GetCallState() => CallState;
+        public IUser GetUser() => User;
+        public double GetCost() => Cost;
 
         public override string ToString()
         {

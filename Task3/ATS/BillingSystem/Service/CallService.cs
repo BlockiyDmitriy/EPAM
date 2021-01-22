@@ -1,6 +1,7 @@
 ﻿using ATS.Enums;
 using ATS.Models;
 using ATS.Models.Contracts;
+using BillingSystem.Models;
 using BillingSystem.Models.Contracts;
 using System;
 using System.Collections.Generic;
@@ -27,17 +28,17 @@ namespace BillingSystem.Service
 
         public void SetAdditionalInfo(IUser user, ICallInfo callInfo)
         {
-            callInfo.User = user;
             if (callInfo.GetCallState() == CallState.Outgoing)
             {
-                callInfo.Cost = callInfo.User.Tariff.CostPerSecond * (callInfo.GetDuration().Minutes * 60 + callInfo.GetDuration().Seconds);
-                callInfo.User.Money -= callInfo.Cost;
-                var money -= callInfo.
+                var cost = callInfo.GetUser().GetTarif() * (callInfo.GetDuration().Minutes * 60 + callInfo.GetDuration().Seconds);
+                var money = callInfo.GetUser().GetMoney() - callInfo.GetCost();
+                new User(user.GetGuid(),User.GetName(), money);
+                new CallInfo(callInfo.GetPhoneNumber(), callInfo.GetTarget(), callInfo.GetStarted(), callInfo.GetDuration(), user, cost);
             }
             else
             {
                 var cost = 0;
-                callInfo.Cost = 0;
+                new CallInfo(callInfo.GetPhoneNumber(), callInfo.GetTarget(), callInfo.GetStarted(), callInfo.GetDuration(), user, cost);
             }
         }
 
@@ -128,7 +129,7 @@ namespace BillingSystem.Service
         {
             cost = cost <= 0 ? 0.15 : cost;
             var userCalls = Calls
-                .Where(x => User.Equals(user) && x.GetCallState().Equals(CallState.Outgoing) && User.GetCost() <= cost);
+                .Where(x => User.Equals(user) && x.GetCallState().Equals(CallState.Outgoing) && x.GetCost() <= cost);
             if (userCalls.Count() == 0)
             {
                 Console.WriteLine($"No calls up to {cost}$");
@@ -143,11 +144,11 @@ namespace BillingSystem.Service
             }
         }
 
-        /*public void GetUserCallsByUser(IUser user, PhoneNumber number)
+        public void GetUserCallsByUser(IUser user, PhoneNumber number)
         {
             var userCalls = Calls
-                .Where(x => User.Equals(user) && x.GetStarted().Date >= DateTime.Now.AddMonths(-1).Date && (x.From.Equals(number) || x.To.Equals(number)))
-                .GroupBy(x => x.CallState);
+                .Where(x => User.Equals(user) && x.GetStarted().Date >= DateTime.Now.AddMonths(-1).Date && (x.GetPhoneNumber().Equals(number) || x.GetTarget().Equals(number)))
+                .GroupBy(x => x.GetCallState());
             if (userCalls.Count() == 0)
             {
                 Console.WriteLine($"No calls with this number {number}");
@@ -157,13 +158,13 @@ namespace BillingSystem.Service
                 foreach (var item in userCalls)
                 {
                     Console.WriteLine($"{item.Key}\n");
-                    foreach (var x in item.OrderBy(x => x.DateTimeStart))
+                    foreach (var x in item.OrderBy(x => x.GetStarted()))
                     {
                         Console.WriteLine($"{x}\n");
                     }
                     Console.WriteLine();
                 }
             }
-        }*/
+        }
     }
 }

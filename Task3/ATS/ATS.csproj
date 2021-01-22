@@ -43,26 +43,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\CallState.cs" />
-    <Compile Include="Models\CallInfo.cs" />
-    <Compile Include="Models\Connection.cs" />
-    <Compile Include="Models\Contracts\ICallInfo.cs" />
-    <Compile Include="Enums\PortState.cs" />
-    <Compile Include="Models\AutoTelephoneStaition.cs" />
-    <Compile Include="Models\Contracts\IAutoTelephoneStaition.cs" />
-    <Compile Include="Models\Contracts\IPort.cs" />
-    <Compile Include="Models\Contracts\ITerminal.cs" />
-    <Compile Include="Models\PhoneNumber.cs" />
-    <Compile Include="Models\Port.cs" />
-    <Compile Include="Models\Terminal.cs" />
+    <Compile Include="ATS\Enums\CallState.cs" />
+    <Compile Include="ATS\Models\CallInfo.cs" />
+    <Compile Include="ATS\Models\Connection.cs" />
+    <Compile Include="ATS\Models\Contracts\ICallInfo.cs" />
+    <Compile Include="ATS\Enums\PortState.cs" />
+    <Compile Include="ATS\Models\AutoTelephoneStaition.cs" />
+    <Compile Include="ATS\Models\Contracts\IAutoTelephoneStaition.cs" />
+    <Compile Include="ATS\Models\Contracts\IPort.cs" />
+    <Compile Include="ATS\Models\Contracts\ITerminal.cs" />
+    <Compile Include="ATS\Models\PhoneNumber.cs" />
+    <Compile Include="ATS\Models\Port.cs" />
+    <Compile Include="ATS\Models\Terminal.cs" />
+    <Compile Include="BillingSystem\Models\Billing.cs" />
+    <Compile Include="BillingSystem\Models\Contracts\IBilling.cs" />
+    <Compile Include="BillingSystem\Models\Contracts\IUser.cs" />
+    <Compile Include="BillingSystem\Models\User.cs" />
+    <Compile Include="BillingSystem\Service\CallService.cs" />
+    <Compile Include="BillingSystem\Service\Contracts\ICallService.cs" />
+    <Compile Include="BillingSystem\Service\Contracts\IUserService.cs" />
+    <Compile Include="BillingSystem\Service\UserService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CallService.cs" />
-    <Compile Include="Services\Contracts\ICallService.cs" />
-    <Compile Include="Services\Contracts\IPortService.cs" />
-    <Compile Include="Services\Contracts\ITerminalService.cs" />
-    <Compile Include="Services\PortService.cs" />
-    <Compile Include="Services\TeriminalService.cs" />
+    <Compile Include="ATS\Services\CallService.cs" />
+    <Compile Include="ATS\Services\Contracts\ICallService.cs" />
+    <Compile Include="ATS\Services\Contracts\IPortService.cs" />
+    <Compile Include="ATS\Services\Contracts\ITerminalService.cs" />
+    <Compile Include="ATS\Services\PortService.cs" />
+    <Compile Include="ATS\Services\TeriminalService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

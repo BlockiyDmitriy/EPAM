@@ -16,25 +16,21 @@ namespace BillingSystem.Models
         private ITerminal Terminal { get; set; }
         private double Money { get; set; }
         private double Tarif { get; set; }
-        private double Cost { get; set; }
 
-        public User(ITerminal terminal, double tarif)
+        public User(Guid id, string name, double money, ITerminal terminal, double tarif)
         {
+            this.Id = id;
+            this.Name = name;
+            this.Money = money;
             this.Terminal = terminal;
             this.Tarif = tarif;
         }
-        public User(string name, double money)
-        {
-            this.Id = Guid.NewGuid();
-            this.Name = name;
-            this.Money = money;
-        }
+        public User(Guid id, string name, double money) : this(id, name, money, null, 0) { }
         public Guid GetGuid() => Id;
         public string GetName() => Name;
         public ITerminal GetTerminal() => Terminal;
         public double GetMoney() => Money;
         public double GetTarif() => Tarif;
-        public double GetCost() => Cost;
         public override string ToString() => $"{Id} {Name} has {Terminal}, money: {Money}";
     }
 }

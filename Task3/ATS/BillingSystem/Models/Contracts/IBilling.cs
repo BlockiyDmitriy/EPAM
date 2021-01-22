@@ -8,5 +8,6 @@ namespace BillingSystem.Models.Contracts
 {
     public interface IBilling
     {
+        IUser GetUser(IUser user);
     }
 }
