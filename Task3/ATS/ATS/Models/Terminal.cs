@@ -1,9 +1,5 @@
-﻿using ATS.Models.Controllers.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using ATS.Models.Controllers.Contracts;
 
 namespace ATS.Models
 {
@@ -35,7 +31,7 @@ namespace ATS.Models
 
         public void ConnectToPort(IPort port)
         {
-            if (port.GetPortState() == Enums.PortState.Free && Port == null)
+            if (port.GetPortState() == Enums.PortState.Free && Port != null)
             {
                 Port = port;
                 Port.ChangePortState(Enums.PortState.ConnectedTerminal);

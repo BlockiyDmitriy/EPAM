@@ -1,17 +1,16 @@
-﻿using ATS.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using ATS.Enums;
 using ATS.Models;
 using ATS.Models.Contracts;
 using BillingSystem.Models;
 using BillingSystem.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BillingSystem.Service.Contracts;
 
 namespace BillingSystem.Service
 {
-    public class CallService
+    public class CallService : ICallService
     {
         private IList<ICallInfo> Calls { get; set; }
         private IUser User { get; set; }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ATS.Models.Controllers.Contracts;
 
 namespace BillingSystem.Models.Contracts
 {
     public interface IBilling
     {
         IUser GetUser(IUser user);
+        void RegisterUser(IUser user);
+        IPort GetFreePort();
     }
 }

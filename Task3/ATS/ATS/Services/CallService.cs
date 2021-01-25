@@ -1,11 +1,9 @@
-﻿using ATS.Models;
-using ATS.Models.Contracts;
-using ATS.Services.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ATS.Models;
+using ATS.Models.Contracts;
+using ATS.Services.Contracts;
 
 namespace ATS.Services
 {
@@ -34,7 +32,6 @@ namespace ATS.Services
         }
         public ICallInfo GetCallInfo(Connection connection)
         {
-            //return _CallInfos.FirstOrDefault(x => x.GetPhoneNumber().Equals(connection.GetNumberFrom()) && x.GetTarget().Equals(connection.GetNumberTo()));
             return _CallInfos.FirstOrDefault();
         }
 

@@ -1,12 +1,9 @@
-﻿using ATS.Enums;
+﻿using System.Collections.Generic;
+using System.Linq;
+using ATS.Enums;
 using ATS.Models;
 using ATS.Models.Controllers.Contracts;
 using ATS.Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATS.Services
 {

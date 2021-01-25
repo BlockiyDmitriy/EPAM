@@ -1,9 +1,5 @@
-﻿using ATS.Models.Controllers.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using ATS.Models.Controllers.Contracts;
 
 namespace BillingSystem.Models.Contracts
 {

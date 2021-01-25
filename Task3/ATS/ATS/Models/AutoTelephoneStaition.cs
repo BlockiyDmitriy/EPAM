@@ -1,11 +1,7 @@
-﻿using ATS.Services;
-using ATS.Models.Controllers.Contracts;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ATS.Services;
+using ATS.Models.Controllers.Contracts;
 using ATS.Services.Contracts;
 using ATS.Models.Contracts;
 
@@ -97,7 +93,7 @@ namespace ATS.Models
             }
             else
             {
-                // reject
+                throw new Exception("port is busy");
             }
         }
         protected virtual void OnInCommingCall(object sender, PhoneNumber phoneNumber)

@@ -1,15 +1,11 @@
 ﻿using ATS.Models;
 using ATS.Models.Controllers.Contracts;
 using BillingSystem.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BillingSystem.Service.Contracts;
 
 namespace BillingSystem.Service
 {
-    public class UserService
+    public class UserService : IUserService
     {
         public void ConnectToPort(IUser user, IPort port)
         {

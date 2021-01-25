@@ -1,12 +1,7 @@
-﻿using ATS.Enums;
+﻿using System;
+using ATS.Enums;
 using ATS.Models.Contracts;
-using BillingSystem.Models;
 using BillingSystem.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATS.Models
 {

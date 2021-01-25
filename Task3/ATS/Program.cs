@@ -4,12 +4,10 @@ using BillingSystem.Models;
 using BillingSystem.Models.BillingSystem;
 using BillingSystem.Models.Contracts;
 using BillingSystem.Service;
+using BillingSystem.Service.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ATS
 {
@@ -29,11 +27,7 @@ namespace ATS
             IAutoTelephoneStaition autoTelephoneStaition = new AutoTelephoneStaition(
                 new List<IPort>() { port1, port2 });
 
-            //terminal1.Call(number2);
-            //terminal1.AnswerCall();
-            //terminal1.DropCall();
-
-            Billing system = new Billing(autoTelephoneStaition, new List<PhoneNumber>()
+            IBilling system = new Billing(autoTelephoneStaition, new List<PhoneNumber>()
             {
                 number1, number2
             });
@@ -44,7 +38,7 @@ namespace ATS
             system.RegisterUser(user1);
             system.RegisterUser(user2);
 
-            UserService userService = new UserService();
+            IUserService userService = new UserService();
 
             userService.ConnectToPort(system.GetUser(user1), system.GetFreePort());
             userService.ConnectToPort(system.GetUser(user2), system.GetFreePort());
