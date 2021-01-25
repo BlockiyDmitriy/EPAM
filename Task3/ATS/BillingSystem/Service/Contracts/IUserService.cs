@@ -9,5 +9,6 @@ namespace BillingSystem.Service.Contracts
         void ConnectToPort(IUser user, IPort port);
         void Call(IUser user, PhoneNumber phoneNumber);
         void Answer(IUser user);
+        void Drop(IUser user);
     }
 }

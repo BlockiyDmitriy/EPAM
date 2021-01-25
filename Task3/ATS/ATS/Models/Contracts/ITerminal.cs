@@ -9,6 +9,7 @@ namespace ATS.Models.Controllers.Contracts
 {
     public interface ITerminal
     {
+        void UnBindToTerminal();
         PhoneNumber GetNumber();
         IPort GetPort();
         Connection GetConnection();

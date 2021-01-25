@@ -46,7 +46,24 @@ namespace ATS
             userService.Call(system.GetUser(user1), number2);
             userService.Answer(system.GetUser(user2));
             Thread.Sleep(2000);
+            userService.Drop(system.GetUser(user2));
             Console.WriteLine();
+
+            foreach (var item in system.GetUsers())
+            {
+                Console.WriteLine($"{item.GetName()} history");
+                system.GetCallService().GetUserCallsByCallStatePerMonth(item, Enums.CallState.NoAnswer);
+                Console.WriteLine();
+            }
+            Console.WriteLine("Press any key to continue...\n\n\n");
+            Console.ReadLine();
+
+            terminal1.UnBindToTerminal();
+            terminal2.UnBindToTerminal();
+            port1.UnBindTerminalToPort(terminal1);
+            port1.UnBindTerminalToPort(terminal2);
+            autoTelephoneStaition.UnBindPortEvent(port1);
+            autoTelephoneStaition.UnBindPortEvent(port2);
 
         }
     }

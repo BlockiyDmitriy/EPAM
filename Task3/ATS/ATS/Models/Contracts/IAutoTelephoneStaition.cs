@@ -14,7 +14,7 @@ namespace ATS.Models.Controllers.Contracts
         IPortService GetPorts();
         ICallService GetCall();
         ITerminalService GetTerminal();
-
+        void UnBindPortEvent(IPort port);
         void AddCallInfo(ICallInfo callInfo);
         void CreateCallInfo();
         void RemoveCallInfo(ICallInfo callInfo);

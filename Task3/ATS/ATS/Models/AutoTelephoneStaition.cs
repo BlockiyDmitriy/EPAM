@@ -77,6 +77,13 @@ namespace ATS.Models
             port.Answer += OnAnswer;
             port.Drop += OnDrop;
         }
+        public virtual void UnBindPortEvent(IPort port)
+        {
+            port.OutGoingCall -= OnOutGoingCall;
+            port.InComingCall -= OnInCommingCall;
+            port.Answer -= OnAnswer;
+            port.Drop -= OnDrop;
+        }
         protected virtual void OnOutGoingCall(object sender, PhoneNumber phoneNumber)
         {
             var caller = sender as Port;

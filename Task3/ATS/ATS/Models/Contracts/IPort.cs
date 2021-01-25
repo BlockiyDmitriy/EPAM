@@ -12,7 +12,7 @@ namespace ATS.Models.Controllers.Contracts
         PortState GetPortState();
         ITerminal GetTerminal();
         void ChangePortState(PortState portState);
-        //void BindTerminalToPort(ITerminal terminal);
+        void UnBindTerminalToPort(ITerminal terminal);
 
         event EventHandler<PhoneNumber> OutGoingCall;
         event EventHandler<PhoneNumber> InComingCall;

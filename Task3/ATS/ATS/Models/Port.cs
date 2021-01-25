@@ -39,6 +39,13 @@ namespace ATS.Models
             terminal.Answer += OnAnswer;
             terminal.Drop += OnDrop;
         }
+        public virtual void UnBindTerminalToPort(ITerminal terminal)
+        {
+            terminal.OutGoingCall -= OnOutGoingCall;
+            terminal.InComingCall -= OnInComingCall;
+            terminal.Answer -= OnAnswer;
+            terminal.Drop -= OnDrop;
+        }
         protected void OnOutGoingCall(object sender, PhoneNumber phoneNumber)
         {
             OutGoingCall?.Invoke(this, phoneNumber);

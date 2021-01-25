@@ -78,6 +78,13 @@ namespace ATS.Models
                 Console.ForegroundColor = ConsoleColor.White;
             };
         }
+        public void UnBindToTerminal()
+        {
+            OutGoingCall -= OnOutGoingCall;
+            InComingCall -= OnInComingCall;
+            Answer -= OnAnswer;
+            Drop -= OnDrop;
+        }
         protected virtual void OnConnect(IPort port)
         {
             ConnectingToPort?.Invoke(this, port);

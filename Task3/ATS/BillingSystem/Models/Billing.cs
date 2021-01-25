@@ -4,6 +4,7 @@ using ATS.Models;
 using ATS.Models.Controllers.Contracts;
 using BillingSystem.Models.Contracts;
 using BillingSystem.Service;
+using BillingSystem.Service.Contracts;
 
 namespace BillingSystem.Models.BillingSystem
 {
@@ -13,7 +14,7 @@ namespace BillingSystem.Models.BillingSystem
         private IDictionary<PhoneNumber, bool> PhoneNumbers { get; set; }
         private IList<IUser> Users { get; set; }
         private IAutoTelephoneStaition Station { get; set; }
-        private CallService CallService { get; set; }
+        private ICallService CallService { get; set; }
         private double Tarif { get; set; }
         public IUser GetUser(IUser user) => Users.Where(x => x.GetGuid() == user.GetGuid()).FirstOrDefault();
         public Billing(IAutoTelephoneStaition station, List<PhoneNumber> phones)
@@ -29,6 +30,8 @@ namespace BillingSystem.Models.BillingSystem
             }
             RegisterHandlerForStation(station);
         }
+        public IList<IUser> GetUsers() => Users;
+        public ICallService GetCallService() => CallService;
         private void RegisterHandlerForStation(IAutoTelephoneStaition station)
         {
             station.GetCall().Call += (sender, callInfo) =>

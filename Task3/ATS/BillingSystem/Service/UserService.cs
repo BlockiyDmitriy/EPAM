@@ -16,12 +16,13 @@ namespace BillingSystem.Service
         {
             user.GetTerminal().Call(phoneNumber);
         }
-
-
         public void Answer(IUser user)
         {
             user.GetTerminal().AnswerCall();
         }
-
+        public void Drop(IUser user)
+        {
+            user.GetTerminal().DropCall();
+        }
     }
 }
