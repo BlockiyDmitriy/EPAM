@@ -47,7 +47,7 @@
     <Compile Include="Managers\FileManager.cs" />
     <Compile Include="Managers\TaskManager.cs" />
     <Compile Include="Managers\WatcherSourceFileManager.cs" />
-    <Compile Include="Operations\AddClientOperation.cs" />
+    <Compile Include="Operations\AddEntityOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

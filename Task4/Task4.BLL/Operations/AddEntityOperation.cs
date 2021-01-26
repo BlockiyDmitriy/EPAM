@@ -7,13 +7,13 @@ using System.Transactions;
 
 namespace Task4.BLL.Operations
 {
-    public class AddClientOperation<TEntity> : IUnitOfWork where TEntity : class
+    public class AddEntityOperation<TEntity> : IUnitOfWork where TEntity : class
     {
         public TEntity Entity { get; private set; }
         protected IGenericRepository<TEntity> ClientRepo { get; private set; }
         protected TransactionScope Scope { get; set; }
 
-        public AddClientOperation(IGenericRepository<TEntity> clientRepo, TransactionScope scope)
+        public AddEntityOperation(IGenericRepository<TEntity> clientRepo, TransactionScope scope)
         {
             ClientRepo = clientRepo;
             Scope = scope;
