@@ -1,0 +1,56 @@
+﻿using Task4.BLL.Abstraction;
+using Task4.DAL.Repositories.Contracts;
+using Task4.Domain.Models;
+
+using System;
+using System.Transactions;
+
+namespace Task4.BLL.Operations
+{
+    public class AddClientOperation<TEntity> : IUnitOfWork where TEntity : class
+    {
+        public TEntity Entity { get; private set; }
+        protected IGenericRepository<TEntity> ClientRepo { get; private set; }
+        protected TransactionScope Scope { get; set; }
+
+        public AddClientOperation(IGenericRepository<TEntity> clientRepo, TransactionScope scope)
+        {
+            ClientRepo = clientRepo;
+            Scope = scope;
+        }
+
+        public void Commit()
+        {
+            Scope.Complete();
+        }
+
+        public void Rollback()
+        {
+
+        }
+
+        public void Execute()
+        {
+            try
+            {
+                ClientRepo.Add(Entity);
+                Scope.Complete();
+            }
+            catch (NullReferenceException e)
+            {
+                Rollback();
+                throw e;
+            }
+            catch (TransactionException e)
+            {
+                Rollback();
+                throw new InvalidOperationException("Add entity faild ", e);
+            }
+        }
+
+        public void Dispose()
+        {
+            Scope.Dispose();
+        }
+    }
+}

@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Task4.DAL.Context;
+using Task4.DAL.Repositories.Contracts;
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Task4.DAL.Context;
-using Task4.DAL.Repositories.Contracts;
 
 namespace Task4.DAL.Repositories
 {
