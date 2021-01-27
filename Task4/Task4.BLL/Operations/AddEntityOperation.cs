@@ -26,7 +26,7 @@ namespace Task4.BLL.Operations
 
         public void Rollback()
         {
-
+            throw new Exception();
         }
 
         public void Execute()
