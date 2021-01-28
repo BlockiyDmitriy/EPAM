@@ -44,8 +44,11 @@
   <ItemGroup>
     <Compile Include="Abstraction\IControlProcess.cs" />
     <Compile Include="Abstraction\IUnitOfWork.cs" />
+    <Compile Include="CSVParsing\CSVDTO.cs" />
+    <Compile Include="CSVParsing\StingToDTOParser.cs" />
     <Compile Include="Managers\BaseSourceFileManager.cs" />
     <Compile Include="Managers\IFileManager.cs" />
+    <Compile Include="Managers\ParseFileServiceTaskManager.cs" />
     <Compile Include="Managers\TaskManager.cs" />
     <Compile Include="Managers\WatcherSourceFileManager.cs" />
     <Compile Include="Operations\AddEntityOperation.cs" />
