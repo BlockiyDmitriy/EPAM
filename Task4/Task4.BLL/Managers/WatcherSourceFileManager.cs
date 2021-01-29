@@ -39,5 +39,9 @@ namespace Task4.BLL.Managers
         {
             OnNew(this, e.FullPath);
         }
+        ~WatcherSourceFileManager()
+        {
+            Dispose();
+        }
     }
 }
