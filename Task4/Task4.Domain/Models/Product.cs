@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Sum { get; set; }
+        public double Sum { get; set; }
     }
 }

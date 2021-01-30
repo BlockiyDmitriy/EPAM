@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Task4.BLL.Abstraction;
 using Task4.BLL.CSVParsing;
+using Task4.BLL.Scheduler;
 using Task4.DAL.Context;
 
 namespace Task4.BLL.Managers
@@ -12,8 +13,16 @@ namespace Task4.BLL.Managers
     public class ParseFileServiceTaskManager : IControlProcess
     {
         private IFileManager FileManager { get; set; }
-        private TaskFactory TaskFactory { get; set; } = new TaskFactory();
-        private TaskManager TaskManager { get; set; } = new TaskManager();
+        private TaskFactory TaskFactory { get; set; }
+        private TaskManager TaskManager { get; set; }
+        private SafeStack<Task> Stack { get; set; }
+
+        public ParseFileServiceTaskManager()
+        {
+            TaskFactory = new TaskFactory();
+            TaskManager = new TaskManager();
+            Stack = new SafeStack<Task>();
+        }
 
         Action<object> ParsingAction = param =>
         {
@@ -43,9 +52,10 @@ namespace Task4.BLL.Managers
 
         public void RunTask(string fileName)
         {
-            Task temp;
+            Task temp = null;
             try
             {
+                Stack.TryAdd(temp); // Test
                 TaskManager.TryTakeTask(temp = TaskFactory.StartNew(ParsingAction, fileName, TaskFactory.CancellationToken));
                 temp.ContinueWith(x =>
                 {
@@ -60,7 +70,7 @@ namespace Task4.BLL.Managers
         }
         public void Start()
         {
-           
+            throw new NotImplementedException();
         }
 
         public void Stop()

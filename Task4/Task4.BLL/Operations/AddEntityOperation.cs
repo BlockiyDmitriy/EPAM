@@ -11,7 +11,7 @@ namespace Task4.BLL.Operations
     {
         public TEntity Entity { get; private set; }
         protected IGenericRepository<TEntity> ClientRepo { get; private set; }
-        protected TransactionScope Scope { get; set; }
+        protected TransactionScope Scope { get; private set; }
 
         public AddEntityOperation(IGenericRepository<TEntity> clientRepo, TransactionScope scope)
         {

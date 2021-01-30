@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
+using Task4.BLL.Scheduler;
 
 namespace Task4.BLL.Managers
 {
     public class TaskManager
     {
-        public IProducerConsumerCollection<Task> Tasks { get; private set; }
+        private IProducerConsumerCollection<Task> Tasks { get; set; }
+        private SafeStack<Task> Stack { get; set; }
 
-        public TaskManager(IProducerConsumerCollection<Task> source)
+        public TaskManager()
         {
-            Tasks = source;
+            Stack = new SafeStack<Task>();
+            Tasks = (IProducerConsumerCollection<Task>)Stack;
         }
 
         public void TryAddTask(Task task)
@@ -20,7 +23,7 @@ namespace Task4.BLL.Managers
                 throw new InvalidOperationException("connot to add task to thread-safe collection");
             }
         }
-        public void TryTakeTask(Task task )
+        public void TryTakeTask(Task task)
         {
             if (!Tasks.TryTake(out task))
             {

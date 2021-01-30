@@ -3,9 +3,9 @@ using System.Data.Entity;
 
 namespace Task4.DAL.Context
 {
-    public class FIleDataModelContainer : DbContext
+    public class FileDataModelContainer : DbContext
     {
-        public FIleDataModelContainer() : base("DbConnectionString")
+        public FileDataModelContainer() : base("DbConnectionString")
         {
         } 
         public DbSet<Order> Order { get; set; }

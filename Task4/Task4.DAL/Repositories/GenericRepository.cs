@@ -11,9 +11,9 @@ namespace Task4.DAL.Repositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        internal FIleDataModelContainer Context { get; private set; }
+        internal FileDataModelContainer Context { get; private set; }
         internal DbSet<TEntity> EntitySet { get; private set; }
-        public GenericRepository(FIleDataModelContainer context)
+        public GenericRepository(FileDataModelContainer context)
         {
             this.Context = context;
             this.EntitySet = context.Set<TEntity>();
