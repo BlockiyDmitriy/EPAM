@@ -13,5 +13,6 @@ namespace Task4.DAL.Repositories.Contracts
         IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
         void Add(TEntity entity);
         void Remove(TEntity entity);
+        void Save();
     }
 }

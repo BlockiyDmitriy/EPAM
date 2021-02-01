@@ -11,9 +11,9 @@ namespace Task4.DAL.Repositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        internal FileDataModelContainer Context { get; private set; }
+        internal DbContext Context { get; private set; }
         internal DbSet<TEntity> EntitySet { get; private set; }
-        public GenericRepository(FileDataModelContainer context)
+        public GenericRepository(DbContext context)
         {
             this.Context = context;
             this.EntitySet = context.Set<TEntity>();
@@ -44,6 +44,7 @@ namespace Task4.DAL.Repositories
                 throw new ArgumentNullException("entity");
             }
             EntitySet.Add(entity);
+            Save();
         }
 
         public void Remove(TEntity entity)
@@ -53,6 +54,10 @@ namespace Task4.DAL.Repositories
                 throw new ArgumentNullException("entity");
             }
             EntitySet.Remove(entity);
+        }
+        public void Save()
+        {
+            Context.SaveChanges();
         }
     }
 }
