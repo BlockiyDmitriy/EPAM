@@ -46,6 +46,22 @@ namespace Task4.BLL.Scheduler
             }
             return rval;
         }
+        protected T[] Array()
+        {
+            T[] rval = null;
+            lock (m_lockObject)
+            {
+                rval = m_sequentialStack.ToArray();
+            }
+            return rval;
+        }
+        protected void Copy(T[] array, int index)
+        {
+            lock (m_lockObject)
+            {
+                m_sequentialStack.CopyTo(array, index);
+            }
+        }
         public bool TryTake(out T item)
         {
             return TryPop(out item);
@@ -59,20 +75,12 @@ namespace Task4.BLL.Scheduler
 
         public T[] ToArray()
         {
-            T[] rval = null;
-            lock (m_lockObject)
-            {
-                rval = m_sequentialStack.ToArray();
-            }
-            return rval;
+            return Array();
         }
 
         public void CopyTo(T[] array, int index)
         {
-            lock (m_lockObject)
-            {
-                m_sequentialStack.CopyTo(array, index);
-            }
+            Copy(array, index);
         }
 
         public IEnumerator<T> GetEnumerator()
