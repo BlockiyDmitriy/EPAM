@@ -47,6 +47,24 @@ namespace Task4.BLL.Operations
                 throw new InvalidOperationException("Add entity faild ", e);
             }
         }
+        public void Execute(TEntity entity)
+        {
+            try
+            {
+                ClientRepo.Add(entity);
+                Scope.Complete();
+            }
+            catch (NullReferenceException e)
+            {
+                Rollback();
+                throw e;
+            }
+            catch (TransactionException e)
+            {
+                Rollback();
+                throw new InvalidOperationException("Add entity faild ", e);
+            }
+        }
 
         public void Dispose()
         {
