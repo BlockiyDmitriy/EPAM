@@ -5,8 +5,12 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Task4.BLL.Abstraction;
 using Task4.BLL.CSVParsing;
+using Task4.BLL.Operations;
 using Task4.BLL.Scheduler;
 using Task4.DAL.Context;
+using Task4.DAL.Repositories;
+using Task4.DAL.Repositories.Contracts;
+using Task4.Domain.Models;
 
 namespace Task4.BLL.Managers
 {
@@ -15,17 +19,15 @@ namespace Task4.BLL.Managers
         private IFileManager FileManager { get; set; }
         private TaskFactory TaskFactory { get; set; }
         private TaskManager TaskManager { get; set; }
-        private SafeStack<Task> Stack { get; set; }
-
         public ParseFileServiceTaskManager()
         {
             TaskFactory = new TaskFactory();
             TaskManager = new TaskManager();
-            Stack = new SafeStack<Task>();
         }
 
-        Action<object> ParsingAction = param =>
+        Action<object> ParsingAction = (param) =>
         {
+            Console.WriteLine("Parsing");
             string fileName = param as string;
 
             using (var DTOSource = new StringToDTOParser(new StreamReader(fileName)))
@@ -37,7 +39,12 @@ namespace Task4.BLL.Managers
                     try
                     {
                         context = new FileDataModelContainer();
-                        //scope = 
+                        scope = new TransactionScope();
+
+                        //Client client = new Client() { Name = "client" };
+                        //IGenericRepository<Client> genericRepository = new GenericRepository<Client>(context);
+                        //AddEntityOperation<Client> addEntity = new AddEntityOperation<Client>(genericRepository, scope);
+                        //addEntity.Execute(client);
                     }
                     finally
                     {
@@ -50,22 +57,23 @@ namespace Task4.BLL.Managers
             }
         };
 
-        public void RunTask(string fileName)
+        public void RunTask(object fileName)
         {
+            ParsingAction(fileName);
             Task temp = null;
+            string file = fileName as string;
             try
             {
-                Stack.TryAdd(temp); // Test
-                TaskManager.TryTakeTask(temp = TaskFactory.StartNew(ParsingAction, fileName, TaskFactory.CancellationToken));
+                TaskManager.TryAddTask(temp = TaskFactory.StartNew(ParsingAction, file, TaskFactory.CancellationToken));
                 temp.ContinueWith(x =>
                 {
-                    FileManager.BackUp(fileName);
+                    FileManager.BackUp(file);
 
                 });
             }
             catch
             {
-
+                throw new Exception();
             }
         }
         public void Start()
