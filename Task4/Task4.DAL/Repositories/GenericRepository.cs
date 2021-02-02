@@ -44,7 +44,6 @@ namespace Task4.DAL.Repositories
                 throw new ArgumentNullException("entity");
             }
             EntitySet.Add(entity);
-            Save();
         }
 
         public void Remove(TEntity entity)

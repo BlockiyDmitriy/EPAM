@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -56,6 +57,11 @@
     <Compile Include="Abstraction\IUnitOfWork.cs" />
     <Compile Include="CSVParsing\CSVDTO.cs" />
     <Compile Include="CSVParsing\StringToDTOParser.cs" />
+    <Compile Include="DataSourceProvider\BaseFileProvider.cs" />
+    <Compile Include="DataSourceProvider\IBackupable.cs" />
+    <Compile Include="DataSourceProvider\IDataSource.cs" />
+    <Compile Include="DataSourceProvider\IDataSourceProvider.cs" />
+    <Compile Include="DataSourceProvider\SAXFileProvider.cs" />
     <Compile Include="Managers\BaseSourceFileManager.cs" />
     <Compile Include="Managers\IFileManager.cs" />
     <Compile Include="Managers\ParseFileServiceTaskManager.cs" />
