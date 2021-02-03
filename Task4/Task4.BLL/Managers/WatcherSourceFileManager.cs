@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Task4.BLL.Managers
 {
-    public class WatcherSourceFileManager : BaseSourceFileManager, IFileManager, IDisposable
+    public class WatcherSourceFileManager : BaseBackUpFileManager, IFileManager, IDisposable
     {
         protected FileSystemWatcher Watcher { get; set; }
 

@@ -13,10 +13,11 @@ namespace Task4.BLL.Operations
         protected IGenericRepository<TEntity> ClientRepo { get; private set; }
         protected TransactionScope Scope { get; private set; }
 
-        public AddEntityOperation(IGenericRepository<TEntity> clientRepo, TransactionScope scope)
+        public AddEntityOperation(IGenericRepository<TEntity> clientRepo, TransactionScope scope, TEntity entity)
         {
             ClientRepo = clientRepo;
             Scope = scope;
+            Entity = entity;
         }
 
         public void Commit()
@@ -34,24 +35,6 @@ namespace Task4.BLL.Operations
             try
             {
                 ClientRepo.Add(Entity);
-                Scope.Complete();
-            }
-            catch (NullReferenceException e)
-            {
-                Rollback();
-                throw e;
-            }
-            catch (TransactionException e)
-            {
-                Rollback();
-                throw new InvalidOperationException("Add entity faild ", e);
-            }
-        }
-        public void Execute(TEntity entity)
-        {
-            try
-            {
-                ClientRepo.Add(entity);
                 Scope.Complete();
             }
             catch (NullReferenceException e)

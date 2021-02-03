@@ -5,21 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Task4.BLL.CSVParsing;
+using Task4.BLL.Managers;
 
 namespace Task4.BLL.DataSourceProvider
 {
     public class SAXFileProvider : BaseFileProvider<CSVDTO>, IDataSourceProvider<CSVDTO>
     {
         bool _isCancelled = false;
-
+        private TempSourceFileDTO _temp;
         public SAXFileProvider() : base()
         {
-
+            _temp = new TempSourceFileDTO();
         }
         public SAXFileProvider(string sourceFolder, string destFolder)
             : base(sourceFolder, destFolder)
         {
-
         }
         public void Cancel()
         {
@@ -31,13 +31,16 @@ namespace Task4.BLL.DataSourceProvider
         }
         public void Start()
         {
-            foreach (var c in
+            foreach (var file in
             Directory.GetFiles(
                 SourceFolder,
                 SearchPattern,
                 SearchOption.TopDirectoryOnly))
             {
-                OnNew(this, new StringToDTOParser(c, this.DestFolder));
+                _temp.FileName = file;
+                _temp.DestFolder = DestFolder;
+                var parse = new ParseFileServiceTaskManager();
+                parse.RunTask(_temp);
                 if (_isCancelled)
                 {
                     break;
@@ -49,6 +52,5 @@ namespace Task4.BLL.DataSourceProvider
         {
             Cancel();
         }
-
     }
 }

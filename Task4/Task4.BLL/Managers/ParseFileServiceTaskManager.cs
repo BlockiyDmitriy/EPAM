@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Task4.BLL.Abstraction;
 using Task4.BLL.CSVParsing;
+using Task4.BLL.DataSourceProvider;
 using Task4.BLL.Operations;
 using Task4.BLL.Scheduler;
 using Task4.DAL.Context;
@@ -16,7 +17,6 @@ namespace Task4.BLL.Managers
 {
     public class ParseFileServiceTaskManager : IControlProcess
     {
-        private IFileManager FileManager { get; set; }
         private TaskFactory TaskFactory { get; set; }
         private TaskManager TaskManager { get; set; }
         public ParseFileServiceTaskManager()
@@ -25,12 +25,10 @@ namespace Task4.BLL.Managers
             TaskManager = new TaskManager();
         }
 
-        Action<object> ParsingAction = (param) =>
+        Action<object> ParsingAction = (temp) =>
         {
-            Console.WriteLine("Parsing");
-            string fileName = param as string;
-
-            using (var DTOSource = new StringToDTOParser(new StreamReader(fileName)))
+            TempSourceFileDTO tempDTO = temp as TempSourceFileDTO;
+            using (var DTOSource = new StringToDTOParser(tempDTO.FileName, tempDTO.DestFolder))
             {
                 foreach (var item in DTOSource)
                 {
@@ -41,10 +39,12 @@ namespace Task4.BLL.Managers
                         context = new FileDataModelContainer();
                         scope = new TransactionScope();
 
-                        //Client client = new Client() { Name = "client" };
-                        //IGenericRepository<Client> genericRepository = new GenericRepository<Client>(context);
-                        //AddEntityOperation<Client> addEntity = new AddEntityOperation<Client>(genericRepository, scope);
-                        //addEntity.Execute(client);
+                        Client client = new Client()
+                        {
+                            Name = "Name"
+                        };
+                        IGenericRepository<Client> repository = new GenericRepository<Client>(context);
+                        var operation = new AddEntityOperation<Client>(repository,scope,client);
                     }
                     finally
                     {
@@ -57,23 +57,21 @@ namespace Task4.BLL.Managers
             }
         };
 
-        public void RunTask(object fileName)
+        public void RunTask(object tempDTO)
         {
-            ParsingAction(fileName);
+            ParsingAction(tempDTO);
             Task temp = null;
-            string file = fileName as string;
             try
             {
-                TaskManager.TryAddTask(temp = TaskFactory.StartNew(ParsingAction, file, TaskFactory.CancellationToken));
+                TaskManager.TryAddTask(temp = TaskFactory.StartNew(ParsingAction, tempDTO,  TaskFactory.CancellationToken));
                 temp.ContinueWith(x =>
                 {
-                    FileManager.BackUp(file);
-
+                    
                 });
             }
             catch
             {
-                throw new Exception();
+                throw new Exception("runTask");
             }
         }
         public void Start()

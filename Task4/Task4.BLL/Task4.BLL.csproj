@@ -62,6 +62,8 @@
     <Compile Include="DataSourceProvider\IDataSource.cs" />
     <Compile Include="DataSourceProvider\IDataSourceProvider.cs" />
     <Compile Include="DataSourceProvider\SAXFileProvider.cs" />
+    <Compile Include="DataSourceProvider\TempSourceFileDTO.cs" />
+    <Compile Include="Managers\BaseBackUpFileManager.cs" />
     <Compile Include="Managers\BaseSourceFileManager.cs" />
     <Compile Include="Managers\IFileManager.cs" />
     <Compile Include="Managers\ParseFileServiceTaskManager.cs" />
