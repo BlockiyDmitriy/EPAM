@@ -10,12 +10,12 @@ using Task4.Domain.Models;
 
 namespace Task4.BLL.Transaction
 {
-    public class TranssactDataTask : IDisposable
+    public class TransactDataTask : IDisposable
     {
         protected DbContext Context { get; set; }
         protected TransactionScope Scope { get; set; }
 
-        public TranssactDataTask(FileDataModelContainer context, TransactionScope scope)
+        public TransactDataTask(FileDataModelContainer context, TransactionScope scope)
         {
             Context = context;
             Scope = scope;

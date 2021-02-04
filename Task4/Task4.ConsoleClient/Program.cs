@@ -1,4 +1,9 @@
-﻿using Task4.BLL.Managers;
+﻿using System.Configuration;
+using System.IO;
+using Task4.BLL.DataSourceProvider;
+using Task4.BLL.Managers;
+using Task4.DAL.Context;
+using Task4.Domain.Models;
 
 namespace Task4.ConsoleClient
 {
@@ -6,9 +11,9 @@ namespace Task4.ConsoleClient
     {
         static void Main(string[] args)
         {
-            string fileName = "FileName";
-            ParseFileServiceTaskManager parseFileServiceTaskManager = new ParseFileServiceTaskManager();
-            parseFileServiceTaskManager.RunTask(fileName);
+            var provider = new SAXFileProvider();
+            provider.Start();
         }
+
     }
 }
