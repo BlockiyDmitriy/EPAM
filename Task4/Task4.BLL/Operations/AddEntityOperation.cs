@@ -9,15 +9,14 @@ namespace Task4.BLL.Operations
 {
     public class AddEntityOperation<TEntity> : IUnitOfWork where TEntity : class
     {
-        public TEntity Entity { get; private set; }
+        public TEntity Entity { get; set; }
         protected IGenericRepository<TEntity> ClientRepo { get; private set; }
         protected TransactionScope Scope { get; private set; }
 
-        public AddEntityOperation(IGenericRepository<TEntity> clientRepo, TransactionScope scope, TEntity entity)
+        public AddEntityOperation(IGenericRepository<TEntity> clientRepo, TransactionScope scope)
         {
             ClientRepo = clientRepo;
             Scope = scope;
-            Entity = entity;
         }
 
         public void Commit()

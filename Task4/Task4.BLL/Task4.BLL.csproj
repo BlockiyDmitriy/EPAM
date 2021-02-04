@@ -71,8 +71,8 @@
     <Compile Include="Managers\WatcherSourceFileManager.cs" />
     <Compile Include="Operations\AddEntityOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scheduler\LimitedConcurrencyLevelTaskScheduler.cs" />
     <Compile Include="Scheduler\SafeStack.cs" />
+    <Compile Include="Transaction\TranssactDataTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Task4.DAL\Task4.DAL.csproj">

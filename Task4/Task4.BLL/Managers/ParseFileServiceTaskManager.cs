@@ -25,7 +25,7 @@ namespace Task4.BLL.Managers
             TaskManager = new TaskManager();
         }
 
-        Action<object> ParsingAction = (temp) =>
+        readonly Action<object> ParsingAction = (temp) =>
         {
             TempSourceFileDTO tempDTO = temp as TempSourceFileDTO;
             using (var DTOSource = new StringToDTOParser(tempDTO.FileName, tempDTO.DestFolder))
@@ -44,7 +44,7 @@ namespace Task4.BLL.Managers
                             Name = "Name"
                         };
                         IGenericRepository<Client> repository = new GenericRepository<Client>(context);
-                        var operation = new AddEntityOperation<Client>(repository,scope,client);
+                        var operation = new AddEntityOperation<Client>(repository,scope);
                     }
                     finally
                     {
