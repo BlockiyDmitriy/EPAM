@@ -1,13 +1,15 @@
 ﻿using System;
 using System.IO;
+using Task4.BLL.CSVParsing;
+using Task4.BLL.DataSourceProvider;
 
 namespace Task4.BLL.Managers
 {
-    public class WatcherSourceFileManager : BaseBackUpFileManager, IFileManager, IDisposable
+    public class WatcherSourceFileManager : BaseFileProvider<CSVDTO>, IFileManager<CSVDTO>, IDisposable
     {
         protected FileSystemWatcher Watcher { get; set; }
 
-        public WatcherSourceFileManager(FileSystemWatcher watcher, string destFolder) : base(watcher.Path, destFolder)
+        public WatcherSourceFileManager(FileSystemWatcher watcher) : base()
         {
             Watcher = watcher;
             Watcher.Created += OnFileSystemEvent;
@@ -35,9 +37,9 @@ namespace Task4.BLL.Managers
                 Watcher = null;
             }
         }
-        public override void OnFileSystemEvent(object sender, FileSystemEventArgs e)
+        protected void OnFileSystemEvent(object sender, FileSystemEventArgs e)
         {
-            OnNew(this, e.FullPath);
+            OnNew(this, new StringToDTOParser(e.FullPath, this.DestFolder));
         }
         ~WatcherSourceFileManager()
         {

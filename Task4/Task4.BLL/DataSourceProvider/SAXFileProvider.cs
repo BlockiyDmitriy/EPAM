@@ -39,7 +39,7 @@ namespace Task4.BLL.DataSourceProvider
             {
                 _temp.FileName = file;
                 _temp.DestFolder = DestFolder;
-                var parse = new ParseFileServiceTaskManager();
+                var parse = new ParseFileServiceTaskManager(file, DestFolder);
                 parse.RunTask(_temp);
                 if (_isCancelled)
                 {

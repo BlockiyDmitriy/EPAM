@@ -20,7 +20,7 @@ namespace Task4.BLL.CSVParsing
         }
         public IEnumerator<CSVDTO> GetEnumerator()
         {
-            if (!Reader.EndOfStream)
+            while (!Reader.EndOfStream && Reader != null)
             {
                 var item = Reader
                     .ReadLine()
@@ -29,6 +29,7 @@ namespace Task4.BLL.CSVParsing
                     .ToArray();
                 yield return new CSVDTO() { DateTime = item[0], ClientName = item[1], Product = item[2], Sum = item[3] };
             }
+            Close();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -53,11 +54,6 @@ namespace Task4.BLL.CSVParsing
                 GC.SuppressFinalize(this);
                 Reader = null;
             }
-        }
-
-        public override void OnFileSystemEvent(object sender, FileSystemEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         ~StringToDTOParser()

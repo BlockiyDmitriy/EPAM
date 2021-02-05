@@ -64,7 +64,6 @@
     <Compile Include="DataSourceProvider\SAXFileProvider.cs" />
     <Compile Include="DataSourceProvider\TempSourceFileDTO.cs" />
     <Compile Include="Managers\BaseBackUpFileManager.cs" />
-    <Compile Include="Managers\BaseSourceFileManager.cs" />
     <Compile Include="Managers\IFileManager.cs" />
     <Compile Include="Managers\ParseFileServiceTaskManager.cs" />
     <Compile Include="Managers\TaskManager.cs" />
@@ -72,7 +71,7 @@
     <Compile Include="Operations\AddEntityOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduler\SafeStack.cs" />
-    <Compile Include="Transaction\TranssactDataTask.cs" />
+    <Compile Include="Transaction\TransactDataTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Task4.DAL\Task4.DAL.csproj">

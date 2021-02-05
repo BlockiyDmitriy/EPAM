@@ -13,22 +13,20 @@ namespace Task4.BLL.Transaction
     public class TransactDataTask : IDisposable
     {
         protected DbContext Context { get; set; }
-        protected TransactionScope Scope { get; set; }
 
-        public TransactDataTask(FileDataModelContainer context, TransactionScope scope)
+        public TransactDataTask(FileDataModelContainer context)
         {
             Context = context;
-            Scope = scope;
         }
 
-        public void TransactCompliteTask()
+        public void TransactStartTask()
         {
             try
             {
                 Context.Database.Connection.Open();
                 IGenericRepository<Client> clientRepository = new GenericRepository<Client>(Context);
 
-                using (Scope = new TransactionScope())
+                using (var Scope = new TransactionScope())
                 {
                     IUnitOfWork addEntity = new AddEntityOperation<Client>(clientRepository, Scope)
                     {
@@ -55,9 +53,7 @@ namespace Task4.BLL.Transaction
         public void Dispose()
         {
             Context.Dispose();
-            Scope.Dispose();
             GC.SuppressFinalize(Context);
-            GC.SuppressFinalize(Scope);
         }
     }
 }

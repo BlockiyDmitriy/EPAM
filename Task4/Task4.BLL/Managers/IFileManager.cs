@@ -8,11 +8,12 @@ using Task4.BLL.DataSourceProvider;
 
 namespace Task4.BLL.Managers
 {
-    public interface IFileManager : IControlProcess, IBackupable
+    public interface IFileManager<TDataItem> : IControlProcess
     {
-        string SourceFile { get; }
+        string SourceFolder { get; }
         string DestFolder { get; }
+        string SearchPattern { get; }
 
-        event EventHandler<string> New;
+        event EventHandler<IDataSource<TDataItem>> New;
     }
 }

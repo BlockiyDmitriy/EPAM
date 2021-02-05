@@ -8,7 +8,7 @@ using Task4.BLL.DataSourceProvider;
 
 namespace Task4.BLL.Managers
 {
-    public abstract class BaseBackUpFileManager : BaseSourceFileManager, IBackupable
+    public abstract class BaseBackUpFileManager :  IBackupable
     {
         public string SourceFile { get; private set; }
         public string DestFolder { get; private set; }
