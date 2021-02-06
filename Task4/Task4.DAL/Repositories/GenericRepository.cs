@@ -36,7 +36,10 @@ namespace Task4.DAL.Repositories
             }
             return EntitySet.Where(predicate);
         }
-
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
+        {
+            return EntitySet.Where(predicate).SingleOrDefault();
+        }
         public void Add(TEntity entity)
         {
             if (entity == null)

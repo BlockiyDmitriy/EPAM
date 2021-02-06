@@ -28,7 +28,7 @@ namespace Task4.BLL.Managers
                 {
                     var context = new FileDataModelContainer();
                     var task = new TransactDataTask(context);
-                    task.TransactStartTask();
+                    task.TransactStartTask(item);
                 }
             }
         };
