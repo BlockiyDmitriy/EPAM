@@ -24,10 +24,16 @@ namespace Task4.BLL.CSVParsing
             {
                 var item = Reader
                     .ReadLine()
-                    .Split(new char[] { ',', ';' })
+                    .Split(new char[] {'"', ';' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(x => x.Trim())
                     .ToArray();
-                yield return new CSVDTO() { DateTime = item[0], ClientName = item[1], Product = item[2], Sum = item[3] };
+                yield return new CSVDTO()
+                {
+                    DateTime = Convert.ToDateTime(item[0]),
+                    ClientName = item[1],
+                    Product = item[2],
+                    Sum = Convert.ToDouble(item[3])
+                };
             }
             Close();
         }

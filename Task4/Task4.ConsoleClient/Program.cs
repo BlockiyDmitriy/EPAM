@@ -1,9 +1,6 @@
-﻿using System.Configuration;
-using System.IO;
+﻿using System;
+using System.Data.Entity;
 using Task4.BLL.DataSourceProvider;
-using Task4.BLL.Managers;
-using Task4.DAL.Context;
-using Task4.Domain.Models;
 
 namespace Task4.ConsoleClient
 {
@@ -11,6 +8,10 @@ namespace Task4.ConsoleClient
     {
         static void Main(string[] args)
         {
+            //DbContext db = new DbContext("DbConnectionString");
+            //db.Database.Delete();
+            //db.Database.Create();
+
             var provider = new SAXFileProvider();
             provider.Start();
         }

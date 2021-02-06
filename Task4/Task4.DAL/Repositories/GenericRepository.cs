@@ -17,7 +17,7 @@ namespace Task4.DAL.Repositories
         {
             this.Context = context;
             this.EntitySet = context.Set<TEntity>();
-        }
+            }
 
         public IEnumerable<TEntity> Get()
         {
