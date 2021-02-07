@@ -31,9 +31,9 @@ namespace Task4.ServiceClient
                 provider = new SAXFileProvider();
                 provider.Start();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception(e.Message);
+                throw;
             }
         }
 
@@ -44,10 +44,10 @@ namespace Task4.ServiceClient
                 watcher.Stop();
                 provider.Stop();
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
-                throw new Exception(e.Message);
+                throw;
             }
         }
     }
