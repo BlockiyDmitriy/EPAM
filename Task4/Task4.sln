@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task4.DAL", "Task4.DAL\Task
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task4.Domain", "Task4.Domain\Task4.Domain.csproj", "{441AF05C-516B-473F-9EA2-CDEC110FE90C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceClient", "WindowsServiceClient\WindowsServiceClient.csproj", "{FD821A5D-945D-4D96-9190-7D2BE9E8DF56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{441AF05C-516B-473F-9EA2-CDEC110FE90C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{441AF05C-516B-473F-9EA2-CDEC110FE90C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{441AF05C-516B-473F-9EA2-CDEC110FE90C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD821A5D-945D-4D96-9190-7D2BE9E8DF56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD821A5D-945D-4D96-9190-7D2BE9E8DF56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD821A5D-945D-4D96-9190-7D2BE9E8DF56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD821A5D-945D-4D96-9190-7D2BE9E8DF56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

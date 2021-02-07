@@ -8,9 +8,9 @@ namespace Task4.ConsoleClient
     {
         static void Main(string[] args)
         {
-            //DbContext db = new DbContext("DbConnectionString");
-            //db.Database.Delete();
-            //db.Database.Create();
+            DbContext db = new DbContext("DbConnectionString");
+            db.Database.Delete();
+            db.Database.Create();
 
             var provider = new SAXFileProvider();
             provider.Start();

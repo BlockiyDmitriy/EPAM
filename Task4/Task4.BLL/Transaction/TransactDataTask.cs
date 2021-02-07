@@ -53,21 +53,14 @@ namespace Task4.BLL.Transaction
                 }
                 var client = clientRepository.SingleOrDefault(x => x.Name == cSVDTO.ClientName);
                 var product = productRepository.SingleOrDefault(x => x.Name == cSVDTO.Product);
-                //using (var Scope = new TransactionScope())
-                //{
-                //    IUnitOfWork addOrder = new AddEntityOperation<Order>(orderRepository, Scope)
-                //    {
-                //    };
-                //    addOrder.Execute();
-                //}
-                    var order = new Order()
-                    {
-                        DateTime = cSVDTO.DateTime,
-                        Client = client,
-                        Product = product
-                    };
+                var order = new Order()
+                {
+                    DateTime = cSVDTO.DateTime,
+                    Client = client,
+                    Product = product
+                };
                 orderRepository.Add(order);
-                orderRepository.Save();
+                //orderRepository.Save();
                 Context.Database.Connection.Close();
             }
             catch (Exception e)
