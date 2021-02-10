@@ -35,9 +35,9 @@ namespace Task4.BLL.DataSourceProvider
 
         public BaseFileProvider()
         {
-            SourceFolder = ConfigurationManager.AppSettings.Get("sourceFolder");
-            DestFolder = ConfigurationManager.AppSettings.Get("destFolder");
-            SearchPattern = ConfigurationManager.AppSettings.Get("searchPattern");
+            SourceFolder = ConfigurationManager.AppSettings["sourceFolder"];
+            DestFolder = ConfigurationManager.AppSettings["destFolder"];
+            SearchPattern = ConfigurationManager.AppSettings["searchPattern"];
         }
 
         public event EventHandler<IDataSource<TDataItem>> New;
