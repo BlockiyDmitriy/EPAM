@@ -60,7 +60,7 @@ namespace Task4.BLL.Transaction
                     Product = product
                 };
                 orderRepository.Add(order);
-                //orderRepository.Save();
+                orderRepository.Save();
                 Context.Database.Connection.Close();
             }
             catch (Exception e)

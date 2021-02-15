@@ -48,7 +48,6 @@ namespace ATS
             Thread.Sleep(2000);
             userService.Drop(system.GetUser(user2));
             Console.WriteLine();
-
             foreach (var item in system.GetUsers())
             {
                 Console.WriteLine($"{item.GetName()} history");
