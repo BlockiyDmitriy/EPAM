@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task5.Domain;
 
 namespace Task5.DAL.Context
 {
