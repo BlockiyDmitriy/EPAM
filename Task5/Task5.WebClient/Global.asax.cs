@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Task5.WebClient.Models;
 
 namespace Task5.WebClient
 {
@@ -12,6 +14,8 @@ namespace Task5.WebClient
     {
         protected void Application_Start()
         {
+            Database.SetInitializer<ApplicationDbContext>(new AppDbInitializer());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

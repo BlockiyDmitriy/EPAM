@@ -25,7 +25,7 @@ namespace Task5.WebClient.Models
             roleManager.Create(roleUser);
 
             // создаем пользователей
-            var admin = new ApplicationUser { Email = "dimiyan01@gmail.com", UserName = "Dima" };
+            var admin = new ApplicationUser { Email = "dimiyan01@gmail.com", UserName = "dimiyan01@gmail.com" };
             string password = "ad46D_ewr3";
             var result = userManager.Create(admin, password);
 

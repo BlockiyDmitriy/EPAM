@@ -9,7 +9,7 @@ using Task5.DAL.Repositories.Contract;
 
 namespace Task5.DAL.Repositories
 {
-    class Repository<TEntity>:IRepository<TEntity> where TEntity: class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         internal DbContext Context { get; private set; }
         internal DbSet<TEntity> EntitySet { get; private set; }
