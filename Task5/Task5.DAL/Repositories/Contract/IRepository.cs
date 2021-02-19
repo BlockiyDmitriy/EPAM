@@ -12,5 +12,7 @@ namespace Task5.DAL.Repositories.Contract
         IEnumerable<TEntity> Get();
         IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
+        void Add(TEntity entity);
+        void Remove(TEntity entity);
     }
 }

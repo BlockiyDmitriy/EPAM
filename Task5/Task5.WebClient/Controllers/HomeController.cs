@@ -21,14 +21,9 @@ namespace Task5.WebClient.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult About()
         {
+            ViewBag.Message = "Your application about page.";
 
-            IList<string> roles = new List<string> { "Роль не определена" };
-            ApplicationUserManager userManager = HttpContext.GetOwinContext()
-                                                    .GetUserManager<ApplicationUserManager>();
-            ApplicationUser user = userManager.FindByEmail(User.Identity.Name);
-            if (user != null)
-                roles = userManager.GetRoles(user.Id);
-            return View(roles);
+            return View();
         }
 
         public ActionResult Contact()

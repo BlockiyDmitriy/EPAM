@@ -8,14 +8,14 @@ using Task5.Domain;
 
 namespace Task5.DAL.Context
 {
-    class FileDataModelContainer : DbContext
+    public class FileDataModelContainer : DbContext
     {
-        //public FileDataModelContainer(): base("DbConnectionString")
-        //{
+        public FileDataModelContainer() : base("DbConnectionString")
+        {
 
-        //}
-        public DbSet<Order> Order { get; set; }
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Client> Client { get; set; }
+        }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Client> Clients { get; set; }
     }
 }

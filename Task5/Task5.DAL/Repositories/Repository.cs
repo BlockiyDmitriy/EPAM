@@ -40,5 +40,22 @@ namespace Task5.DAL.Repositories
         {
             return EntitySet.Where(predicate).SingleOrDefault();
         }
+        public void Add(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            EntitySet.Add(entity);
+        }
+
+        public void Remove(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            EntitySet.Remove(entity);
+        }
     }
 }
