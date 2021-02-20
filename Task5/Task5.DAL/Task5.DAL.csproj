@@ -55,7 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Contract\IRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="UoW\IUnitOfWorkI.cs" />
+    <Compile Include="UoW\IUnitOfWork.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

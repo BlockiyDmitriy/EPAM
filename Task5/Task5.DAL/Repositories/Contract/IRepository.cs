@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task5.DAL.Repositories.Contract
 {
-    interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> Get();
         IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);

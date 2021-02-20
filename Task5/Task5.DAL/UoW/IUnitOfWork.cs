@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task5.DAL.UoW
 {
-    public interface IUnitOfWorkI : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         void Save();
     }

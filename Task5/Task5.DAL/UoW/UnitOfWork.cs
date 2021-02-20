@@ -8,7 +8,7 @@ using Task5.DAL.Repositories;
 
 namespace Task5.DAL.UoW
 {
-    public class UnitOfWork<TEntity> : IUnitOfWorkI where TEntity : class
+    public class UnitOfWork<TEntity> : IUnitOfWork where TEntity : class
     {
         private FileDataModelContainer context = new FileDataModelContainer();
         private Repository<TEntity> repository;
