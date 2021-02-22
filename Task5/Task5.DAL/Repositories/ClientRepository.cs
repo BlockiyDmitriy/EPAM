@@ -6,29 +6,30 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Task5.DAL.Repositories.Contract;
+using Task5.Domain;
 
 namespace Task5.DAL.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class ClientRepository : IRepository<Client>
     {
         internal DbContext Context { get; private set; }
-        internal DbSet<TEntity> EntitySet { get; private set; }
-        public Repository(DbContext context)
+        internal DbSet<Client> EntitySet { get; private set; }
+        public ClientRepository(DbContext context)
         {
             this.Context = context;
-            this.EntitySet = context.Set<TEntity>();
+            this.EntitySet = context.Set<Client>();
         }
 
-        public IEnumerable<TEntity> Get()
+        public IEnumerable<Client> Get()
         {
             if (EntitySet == null)
             {
                 throw new ArgumentNullException("EntitySet");
             }
-            return EntitySet;
+            return EntitySet.ToList();
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+        public IEnumerable<Client> Get(Expression<Func<Client, bool>> predicate)
         {
             if (predicate == null)
             {
@@ -36,11 +37,11 @@ namespace Task5.DAL.Repositories
             }
             return EntitySet.Where(predicate);
         }
-        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
+        public Client SingleOrDefault(Expression<Func<Client, bool>> predicate)
         {
             return EntitySet.Where(predicate).SingleOrDefault();
         }
-        public void Add(TEntity entity)
+        public void Add(Client entity)
         {
             if (entity == null)
             {
@@ -49,7 +50,7 @@ namespace Task5.DAL.Repositories
             EntitySet.Add(entity);
         }
 
-        public void Remove(TEntity entity)
+        public void Remove(Client entity)
         {
             if (entity == null)
             {

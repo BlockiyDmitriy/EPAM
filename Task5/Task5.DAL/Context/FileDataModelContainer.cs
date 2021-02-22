@@ -10,7 +10,7 @@ namespace Task5.DAL.Context
 {
     public class FileDataModelContainer : DbContext
     {
-        public FileDataModelContainer() : base("DbConnectionString")
+        public FileDataModelContainer() : base()
         {
 
         }

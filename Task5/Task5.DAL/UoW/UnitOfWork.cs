@@ -8,20 +8,43 @@ using Task5.DAL.Repositories;
 
 namespace Task5.DAL.UoW
 {
-    public class UnitOfWork<TEntity> : IUnitOfWork where TEntity : class
+    public class UnitOfWork : IUnitOfWork
     {
         private FileDataModelContainer context = new FileDataModelContainer();
-        private Repository<TEntity> repository;
-
-        public Repository<TEntity> Repository
+        private ClientRepository clientRepository;
+        private ProductRepository productRepository;
+        private OrderRepository orderRepository;
+        public ClientRepository ClientRepository
         {
             get
             {
-                if (repository == null)
+                if (clientRepository == null)
                 {
-                    repository = new Repository<TEntity>(context);
+                    clientRepository = new ClientRepository(context);
                 }
-                return repository;
+                return clientRepository;
+            }
+        }
+        public ProductRepository ProductRepository
+        {
+            get
+            {
+                if (productRepository == null)
+                {
+                    productRepository = new ProductRepository(context);
+                }
+                return productRepository;
+            }
+        }
+        public OrderRepository OrderRepository
+        {
+            get
+            {
+                if (orderRepository == null)
+                {
+                    orderRepository = new OrderRepository(context);
+                }
+                return orderRepository;
             }
         }
         public void Save()
