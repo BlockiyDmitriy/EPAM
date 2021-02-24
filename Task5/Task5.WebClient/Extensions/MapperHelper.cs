@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Task5.Domain;
+using Task5.WebClient.Models.Client;
 using Task5.WebClient.Models.Order;
+using Task5.WebClient.Models.Product;
 
 namespace Task5.WebClient.Extensions
 {
@@ -20,13 +22,19 @@ namespace Task5.WebClient.Extensions
 
         public static void MapperConfig()
         {
-            _config = new MapperConfiguration(
-                cfg => cfg.CreateMap<Order, HomeOrderViewModel>()
-            .ForMember(x => x.DateTime, y => y.MapFrom(x => x.DateTime))
-            .ForMember(x => x.Client, y => y.MapFrom(x => x.Client))
-            .ForMember(x => x.Product, y => y.MapFrom(x => x.Product))
-            );
+            _config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Product, ProductViewModel>();
+                cfg.CreateMap<Client, ClientViewModel>();
+                cfg.CreateMap<Order, HomeOrderViewModel>()
+                    .ForMember(x => x.DateTime, y => y.MapFrom(x => x.DateTime))
+                    .ForMember(x => x.Client, y => y.MapFrom(x => x.Client))
+                    .ForMember(x => x.Product, y => y.MapFrom(x => x.Product));
+
+            });
+
             _mapper = new Mapper(_config);
+
         }
     }
 }
