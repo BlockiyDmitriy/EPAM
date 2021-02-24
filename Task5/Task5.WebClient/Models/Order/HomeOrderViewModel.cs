@@ -15,8 +15,8 @@ namespace Task5.WebClient.Models.Order
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DateTime { get; set; }
         [Required]
-        public ClientViewModel Client { get; set; }
+        public string ClientName { get; set; }
         [Required]
-        public ProductViewModel Product { get; set; }
+        public string ProductName { get; set; }
     }
 }

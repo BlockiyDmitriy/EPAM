@@ -8,7 +8,7 @@ using Task5.WebClient.Models.Product;
 
 namespace Task5.WebClient.Models.Order
 {
-    public class DetailsOrderViewModel
+    public class DetailsOrderViewModel : HomeOrderViewModel
     {
         [Required]
         public ClientViewModel Client { get; set; }
