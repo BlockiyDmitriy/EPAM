@@ -19,16 +19,16 @@ namespace Task5.DAL.Repositories
             this.EntitySet = context.Set<TEntity>();
         }
 
-        public IEnumerable<TEntity> Get()
+        public IQueryable<TEntity> Get()
         {
             if (EntitySet == null)
             {
                 throw new ArgumentNullException("EntitySet");
             }
-            return EntitySet.ToList();
+            return EntitySet;
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
             if (predicate == null)
             {
@@ -56,6 +56,15 @@ namespace Task5.DAL.Repositories
                 throw new ArgumentNullException("entity");
             }
             EntitySet.Remove(entity);
+        }
+
+        public void Update(TEntity entity)
+        {
+            if (entity != null)
+            {
+                EntitySet.Attach(entity);
+                Context.Entry(entity).State = EntityState.Modified;
+            }
         }
     }
 }

@@ -9,10 +9,11 @@ namespace Task5.DAL.Repositories.Contract
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TEntity> Get();
-        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> Get();
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
         void Add(TEntity entity);
         void Remove(TEntity entity);
+        void Update(TEntity entity);
     }
 }
