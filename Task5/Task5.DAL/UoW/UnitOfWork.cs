@@ -72,6 +72,10 @@ namespace Task5.DAL.UoW
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
+        
+        ~UnitOfWork()
+        {
+            Dispose(false);
+        }
     }
 }
