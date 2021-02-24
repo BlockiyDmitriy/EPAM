@@ -5,44 +5,46 @@ using System.Text;
 using System.Threading.Tasks;
 using Task5.DAL.Context;
 using Task5.DAL.Repositories;
+using Task5.DAL.Repositories.Contract;
+using Task5.Domain;
 
 namespace Task5.DAL.UoW
 {
     public class UnitOfWork : IUnitOfWork
     {
         private FileDataModelContainer context = new FileDataModelContainer();
-        private ClientRepository clientRepository;
-        private ProductRepository productRepository;
-        private OrderRepository orderRepository;
-        public ClientRepository ClientRepository
+        private Repository<Client> clientRepository;
+        private Repository<Product> productRepository;
+        private Repository<Order> orderRepository;
+        public Repository<Client> ClientRepository
         {
             get
             {
                 if (clientRepository == null)
                 {
-                    clientRepository = new ClientRepository(context);
+                    clientRepository = new Repository<Client>(context);
                 }
                 return clientRepository;
             }
         }
-        public ProductRepository ProductRepository
+        public Repository<Product> ProductRepository
         {
             get
             {
                 if (productRepository == null)
                 {
-                    productRepository = new ProductRepository(context);
+                    productRepository = new Repository<Product>(context);
                 }
                 return productRepository;
             }
         }
-        public OrderRepository OrderRepository
+        public Repository<Order> OrderRepository
         {
             get
             {
                 if (orderRepository == null)
                 {
-                    orderRepository = new OrderRepository(context);
+                    orderRepository = new Repository<Order>(context);
                 }
                 return orderRepository;
             }

@@ -6,21 +6,20 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Task5.DAL.Repositories.Contract;
-using Task5.Domain;
 
 namespace Task5.DAL.Repositories
 {
-    public class ClientRepository : IRepository<Client>
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         internal DbContext Context { get; private set; }
-        internal DbSet<Client> EntitySet { get; private set; }
-        public ClientRepository(DbContext context)
+        internal DbSet<TEntity> EntitySet { get; private set; }
+        public Repository(DbContext context)
         {
             this.Context = context;
-            this.EntitySet = context.Set<Client>();
+            this.EntitySet = context.Set<TEntity>();
         }
 
-        public IEnumerable<Client> Get()
+        public IEnumerable<TEntity> Get()
         {
             if (EntitySet == null)
             {
@@ -29,7 +28,7 @@ namespace Task5.DAL.Repositories
             return EntitySet.ToList();
         }
 
-        public IEnumerable<Client> Get(Expression<Func<Client, bool>> predicate)
+        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
             if (predicate == null)
             {
@@ -37,11 +36,11 @@ namespace Task5.DAL.Repositories
             }
             return EntitySet.Where(predicate);
         }
-        public Client SingleOrDefault(Expression<Func<Client, bool>> predicate)
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
             return EntitySet.Where(predicate).SingleOrDefault();
         }
-        public void Add(Client entity)
+        public void Add(TEntity entity)
         {
             if (entity == null)
             {
@@ -50,7 +49,7 @@ namespace Task5.DAL.Repositories
             EntitySet.Add(entity);
         }
 
-        public void Remove(Client entity)
+        public void Remove(TEntity entity)
         {
             if (entity == null)
             {
