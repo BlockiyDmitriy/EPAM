@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Task5.BLL.DTO;
@@ -25,6 +26,10 @@ namespace Task5.BLL.Extentions
                 cfg.CreateMap<Client, ClientDTO>();
                 cfg.CreateMap<Product, ProductDTO>();
                 cfg.CreateMap<Order, OrderDTO>();
+
+                cfg.CreateMap<ClientDTO, Client>();
+                cfg.CreateMap<ProductDTO, Product>();
+                cfg.CreateMap<OrderDTO, Order>();
             });
 
             _mapper = new Mapper(_config);
