@@ -261,13 +261,10 @@
     <Content Include="Views\Sale\Index.cshtml" />
     <Content Include="Views\Sale\Crate.cshtml" />
     <Content Include="Views\Sale\Details.cshtml" />
-    <Content Include="Views\Sale\Delete.cshtml" />
     <Content Include="Views\Sale\Edit.cshtml" />
-    <Content Include="Views\Sale\PagedList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Sorting\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -283,13 +280,13 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Task5.BLL\Task5.BLL.csproj">
+      <Project>{277ce2f0-7fc1-4bc9-b79c-0bdecc79940e}</Project>
+      <Name>Task5.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Task5.DAL\Task5.DAL.csproj">
       <Project>{12a10926-b77f-4380-a5ab-de71325a5cbd}</Project>
       <Name>Task5.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Task5.Domain\Task5.Domain.csproj">
-      <Project>{5ff349d4-0c7a-4fc9-9503-b58931f72b8b}</Project>
-      <Name>Task5.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

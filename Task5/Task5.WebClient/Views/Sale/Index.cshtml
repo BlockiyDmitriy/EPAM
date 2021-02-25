@@ -1,6 +1,9 @@
-﻿@model  IEnumerable<Task5.WebClient.Models.Order.HomeOrderViewModel>
+﻿@model  PagedList.IPagedList<Task5.WebClient.Models.Order.HomeOrderViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 @{
-    ViewBag.Title = "Index";    
+    ViewBag.Title = "Index";
 }
 
 <div class="jumbotron">
@@ -9,6 +12,14 @@
 <div class="table-responsive">
     <table class="table">
         <tr>
+
+            @using (Html.BeginForm())
+            {
+                <p>
+                    Find by name: @Html.TextBox("SearchString")
+                    <input type="submit" value="Search" />
+                </p>
+            }
             <th>
                 @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam })
             </th>
@@ -23,10 +34,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Client.Name)
+                    @Html.DisplayFor(modelItem => item.ClientName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Product.Name)
+                    @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateTime)
@@ -39,5 +50,10 @@
             </tr>
         }
     </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 
