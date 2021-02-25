@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using Task5.BLL.DTO;
 using Task5.BLL.Extentions;
 using Task5.BLL.Services.Abstruct;
+using Task5.BLL.Services.Contract;
 using Task5.DAL.Entities;
 using Task5.DAL.UoW;
 
 namespace Task5.BLL.Services
 {
-    public class ProductService : AbstructService, IServiceFunction<ProductDTO>
+    public class ProductService : AbstructService, IProductService
     {
         public ProductService(IUnitOfWork uOW) : base(uOW)
         {

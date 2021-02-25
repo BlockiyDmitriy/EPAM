@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task5.BLL.Services.Abstruct
 {
-    public interface IServiceFunction<TDTO> where TDTO : class
+    public interface IServiceFunction<TDTO> : IServiceGetFunction<TDTO> where TDTO : class
     {
         void Create(TDTO tDTO);
         void Update(TDTO tDTO);
