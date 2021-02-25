@@ -16,9 +16,16 @@ namespace Task5.BLL.Services.Abstruct
         protected UnitOfWork UOW { get; set; }
 
         private bool disposed = false;
-        protected AbstructService(UnitOfWork uOW)
+        protected AbstructService(UnitOfWork uOW) : this()
         {
             this.UOW = uOW;
+        }
+        protected AbstructService()
+        {
+            if(UOW == null)
+            {
+                UOW = new UnitOfWork();
+            }
         }
         protected virtual void Dispose(bool disposing)
         {
