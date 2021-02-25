@@ -55,6 +55,7 @@
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Contract\IRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />

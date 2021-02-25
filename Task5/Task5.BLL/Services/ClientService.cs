@@ -16,6 +16,7 @@ namespace Task5.BLL.Services
 {
     public class ClientService : AbstructService, IClientService
     {
+
         public ClientService(IUnitOfWork uOW) : base(uOW)
         {
 

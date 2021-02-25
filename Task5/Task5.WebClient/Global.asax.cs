@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Task5.BLL.Extentions;
 using Task5.WebClient.Extensions;
 using Task5.WebClient.Models;
 
@@ -25,16 +24,15 @@ namespace Task5.WebClient
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            BLL.Extentions.MapperHelper.MapperConfig();
 
-            NinjectModule bllRegistrations = new NinjectRegistrations();
-            var bllKernel = new StandardKernel(bllRegistrations);
-            DependencyResolver.SetResolver(new NinjectDependencyResolver(bllKernel));
+            MapperHelper.MapperConfig();
+            Task5.BLL.Extentions.MapperHelper.MapperConfig();
 
+            NinjectModule bllRegistrations = new BLL.Extentions.NinjectRegistrations();
             NinjectModule webRegistrations = new WebNinjectRegistrations();
-            var webKernel = new StandardKernel(webRegistrations);
-            DependencyResolver.SetResolver(new NinjectDependencyResolver(webKernel));
-
+            var kernel = new StandardKernel(bllRegistrations, webRegistrations);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+            kernel.Unbind<ModelValidatorProvider>();
         }
     }
 }
