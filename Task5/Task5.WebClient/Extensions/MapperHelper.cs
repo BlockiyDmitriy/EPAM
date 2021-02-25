@@ -28,8 +28,8 @@ namespace Task5.WebClient.Extensions
                 cfg.CreateMap<Client, ClientViewModel>();
                 cfg.CreateMap<Order, HomeOrderViewModel>()
                     .ForMember(x => x.DateTime, y => y.MapFrom(x => x.DateTime))
-                    .ForMember(x => x.Client, y => y.MapFrom(x => x.Client))
-                    .ForMember(x => x.Product, y => y.MapFrom(x => x.Product));
+                    .ForMember(x => x.ClientName, y => y.MapFrom(x => x.Client.Name))
+                    .ForMember(x => x.ProductName, y => y.MapFrom(x => x.Product.Name));
 
             });
 
