@@ -15,7 +15,7 @@ namespace Task5.BLL.Services
 {
     public class ProductService : AbstructService, IServiceFunction<ProductDTO>
     {
-        public ProductService(UnitOfWork uOW) : base(uOW)
+        public ProductService(IUnitOfWork uOW) : base(uOW)
         {
 
         }

@@ -13,10 +13,10 @@ namespace Task5.BLL.Services.Abstruct
 {
     public abstract class AbstructService
     {
-        protected UnitOfWork UOW { get; set; }
+        protected IUnitOfWork UOW { get; set; }
 
         private bool disposed = false;
-        protected AbstructService(UnitOfWork uOW) : this()
+        protected AbstructService(IUnitOfWork uOW) : this()
         {
             this.UOW = uOW;
         }

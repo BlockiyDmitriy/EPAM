@@ -15,7 +15,7 @@ namespace Task5.BLL.Services
 {
     public class OrderService : AbstructService, IServiceFunction<OrderDTO>
     {
-        public OrderService(UnitOfWork uOW) : base(uOW)
+        public OrderService(IUnitOfWork uOW) : base(uOW)
         {
 
         }
