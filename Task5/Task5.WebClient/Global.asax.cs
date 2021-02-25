@@ -27,9 +27,14 @@ namespace Task5.WebClient
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             BLL.Extentions.MapperHelper.MapperConfig();
 
-            NinjectModule registrations = new NinjectRegistrations();
-            var kernel = new StandardKernel(registrations);
-            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+            NinjectModule bllRegistrations = new NinjectRegistrations();
+            var bllKernel = new StandardKernel(bllRegistrations);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(bllKernel));
+
+            NinjectModule webRegistrations = new WebNinjectRegistrations();
+            var webKernel = new StandardKernel(webRegistrations);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(webKernel));
+
         }
     }
 }
