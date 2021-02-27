@@ -22,15 +22,15 @@ namespace Task5.BLL.Services
         }
         public IEnumerable<OrderDTO> Get()
         {
-            return UOW.ProductRepository.Get().ProjectTo<OrderDTO>(MapperHelper.Config).ToList();
+            return UOW.OrderRepository.Get().ProjectTo<OrderDTO>(MapperHelper.Config).ToList();
         }
 
         public IEnumerable<OrderDTO> Get(Expression<Func<OrderDTO, bool>> predicate)
         {
             if (predicate != null)
             {
-                var newPredicate = MapperHelper.Mapper.Map<Expression<Func<OrderDTO, bool>>, Expression<Func<Product, bool>>>(predicate);
-                return MapperHelper.Mapper.Map<IEnumerable<Product>, IEnumerable<OrderDTO>>(UOW.ProductRepository.Get(newPredicate)).ToList();
+                var newPredicate = MapperHelper.Mapper.Map<Expression<Func<OrderDTO, bool>>, Expression<Func<Order, bool>>>(predicate);
+                return MapperHelper.Mapper.Map<IEnumerable<Order>, IEnumerable<OrderDTO>>(UOW.OrderRepository.Get(newPredicate)).ToList();
             }
             throw new ArgumentNullException();
         }
@@ -38,8 +38,8 @@ namespace Task5.BLL.Services
         {
             if (predicate != null)
             {
-                var newPredicate = MapperHelper.Mapper.Map<Expression<Func<OrderDTO, bool>>, Expression<Func<Product, bool>>>(predicate);
-                return MapperHelper.Mapper.Map<Product, OrderDTO>(UOW.ProductRepository.SingleOrDefault(newPredicate));
+                var newPredicate = MapperHelper.Mapper.Map<Expression<Func<OrderDTO, bool>>, Expression<Func<Order, bool>>>(predicate);
+                return MapperHelper.Mapper.Map<Order, OrderDTO>(UOW.OrderRepository.SingleOrDefault(newPredicate));
             }
             throw new ArgumentNullException();
         }
