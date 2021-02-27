@@ -11,14 +11,12 @@ namespace Task5.WebClient.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize]
         public ActionResult Index()
         {
             ViewBag.Message = "Your application index page.";
             return View();
         }
 
-        [Authorize(Roles = "admin")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application about page.";
