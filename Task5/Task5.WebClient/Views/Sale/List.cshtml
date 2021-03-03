@@ -1,0 +1,66 @@
+﻿@model IPagedList<Task5.WebClient.Models.Order.HomeOrderViewModel>
+@using PagedList;
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "List";
+}
+
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Добавить", "Create", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-success border border-dark rounded-pill" })
+    </p>
+}
+@if (Model != null && Model.Count > 0)
+{
+    <h4>Список заказов</h4>
+    <hr />
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 ">
+        @foreach (var item in Model)
+        {
+            <div class="col p-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Заказ #@item.Id</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Дата:<span> @item.DateTime</span></p>
+                        <p>Продукт:<span> @item.ProductName$</span></p>
+                        <p>Покупатель:<span> @item.ClientName</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row row-cols-1">
+                            <button type="button" class="btn btn-primary border border-dark rounded-pill m-1" onclick="onOrderDetails(@item.Id)">Подробности</button>
+                            @if (User.IsInRole("admin"))
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id, page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-warning border border-dark rounded-pill m-1" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id, page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-danger border border-dark rounded-pill m-1" })
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    @Html.PagedListPager(Model, page => Url.Action("Orders", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { UpdateTargetId = "ordersTable" }))
+
+}
+else
+{
+    <div>Нет записей</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    onOrderDetails = function (Id) {
+        $.get('@Url.Action("Details", "Order")', {id:Id }, function(data, textStatus, XHR)
+        {
+            $("#orderDetails").html(data);
+            showOrderDetails();
+        })
+    }
+</script>

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Task5.WebClient.Models.Filters
 {
-    public class OrderFileter
+    public class OrderFilter
     {
         [DataType(DataType.Date)]
         [Display(Name ="Date")]

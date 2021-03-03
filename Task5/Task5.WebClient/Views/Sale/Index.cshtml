@@ -1,59 +1,73 @@
-﻿@model  PagedList.IPagedList<Task5.WebClient.Models.Order.HomeOrderViewModel>
-@using PagedList.Mvc;
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+﻿@model  Task5.WebClient.Models.Filters.OrderFilter
 
 @{
     ViewBag.Title = "Index";
 }
-
 <div class="jumbotron">
     <h1>Welcome to sale manager </h1>
 </div>
-<div class="table-responsive">
-    <table class="table">
-        <tr>
+@using (Ajax.BeginForm("OrderSearch", new AjaxOptions { UpdateTargetId = "ordersTable" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ClientName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ClientName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="col">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ProductName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="col">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DateTime)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.DateTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-10">
+                <input type="submit" value="Поиск" class="btn btn-success border border-dark rounded-pill" />
+                <input type="button" id="clear" value="Сбросить" class="btn btn-secondary border border-dark rounded-pill" />
+            </div>
+        </div>
+    </div>
+}
+<div id="ordersTable"></div>
 
-            @using (Html.BeginForm())
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $(document).ready(function () {
+        getOrders();
+    });
+
+    function getOrders() {
+        jQuery.ajax(
             {
-                <p>
-                    Find by name: @Html.TextBox("SearchString")
-                    <input type="submit" value="Search" />
-                </p>
+                url: "@Url.Action("OrderSearch", "Sale")",
+                data: { page:@ViewBag.CurrentPage},
+                type: "GET",
+                success: function (data, textStatus, XHR) {
+                    jQuery("#ordersTable").html(data);
+                },
+                dataType: "html"
             }
-            <th>
-                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam })
-            </th>
-            <th>
-                @Html.ActionLink("Product", "Index", new { sortOrder = ViewBag.ProductSortParm })
-            </th>
-            <th>
-                @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-            </th>
-        </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClientName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateTime)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-    </table>
-    <br />
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-</div>
-
+        );
+    }
+</script>

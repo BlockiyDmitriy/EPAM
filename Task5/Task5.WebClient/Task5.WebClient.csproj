@@ -202,6 +202,7 @@
     <Compile Include="Models\Client\ClientViewModel.cs" />
     <Compile Include="Models\Client\CreateClientViewModel.cs" />
     <Compile Include="Models\Client\EditClientViewModel.cs" />
+    <Compile Include="Models\Filters\OrderFilter.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order\CreateOrderViewModel.cs" />
@@ -232,6 +233,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -272,9 +275,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Sale\Index.cshtml" />
-    <Content Include="Views\Sale\Crate.cshtml" />
+    <Content Include="Views\Sale\Create.cshtml" />
     <Content Include="Views\Sale\Details.cshtml" />
     <Content Include="Views\Sale\Edit.cshtml" />
+    <Content Include="Views\Sale\OrderSearch.cshtml" />
+    <Content Include="Views\Sale\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
