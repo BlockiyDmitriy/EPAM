@@ -13,7 +13,7 @@ using Task5.WebClient.Models.Product;
 
 namespace Task5.WebClient.Controllers
 {
-    [Authorize]
+
     [Authorize(Roles = "admin")]
     public class SaleController : Controller
     {
@@ -31,62 +31,10 @@ namespace Task5.WebClient.Controllers
         }
 
         // GET: Sale
-        public ActionResult Index(/*string sortOrder, string currentFilter, string searchString,*/ int? page)
+        public ActionResult Index(int? page)
         {
             ViewBag.CurrentPage = page ?? 1;
             return View();
-            //try
-            //{
-            //    var clientModel = MapperHelper.Mapper.Map<IEnumerable<ClientDTO>, IEnumerable<ClientViewModel>>(clientService.Get());
-            //    var productModel = MapperHelper.Mapper.Map<IEnumerable<ProductDTO>, IEnumerable<ProductViewModel>>(productService.Get());
-            //    var orderModel = MapperHelper.Mapper.Map<IEnumerable<OrderDTO>, IEnumerable<HomeOrderViewModel>>(orderService.Get());
-
-            //    ViewBag.CurrentSort = sortOrder;
-            //    ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            //    ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            //    ViewBag.ProductSortParm = String.IsNullOrEmpty(sortOrder) ? "product_desc" : "";
-            //    var orders = from s in orderModel
-            //                 select s;
-
-            //    if (searchString != null)
-            //    {
-            //        page = 1;
-            //    }
-            //    else
-            //    {
-            //        searchString = currentFilter;
-            //    }
-
-            //    ViewBag.CurrentFilter = searchString;
-
-            //    switch (sortOrder)
-            //    {
-            //        case "name_desc":
-            //            orders = orders.OrderByDescending(s => s.ClientName);
-            //            break;
-            //        case "Date":
-            //            orders = orders.OrderBy(s => s.DateTime);
-            //            break;
-            //        case "date_desc":
-            //            orders = orders.OrderByDescending(s => s.DateTime);
-            //            break;
-            //        case "product_desc":
-            //            orders = orders.OrderBy(s => s.ProductName);
-            //            break;
-            //        default:
-            //            orders = orders.OrderBy(s => s.ClientName);
-            //            break;
-            //    }
-
-               
-            //    int pageNumber = (page ?? 1);
-            //    return View(orders.ToPagedList(pageNumber, pageSize));
-            //}
-            //catch (Exception)
-            //{
-            //    return PartialView("Error");
-            //}
-
         }
         public ActionResult OrderSearch(int? page)
         {
@@ -136,12 +84,14 @@ namespace Task5.WebClient.Controllers
         }
 
         // GET: Sale/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             return View("Details");
         }
 
         // GET: Sale/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View("Create");
@@ -149,7 +99,8 @@ namespace Task5.WebClient.Controllers
 
         // POST: Sale/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [Authorize(Roles = "admin")]
+        public ActionResult Create(CreateOrderViewModel model)
         {
             try
             {
@@ -164,6 +115,7 @@ namespace Task5.WebClient.Controllers
         }
 
         // GET: Sale/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             return View("Edit");
@@ -171,6 +123,7 @@ namespace Task5.WebClient.Controllers
 
         // POST: Sale/Edit/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -186,6 +139,7 @@ namespace Task5.WebClient.Controllers
         }
 
         // GET: Sale/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             return View("Delete");
@@ -193,6 +147,7 @@ namespace Task5.WebClient.Controllers
 
         // POST: Sale/Delete/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

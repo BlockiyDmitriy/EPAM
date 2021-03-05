@@ -1,5 +1,4 @@
-﻿@model IPagedList<Task5.WebClient.Models.Order.HomeOrderViewModel>
-@using PagedList;
+﻿@model PagedList.IPagedList<Task5.WebClient.Models.Order.HomeOrderViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -17,34 +16,72 @@
 {
     <h4>Список заказов</h4>
     <hr />
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 ">
-        @foreach (var item in Model)
-        {
-            <div class="col p-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Заказ #@item.Id</h4>
-                    </div>
-                    <div class="card-body">
-                        <p>Дата:<span> @item.DateTime</span></p>
-                        <p>Продукт:<span> @item.ProductName$</span></p>
-                        <p>Покупатель:<span> @item.ClientName</span></p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="row row-cols-1">
-                            <button type="button" class="btn btn-primary border border-dark rounded-pill m-1" onclick="onOrderDetails(@item.Id)">Подробности</button>
-                            @if (User.IsInRole("admin"))
-                            {
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id, page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-warning border border-dark rounded-pill m-1" })
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id, page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-danger border border-dark rounded-pill m-1" })
-                            }
+
+    @*<div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 ">
+            @foreach (var item in Model)
+            {
+                <div class="col p-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Заказ #@item.Id</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Дата:<span> @item.DateTime</span></p>
+                            <p>Продукт:<span> @item.ProductName</span></p>
+                            <p>Покупатель:<span> @item.ClientName</span></p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row row-cols-1">
+                                <button type="button" class="btn btn-primary border border-dark rounded-pill m-1" onclick="onOrderDetails(@item.Id)">Подробности</button>
+                                @if (User.IsInRole("admin"))
+                                {
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id, page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-warning border border-dark rounded-pill m-1" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id, page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-danger border border-dark rounded-pill m-1" })
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>*@
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam })
+                </th>
+                <th>
+                    @Html.ActionLink("Product", "Index", new { sortOrder = ViewBag.ProductSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClientName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                        @if (User.IsInRole("admin"))
+                        {
+                            @Html.ActionLink("Edit ", "Edit", new { id = item.Id, page = ViewBag.CurrentPage })
+                            @Html.ActionLink("Delete ", "Delete", new { id = item.Id, page = ViewBag.CurrentPage })
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
-    @Html.PagedListPager(Model, page => Url.Action("Orders", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { UpdateTargetId = "ordersTable" }))
+    @Html.PagedListPager(Model, page => Url.Action("OrderSearch", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { UpdateTargetId = "ordersTable" }))
 
 }
 else

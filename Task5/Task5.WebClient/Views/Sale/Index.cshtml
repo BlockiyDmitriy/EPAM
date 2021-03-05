@@ -40,14 +40,18 @@
         </div>
         <div class="row py-3">
             <div class="col-10">
+                <hr />
                 <input type="submit" value="Поиск" class="btn btn-success border border-dark rounded-pill" />
                 <input type="button" id="clear" value="Сбросить" class="btn btn-secondary border border-dark rounded-pill" />
+                <hr />
             </div>
         </div>
     </div>
 }
 <div id="ordersTable"></div>
-
+<section id="orderDetailsSection">
+    <div id="orderDetails"></div>
+</section>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
@@ -69,5 +73,20 @@
                 dataType: "html"
             }
         );
+    }
+
+    $("#clear").on("click", function () {
+        $('#Name').val('');
+        $('#Product').val('');
+        $('#Date').val('');
+        getOrders();
+    });
+
+    showOrderDetails = function () {
+        $("#orderDetails").show();
+    }
+    hideOrderDetails = function () {
+        $("#orderDetails").hide();
+        $("#orderDetails").html(null);
     }
 </script>
