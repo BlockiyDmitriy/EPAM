@@ -25,6 +25,11 @@ namespace Task5.BLL.Services
             return UOW.OrderRepository.Get().ProjectTo<OrderDTO>(MapperHelper.Config).ToList();
         }
 
+        public OrderDTO Get(int id)
+        {
+            return MapperHelper.Mapper.Map<Order, OrderDTO>(UOW.OrderRepository.SingleOrDefault(x => x.Id.Equals(id)));
+        }
+
         public IEnumerable<OrderDTO> Get(Expression<Func<OrderDTO, bool>> predicate)
         {
             if (predicate != null)

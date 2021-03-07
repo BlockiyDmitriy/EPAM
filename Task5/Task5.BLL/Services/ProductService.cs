@@ -25,6 +25,11 @@ namespace Task5.BLL.Services
             return UOW.ProductRepository.Get().ProjectTo<ProductDTO>(MapperHelper.Config).ToList();
         }
 
+        public ProductDTO Get(int id)
+        {
+            return MapperHelper.Mapper.Map<Product, ProductDTO>(UOW.ProductRepository.SingleOrDefault(x => x.Id.Equals(id)));
+        }
+
         public IEnumerable<ProductDTO> Get(Expression<Func<ProductDTO, bool>> predicate)
         {
             if (predicate != null)

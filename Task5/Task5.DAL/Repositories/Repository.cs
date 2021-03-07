@@ -27,7 +27,6 @@ namespace Task5.DAL.Repositories
             }
             return EntitySet;
         }
-
         public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
             if (predicate == null)
