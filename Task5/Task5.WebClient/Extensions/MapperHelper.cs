@@ -24,12 +24,11 @@ namespace Task5.WebClient.Extensions
         {
             _config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<ProductDTO, ProductViewModel>();
                 cfg.CreateMap<ClientDTO, ClientViewModel>();
-                cfg.CreateMap<OrderDTO, HomeOrderViewModel>()
-                    .ForMember(x => x.DateTime, y => y.MapFrom(x => x.DateTime))
-                    .ForMember(x => x.ClientName, y => y.MapFrom(x => x.Client.Name))
-                    .ForMember(x => x.ProductName, y => y.MapFrom(x => x.Product.Name));
+                cfg.CreateMap<ProductDTO, ProductViewModel>();
+                cfg.CreateMap<OrderDTO, HomeOrderViewModel>();
+
+                cfg.CreateMap<CreateOrderViewModel, OrderDTO>();
 
             });
 
