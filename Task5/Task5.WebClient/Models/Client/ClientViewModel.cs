@@ -9,8 +9,9 @@ namespace Task5.WebClient.Models.Client
     public class ClientViewModel
     {
         public int Id { get; set; }
-        [Required]
-        [StringLength(50, MinimumLength = 1)]
+        [Required(ErrorMessage ="Введите значение")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Длина строки должна быть от 2 до 50 символов")]
+        [Display(Name="Name")]
         public string Name { get; set; }
     }
 }

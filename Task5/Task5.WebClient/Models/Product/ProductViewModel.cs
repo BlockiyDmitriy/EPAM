@@ -11,6 +11,7 @@ namespace Task5.WebClient.Models.Product
         public int Id { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 1)]
+        [Display(Name ="Product")]
         public string Name { get; set; }
         [Required]
         public double Sum { get; set; }
