@@ -16,9 +16,9 @@ namespace Task5.WebClient.Models.Order
         public DateTime DateTime { get; set; }
         [Required]
         [Display(Name = "Name")]
-        public string Client { get; set; }
+        public ClientViewModel Client { get; set; }
         [Required]
         [Display(Name = "Product")]
-        public string Product { get; set; }
+        public ProductViewModel Product { get; set; }
     }
 }

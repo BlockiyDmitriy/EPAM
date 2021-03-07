@@ -1,7 +1,49 @@
-﻿@model  IEnumerable<Task5.WebClient.Models.Order.DetailsOrderViewModel>
+﻿@model  Task5.WebClient.Models.Order.HomeOrderViewModel
+
 @{
     ViewBag.Title = "Details";
 }
+<div>
+    <h4>Подробности заказа</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
 
-<h2>Details</h2>
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Sum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Sum)
+        </dd>
+    </dl>
+</div>
+<p>
+    <button class="btn btn-primary border border-dark rounded-pill" id="hideButton">Спрятать</button>
+</p>
+<script type="text/javascript">
+    $("#hideButton").click(hideOrderDetails);
+</script>
 

@@ -26,7 +26,9 @@ namespace Task5.WebClient.Extensions
             {
                 cfg.CreateMap<ClientDTO, ClientViewModel>();
                 cfg.CreateMap<ProductDTO, ProductViewModel>();
-                cfg.CreateMap<OrderDTO, HomeOrderViewModel>();
+                cfg.CreateMap<OrderDTO, HomeOrderViewModel>()
+                .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client))
+                .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.Product));
 
                 cfg.CreateMap<CreateOrderViewModel, OrderDTO>();
 

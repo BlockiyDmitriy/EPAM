@@ -63,17 +63,17 @@ namespace Task5.WebClient.Controllers
             var orders = from s in orderModel
                          select s;
 
-            if (filterModel.ClientName != null)
-            {
-                orders = orders.Where(x => x.Client.ToLower().Contains(filterModel.ClientName.ToLower()));
-            }
             if (filterModel.DateTime != null)
             {
                 orders = orders.Where(x => (x.DateTime.Equals(filterModel.DateTime)));
             }
+            if (filterModel.ClientName != null)
+            {
+                orders = orders.Where(x => x.Client.Name.ToLower().Contains(filterModel.ClientName.ToLower()));
+            }
             if (filterModel.ProductName != null)
             {
-                orders = orders.Where(x => x.Product.ToLower().Contains(filterModel.ProductName.ToLower()));
+                orders = orders.Where(x => x.Product.Name.ToLower().Contains(filterModel.ProductName.ToLower()));
             }
 
             if (orders.ToList().Count <= 0)
@@ -87,7 +87,7 @@ namespace Task5.WebClient.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            return View("Details");
+            return PartialView(MapperHelper.Mapper.Map<OrderDTO, HomeOrderViewModel>(orderService.Get(id)));
         }
 
         // GET: Sale/Create
@@ -122,7 +122,6 @@ namespace Task5.WebClient.Controllers
             }
             catch
             {
-                //Task5.BLL.DTO.OrderDTO -> Task5.DAL.Entities.Order; Task5.BLL.DTO.OrderDTO -> Task5.DAL.Entities.Order"}
                 return View("Error");
             }
         }
@@ -137,7 +136,7 @@ namespace Task5.WebClient.Controllers
         // POST: Sale/Edit/5
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection, int? page)
         {
             try
             {

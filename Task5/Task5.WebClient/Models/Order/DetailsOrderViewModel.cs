@@ -11,8 +11,6 @@ namespace Task5.WebClient.Models.Order
     public class DetailsOrderViewModel : HomeOrderViewModel
     {
         [Required]
-        public ClientViewModel Client { get; set; }
-        [Required]
-        public ProductViewModel Product { get; set; }
+        public double Sum{ get; set; }
     }
 }
