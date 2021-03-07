@@ -278,7 +278,6 @@
     <Content Include="Views\Sale\Create.cshtml" />
     <Content Include="Views\Sale\Details.cshtml" />
     <Content Include="Views\Sale\Edit.cshtml" />
-    <Content Include="Views\Sale\OrderSearch.cshtml" />
     <Content Include="Views\Sale\List.cshtml" />
   </ItemGroup>
   <ItemGroup>

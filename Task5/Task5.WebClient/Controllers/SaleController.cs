@@ -65,7 +65,7 @@ namespace Task5.WebClient.Controllers
 
             if (filterModel.ClientName != null)
             {
-                orders = orders.Where(x => x.ClientName.ToLower().Contains(filterModel.ClientName.ToLower()));
+                orders = orders.Where(x => x.Client.ToLower().Contains(filterModel.ClientName.ToLower()));
             }
             if (filterModel.DateTime != null)
             {
@@ -73,7 +73,7 @@ namespace Task5.WebClient.Controllers
             }
             if (filterModel.ProductName != null)
             {
-                orders = orders.Where(x => x.ProductName.ToLower().Contains(filterModel.ProductName.ToLower()));
+                orders = orders.Where(x => x.Product.ToLower().Contains(filterModel.ProductName.ToLower()));
             }
 
             if (orders.ToList().Count <= 0)
@@ -92,25 +92,38 @@ namespace Task5.WebClient.Controllers
 
         // GET: Sale/Create
         [Authorize(Roles = "admin")]
-        public ActionResult Create()
+        public ActionResult Create(int? page)
         {
-            return View("Create");
+            var model = new CreateOrderViewModel()
+            {
+                Clients = new SelectList(MapperHelper.Mapper.Map<IEnumerable<ClientDTO>, IEnumerable<ClientViewModel>>(clientService.Get()), "Name", "Name"),
+                Products = new SelectList(MapperHelper.Mapper.Map<IEnumerable<ProductDTO>, IEnumerable<ProductViewModel>>(productService.Get()), "Name", "Name")
+            };
+            ViewBag.CurrentPage = page;
+            return View(model);
         }
 
         // POST: Sale/Create
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public ActionResult Create(CreateOrderViewModel model)
+        public ActionResult Create(CreateOrderViewModel model, int? page)
         {
+            if (!ModelState.IsValid)
+            {
+                model.Clients = new SelectList(MapperHelper.Mapper.Map<IEnumerable<ClientDTO>, IEnumerable<ClientViewModel>>(clientService.Get()), "Name", "Name");
+                model.Products = new SelectList(MapperHelper.Mapper.Map<IEnumerable<ProductDTO>, IEnumerable<ProductViewModel>>(productService.Get()), "Name", "Name");
+
+                return View(model);
+            }
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Create");
+                orderService.Create(MapperHelper.Mapper.Map<CreateOrderViewModel, OrderDTO>(model));
+                return RedirectToAction("Index", new { page = page });
             }
             catch
             {
-                return View("Create");
+                //Task5.BLL.DTO.OrderDTO -> Task5.DAL.Entities.Order; Task5.BLL.DTO.OrderDTO -> Task5.DAL.Entities.Order"}
+                return View("Error");
             }
         }
 
