@@ -168,11 +168,8 @@ namespace Task5.WebClient.Controllers
         {
             try
             {
-                
-                    orderService.Remove(MapperHelper.Mapper.Map<HomeOrderViewModel, OrderDTO>(model));
-
-                    return RedirectToAction("Index", new { page = page });
-                
+                orderService.Remove(MapperHelper.Mapper.Map<HomeOrderViewModel, OrderDTO>(model));
+                return RedirectToAction("Index", new { page = page });
             }
             catch
             {
