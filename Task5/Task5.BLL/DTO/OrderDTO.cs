@@ -14,7 +14,7 @@ namespace Task5.BLL.DTO
         public int ClientId { get; set; }
         public int ProductId { get; set; }
 
-        public string Client { get; set; }
-        public string Product { get; set; }
+        public Client Client { get; set; }
+        public Product Product { get; set; }
     }
 }

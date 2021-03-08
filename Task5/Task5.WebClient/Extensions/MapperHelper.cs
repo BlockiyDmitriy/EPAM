@@ -27,13 +27,17 @@ namespace Task5.WebClient.Extensions
                 cfg.CreateMap<ClientDTO, ClientViewModel>();
                 cfg.CreateMap<ProductDTO, ProductViewModel>();
                 cfg.CreateMap<OrderDTO, HomeOrderViewModel>()
-                .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client))
-                .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.Product));
+                .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client.Name))
+                .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.Product.Name));
+                cfg.CreateMap<OrderDTO, DetailsOrderViewModel>()
+                .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client.Name))
+                .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.Product.Name))
+                .ForPath(x => x.Product.Sum, y => y.MapFrom(x => x.Product.Sum));
 
                 cfg.CreateMap<CreateOrderViewModel, OrderDTO>();
                 cfg.CreateMap<HomeOrderViewModel, OrderDTO>()
-                .ForMember(x => x.Client, y => y.MapFrom(x => x.Client.Name))
-                .ForMember(x => x.Product, y => y.MapFrom(x => x.Product.Name));
+                .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client.Name))
+                .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.Product.Name));
             });
 
             _mapper = new Mapper(_config);

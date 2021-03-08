@@ -87,7 +87,7 @@ namespace Task5.WebClient.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            return PartialView(MapperHelper.Mapper.Map<OrderDTO, HomeOrderViewModel>(orderService.Get(id)));
+            return PartialView(MapperHelper.Mapper.Map<OrderDTO, DetailsOrderViewModel>(orderService.Get(id)));
         }
 
         // GET: Sale/Create
