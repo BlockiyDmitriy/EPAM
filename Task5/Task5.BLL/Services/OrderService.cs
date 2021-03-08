@@ -63,9 +63,7 @@ namespace Task5.BLL.Services
             if (OrderDTO != null)
             {
                 var order = UOW.OrderRepository.SingleOrDefault(x => x.Id == OrderDTO.Id);
-                order.ClientId = OrderDTO.ClientId;
-                order.ProductId= OrderDTO.ProductId;
-                UOW.OrderRepository.Update(order);
+                UOW.OrderRepository.Remove(order);
                 UOW.Save();
             }
         }
@@ -75,7 +73,9 @@ namespace Task5.BLL.Services
             if (OrderDTO != null)
             {
                 var order = UOW.OrderRepository.SingleOrDefault(x => x.Id == OrderDTO.Id);
-                UOW.OrderRepository.Remove(order);
+                order.ClientId = OrderDTO.ClientId;
+                order.ProductId = OrderDTO.ProductId;
+                UOW.OrderRepository.Update(order);
                 UOW.Save();
             }
         }
