@@ -1,0 +1,55 @@
+﻿@model Task5.WebClient.Models.Order.HomeOrderViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h4>Удаление заказа</h4>
+
+<h5>Вы уверены что хотите удалить заказ?</h5>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Sum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Sum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-danger border border-dark rounded-pill" />
+            @Html.ActionLink("Вернуться к списку", "Index", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-primary border border-dark rounded-pill" })
+        </div>
+    }
+</div>

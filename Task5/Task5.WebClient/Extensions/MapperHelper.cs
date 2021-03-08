@@ -31,7 +31,9 @@ namespace Task5.WebClient.Extensions
                 .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.Product));
 
                 cfg.CreateMap<CreateOrderViewModel, OrderDTO>();
-
+                cfg.CreateMap<HomeOrderViewModel, OrderDTO>()
+                .ForMember(x => x.Client, y => y.MapFrom(x => x.Client.Name))
+                .ForMember(x => x.Product, y => y.MapFrom(x => x.Product.Name));
             });
 
             _mapper = new Mapper(_config);

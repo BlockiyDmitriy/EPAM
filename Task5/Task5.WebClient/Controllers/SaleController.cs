@@ -128,45 +128,51 @@ namespace Task5.WebClient.Controllers
 
         // GET: Sale/Edit/5
         [Authorize(Roles = "admin")]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, int? page)
         {
-            return View("Edit");
+            ViewBag.CurrentPage = page;
+            return View(MapperHelper.Mapper.Map<OrderDTO, HomeOrderViewModel>(orderService.Get(id)));
         }
 
         // POST: Sale/Edit/5
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public ActionResult Edit(int id, FormCollection collection, int? page)
+        public ActionResult Edit(HomeOrderViewModel model, int? page)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Edit");
+                if (ModelState.IsValid)
+                {
+                    orderService.Update(MapperHelper.Mapper.Map<HomeOrderViewModel, OrderDTO>(model));
+                    return RedirectToAction("Index", new { page = page });
+                }
+                return View();
             }
             catch
             {
-                return View("Edit");
+                return View("Error");
             }
         }
 
-        // GET: Sale/Delete/5
         [Authorize(Roles = "admin")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, int? page)
         {
-            return View("Delete");
+            ViewBag.CurrentPage = page;
+            return View(MapperHelper.Mapper.Map<OrderDTO, HomeOrderViewModel>(orderService.Get(id)));
         }
 
         // POST: Sale/Delete/5
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(HomeOrderViewModel model, int? page)
         {
             try
             {
-                // TODO: Add delete logic here
+                
+                    orderService.Remove(MapperHelper.Mapper.Map<HomeOrderViewModel, OrderDTO>(model));
 
-                return RedirectToAction("Delete");
+                    return RedirectToAction("Index", new { page = page });
+                
             }
             catch
             {

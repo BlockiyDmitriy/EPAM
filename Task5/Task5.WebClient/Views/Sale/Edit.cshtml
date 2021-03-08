@@ -1,7 +1,47 @@
-﻿@model  IEnumerable<Task5.WebClient.Models.Order.EditOrderViewModel>
+﻿@model  Task5.WebClient.Models.Order.HomeOrderViewModel
 @{
     ViewBag.Title = "EditView";
 }
 
-<h2>EditView</h2>
+<h4>Редактирование заказов</h4>
 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                Установленная дата: @Html.DisplayFor(model => model.DateTime)
+                @Html.EditorFor(model => model.DateTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Client, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Client, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Client, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Product, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Product, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-success border border-dark rounded-pill" />
+                @Html.ActionLink("Вернуться к списку", "Index", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-primary border border-dark rounded-pill" })
+            </div>
+        </div>
+    </div>
+}
