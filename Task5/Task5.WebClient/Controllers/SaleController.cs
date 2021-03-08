@@ -131,19 +131,19 @@ namespace Task5.WebClient.Controllers
         public ActionResult Edit(int id, int? page)
         {
             ViewBag.CurrentPage = page;
-            return View(MapperHelper.Mapper.Map<OrderDTO, HomeOrderViewModel>(orderService.Get(id)));
+            return View(MapperHelper.Mapper.Map<OrderDTO, EditOrderViewModel>(orderService.Get(id)));
         }
 
         // POST: Sale/Edit/5
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public ActionResult Edit(HomeOrderViewModel model, int? page)
+        public ActionResult Edit(EditOrderViewModel model, int? page)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    orderService.Update(MapperHelper.Mapper.Map<HomeOrderViewModel, OrderDTO>(model));
+                    orderService.Update(MapperHelper.Mapper.Map<EditOrderViewModel, OrderDTO>(model));
                     return RedirectToAction("Index", new { page = page });
                 }
                 return View();

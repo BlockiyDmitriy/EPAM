@@ -29,7 +29,10 @@ namespace Task5.BLL.Extentions
 
                 cfg.CreateMap<ClientDTO, Client>();
                 cfg.CreateMap<ProductDTO, Product>();
-                cfg.CreateMap<OrderDTO, Order>();
+                cfg.CreateMap<OrderDTO, Order>()
+                .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client.Name))
+                .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.Product.Name))
+                .ForPath(x => x.Product.Sum, y => y.MapFrom(x => x.Product.Sum));
 
             });
 

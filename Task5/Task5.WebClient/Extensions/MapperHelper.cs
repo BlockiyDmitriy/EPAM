@@ -33,11 +33,19 @@ namespace Task5.WebClient.Extensions
                 .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client.Name))
                 .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.Product.Name))
                 .ForPath(x => x.Product.Sum, y => y.MapFrom(x => x.Product.Sum));
+                cfg.CreateMap<OrderDTO, EditOrderViewModel>()
+                .ForMember(x => x.ClientName, y => y.MapFrom(x => x.Client.Name))
+                .ForMember(x => x.ProductName, y => y.MapFrom(x => x.Product.Name))
+                .ForMember(x => x.Sum, y => y.MapFrom(x => x.Product.Sum));
 
                 cfg.CreateMap<CreateOrderViewModel, OrderDTO>();
                 cfg.CreateMap<HomeOrderViewModel, OrderDTO>()
                 .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client.Name))
                 .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.Product.Name));
+                cfg.CreateMap<EditOrderViewModel, OrderDTO>()
+                .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.ClientName))
+                .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.ProductName))
+                .ForPath(x => x.Product.Sum, y => y.MapFrom(x => x.Sum));
             });
 
             _mapper = new Mapper(_config);

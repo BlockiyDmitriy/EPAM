@@ -75,6 +75,8 @@ namespace Task5.BLL.Services
                 var order = UOW.OrderRepository.SingleOrDefault(x => x.Id == OrderDTO.Id);
                 order.ClientId = OrderDTO.ClientId;
                 order.ProductId = OrderDTO.ProductId;
+                order.Client = OrderDTO.Client;
+                order.Product = OrderDTO.Product;
                 UOW.OrderRepository.Update(order);
                 UOW.Save();
             }
