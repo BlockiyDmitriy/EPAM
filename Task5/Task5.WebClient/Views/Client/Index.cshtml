@@ -1,0 +1,62 @@
+﻿@model  Task5.WebClient.Models.Filters.ClientFilter
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to client manager </h1>
+</div>
+@using (Ajax.BeginForm("ClientSearch", new AjaxOptions { UpdateTargetId = "clientsTable" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>            
+        </div>
+        <div class="row py-3">
+            <div class="col-10">
+                <hr />
+                <input type="submit" value="Поиск" class="btn btn-success border border-dark rounded-pill" />
+                <input type="button" id="clear" value="Сбросить" class="btn btn-secondary border border-dark rounded-pill" />
+                <hr />
+            </div>
+        </div>
+    </div>
+}
+<div id="clientsTable"></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $(document).ready(function () {
+        getClients();
+    });
+
+    function getClients() {
+        jQuery.ajax(
+            {
+                url: "@Url.Action("ClientSearch", "Client")",
+                data: { page:@ViewBag.CurrentPage},
+                type: "GET",
+                success: function (data, textStatus, XHR) {
+                    jQuery("#clientsTable").html(data);
+                },
+                dataType: "html"
+            }
+        );
+    }
+
+    $("#clear").on("click", function () {
+        $('#Name').val('');
+        getClients();
+    });
+</script>

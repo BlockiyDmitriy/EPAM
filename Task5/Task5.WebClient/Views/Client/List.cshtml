@@ -1,0 +1,49 @@
+﻿@model PagedList.IPagedList<Task5.WebClient.Models.Client.ClientViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "List";
+}
+
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Add new", "Create", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-success border border-dark rounded-pill" })
+    </p>
+}
+@if (Model != null && Model.Count > 0)
+{
+    <h4>Список заказов</h4>
+    <hr />
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam })
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            @Html.ActionLink("Edit ", "Edit", new { id = item.Id, page = ViewBag.CurrentPage })
+                            @Html.ActionLink("Delete ", "Delete", new { id = item.Id, page = ViewBag.CurrentPage })
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    @Html.PagedListPager(Model, page => Url.Action("ClientSearch", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { UpdateTargetId = "ordersTable" }))
+
+}
+else
+{
+    <div>Нет записей</div>
+}

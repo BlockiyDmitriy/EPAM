@@ -18,9 +18,9 @@ namespace Task5.WebClient.Controllers
     {
         private const int pageSize = 3;
 
-        private IClientService clientService;
-        private IProductService productService;
-        private IOrderService orderService;
+        private readonly IClientService clientService;
+        private readonly IProductService productService;
+        private readonly IOrderService orderService;
 
         public SaleController(IClientService clientService, IProductService productService, IOrderService orderService)
         {
@@ -39,8 +39,6 @@ namespace Task5.WebClient.Controllers
         {
             try
             {
-                var clientModel = MapperHelper.Mapper.Map<IEnumerable<ClientDTO>, IEnumerable<ClientViewModel>>(clientService.Get());
-                var productModel = MapperHelper.Mapper.Map<IEnumerable<ProductDTO>, IEnumerable<ProductViewModel>>(productService.Get());
                 var orderModel = MapperHelper.Mapper.Map<IEnumerable<OrderDTO>, IEnumerable<HomeOrderViewModel>>(orderService.Get());
                 ViewBag.CurrentPage = page;
                 return PartialView("List", orderModel.ToPagedList(page ?? 1, pageSize));
@@ -55,8 +53,6 @@ namespace Task5.WebClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult OrderSearch(OrderFilter filterModel)
         {
-            var clientModel = MapperHelper.Mapper.Map<IEnumerable<ClientDTO>, IEnumerable<ClientViewModel>>(clientService.Get());
-            var productModel = MapperHelper.Mapper.Map<IEnumerable<ProductDTO>, IEnumerable<ProductViewModel>>(productService.Get());
             var orderModel = MapperHelper.Mapper.Map<IEnumerable<OrderDTO>, IEnumerable<HomeOrderViewModel>>(orderService.Get());
 
             var orders = from s in orderModel

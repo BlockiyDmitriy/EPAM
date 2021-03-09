@@ -38,6 +38,7 @@ namespace Task5.WebClient.Extensions
                 .ForMember(x => x.ProductName, y => y.MapFrom(x => x.Product.Name))
                 .ForMember(x => x.Sum, y => y.MapFrom(x => x.Product.Sum));
 
+                cfg.CreateMap<ClientViewModel, ClientDTO>();
                 cfg.CreateMap<CreateOrderViewModel, OrderDTO>();
                 cfg.CreateMap<HomeOrderViewModel, OrderDTO>()
                 .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client.Name))

@@ -203,6 +203,7 @@
     <Compile Include="Models\Client\ClientViewModel.cs" />
     <Compile Include="Models\Client\CreateClientViewModel.cs" />
     <Compile Include="Models\Client\EditClientViewModel.cs" />
+    <Compile Include="Models\Filters\ClientFilter.cs" />
     <Compile Include="Models\Filters\OrderFilter.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -281,10 +282,14 @@
     <Content Include="Views\Sale\Edit.cshtml" />
     <Content Include="Views\Sale\List.cshtml" />
     <Content Include="Views\Sale\Delete.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\List.cshtml" />
+    <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Client\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Client\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
