@@ -40,7 +40,7 @@
             }
         </table>
     </div>
-    @Html.PagedListPager(Model, page => Url.Action("ClientSearch", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { UpdateTargetId = "ordersTable" }))
+    @Html.PagedListPager(Model, page => Url.Action("ClientSearch", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { UpdateTargetId = "clientsTable" }))
 
 }
 else
