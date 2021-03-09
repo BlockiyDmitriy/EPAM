@@ -14,7 +14,6 @@ using Task5.WebClient.Models.Product;
 namespace Task5.WebClient.Controllers
 {
 
-    [Authorize(Roles = "admin")]
     public class SaleController : Controller
     {
         private const int pageSize = 3;
