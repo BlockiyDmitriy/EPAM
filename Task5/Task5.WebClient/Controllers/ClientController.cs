@@ -127,7 +127,8 @@ namespace Task5.WebClient.Controllers
         // GET: Client/Delete/5
         public ActionResult Delete(int id, int? page)
         {
-            return View();
+            ViewBag.CurrentPage = page;
+            return View(MapperHelper.Mapper.Map<ClientDTO, ClientViewModel>(clientService.Get(id)));
         }
 
         [Authorize(Roles = "admin")]
@@ -137,13 +138,12 @@ namespace Task5.WebClient.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                clientService.Remove(MapperHelper.Mapper.Map<ClientViewModel, ClientDTO>(model));
+                return RedirectToAction("Index", new { page = page });
             }
             catch
             {
-                return View();
+                return View("Delete");
             }
         }
     }

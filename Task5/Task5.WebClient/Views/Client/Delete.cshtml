@@ -1,7 +1,31 @@
-﻿
+﻿@model Task5.WebClient.Models.Client.ClientViewModel
+
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h4>Удаление клиента</h4>
 
+<h5>Вы уверены что хотите удалить заказ?</h5>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-danger border border-dark rounded-pill" />
+            @Html.ActionLink("Вернуться к списку", "Index", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-primary border border-dark rounded-pill" })
+        </div>
+    }
+</div>

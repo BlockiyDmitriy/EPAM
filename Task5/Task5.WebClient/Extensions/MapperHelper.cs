@@ -24,7 +24,7 @@ namespace Task5.WebClient.Extensions
         {
             _config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<ClientDTO, ClientViewModel>();
+                cfg.CreateMap<ClientDTO, ClientViewModel>().ReverseMap();
                 cfg.CreateMap<ClientDTO, EditClientViewModel>().ReverseMap();
                 cfg.CreateMap<ProductDTO, ProductViewModel>();
                 cfg.CreateMap<OrderDTO, HomeOrderViewModel>()
