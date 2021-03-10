@@ -63,9 +63,7 @@ namespace Task5.BLL.Services
             if (productDTO != null)
             {
                 var product = UOW.ProductRepository.SingleOrDefault(x => x.Id == productDTO.Id);
-                product.Name = productDTO.Name;
-                product.Sum = productDTO.Sum;
-                UOW.ProductRepository.Update(product);
+                UOW.ProductRepository.Remove(product);
                 UOW.Save();
             }
         }
@@ -75,7 +73,9 @@ namespace Task5.BLL.Services
             if (productDTO != null)
             {
                 var product = UOW.ProductRepository.SingleOrDefault(x => x.Id == productDTO.Id);
-                UOW.ProductRepository.Remove(product);
+                product.Name = productDTO.Name;
+                product.Sum = productDTO.Sum;
+                UOW.ProductRepository.Update(product);
                 UOW.Save();
             }
         }
