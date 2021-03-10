@@ -53,8 +53,8 @@ namespace Task5.BLL.Services
         {
             if (clientDTO != null)
             {
-                var client = MapperHelper.Mapper.Map<ClientDTO, Order>(clientDTO);
-                UOW.OrderRepository.Add(client);
+                var client = MapperHelper.Mapper.Map<ClientDTO, Client>(clientDTO);
+                UOW.ClientRepository.Add(client);
                 UOW.Save();
             }
         }
@@ -63,8 +63,8 @@ namespace Task5.BLL.Services
         {
             if (clientDTO != null)
             {
-                var client = UOW.OrderRepository.SingleOrDefault(x => x.Id == clientDTO.Id);
-                UOW.OrderRepository.Update(client);
+                var client = UOW.ClientRepository.SingleOrDefault(x => x.Id == clientDTO.Id);
+                UOW.ClientRepository.Update(client);
                 UOW.Save();
             }
         }
@@ -73,8 +73,8 @@ namespace Task5.BLL.Services
         {
             if (clientDTO != null)
             {
-                var client = UOW.OrderRepository.SingleOrDefault(x => x.Id == clientDTO.Id);
-                UOW.OrderRepository.Remove(client);
+                var client = UOW.ClientRepository.SingleOrDefault(x => x.Id == clientDTO.Id);
+                UOW.ClientRepository.Remove(client);
                 UOW.Save();
             }
         }
