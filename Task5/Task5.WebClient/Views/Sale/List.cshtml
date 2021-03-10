@@ -9,7 +9,7 @@
 @if (User.IsInRole("admin"))
 {
     <p>
-        @Html.ActionLink("Create new order", "Create", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-success border border-dark rounded-pill" })
+        @Html.ActionLink("Создать новый", "Create", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-success border border-dark rounded-pill" })
     </p>
 }
 @if (Model != null && Model.Count > 0)
@@ -20,13 +20,13 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam })
+                    @Html.ActionLink("Имя", "Index", new { sortOrder = ViewBag.NameSortParam })
                 </th>
                 <th>
-                    @Html.ActionLink("Product", "Index", new { sortOrder = ViewBag.ProductSortParm })
+                    @Html.ActionLink("Продукт", "Index", new { sortOrder = ViewBag.ProductSortParm })
                 </th>
                 <th>
-                    @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+                    @Html.ActionLink("Дата", "Index", new { sortOrder = ViewBag.DateSortParm })
                 </th>
             </tr>
             @foreach (var item in Model)
@@ -45,8 +45,8 @@
                         <button type="button"  onclick="onOrderDetails(@item.Id)">Подробно</button>
                         @if (User.IsInRole("admin"))
                         {
-                            @Html.ActionLink("Edit ", "Edit", new { id = item.Id, page = ViewBag.CurrentPage })
-                            @Html.ActionLink("Delete ", "Delete", new { id = item.Id, page = ViewBag.CurrentPage })
+                            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id, page = ViewBag.CurrentPage })
+                            @Html.ActionLink("Удалить ", "Delete", new { id = item.Id, page = ViewBag.CurrentPage })
                         }
                     </td>
                 </tr>

@@ -9,7 +9,7 @@
 @if (User.IsInRole("admin"))
 {
     <p>
-        @Html.ActionLink("Add new", "Create", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-success border border-dark rounded-pill" })
+        @Html.ActionLink("Создать новый", "Create", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-success border border-dark rounded-pill" })
     </p>
 }
 @if (Model != null && Model.Count > 0)
@@ -32,8 +32,8 @@
                     <td>
                         @if (User.IsInRole("admin"))
                         {
-                            @Html.ActionLink("Edit ", "Edit", new { id = item.Id, page = ViewBag.CurrentPage })
-                            @Html.ActionLink("Delete ", "Delete", new { id = item.Id, page = ViewBag.CurrentPage })
+                            @Html.ActionLink("Редактировать ", "Edit", new { id = item.Id, page = ViewBag.CurrentPage })
+                            @Html.ActionLink("Удалить ", "Delete", new { id = item.Id, page = ViewBag.CurrentPage })
                         }
                     </td>
                 </tr>
