@@ -1,7 +1,30 @@
-﻿
+﻿@model  Task5.WebClient.Models.Client.CreateClientViewModel
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h4>Добавление клиента</h4>
 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Добавить" class="btn btn-success border border-dark rounded-pill" />
+                @Html.ActionLink("Вернуться к списку", "Index", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-primary border border-dark rounded-pill" })
+            </div>
+        </div>
+    </div>
+}

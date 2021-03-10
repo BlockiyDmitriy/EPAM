@@ -52,7 +52,7 @@ namespace Task5.WebClient.Controllers
             var clientModel = MapperHelper.Mapper.Map<IEnumerable<ClientDTO>, IEnumerable<ClientViewModel>>(clientService.Get());
 
             var clients = from s in clientModel
-                         select s;
+                          select s;
 
             if (filterModel.Name != null)
             {
@@ -70,7 +70,9 @@ namespace Task5.WebClient.Controllers
         // GET: Client/Create
         public ActionResult Create(int? page)
         {
-            return View();
+            var model = new CreateClientViewModel();
+            ViewBag.CurrentPage = page;
+            return View(model);
         }
 
         [Authorize(Roles = "admin")]
@@ -80,13 +82,16 @@ namespace Task5.WebClient.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    clientService.Create(MapperHelper.Mapper.Map<CreateClientViewModel, ClientDTO>(model));
+                    return RedirectToAction("Index", new { page = page });
+                }
+                return View();
             }
             catch
             {
-                return View();
+                return View("Error");
             }
         }
 
