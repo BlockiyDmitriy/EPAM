@@ -74,6 +74,7 @@ namespace Task5.BLL.Services
             if (clientDTO != null)
             {
                 var client = UOW.ClientRepository.SingleOrDefault(x => x.Id == clientDTO.Id);
+                client.Name = clientDTO.Name;
                 UOW.ClientRepository.Update(client);
                 UOW.Save();
             }

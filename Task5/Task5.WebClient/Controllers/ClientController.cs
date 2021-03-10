@@ -99,23 +99,27 @@ namespace Task5.WebClient.Controllers
         // GET: Client/Edit/5
         public ActionResult Edit(int id, int? page)
         {
-            return View();
+            ViewBag.CurrentPage = page;
+            return View(MapperHelper.Mapper.Map<ClientDTO, EditClientViewModel>(clientService.Get(id)));
         }
 
         [Authorize(Roles = "admin")]
         // POST: Client/Edit/5
         [HttpPost]
-        public ActionResult Edit(EditClientViewModel model)
+        public ActionResult Edit(EditClientViewModel model, int? page)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    clientService.Update(MapperHelper.Mapper.Map<EditClientViewModel, ClientDTO>(model));
+                    return RedirectToAction("Index", new { page = page });
+                }
+                return View();
             }
             catch
             {
-                return View();
+                return View("Error");
             }
         }
 
