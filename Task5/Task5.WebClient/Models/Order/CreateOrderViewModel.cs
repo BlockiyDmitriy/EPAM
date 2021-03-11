@@ -15,10 +15,10 @@ namespace Task5.WebClient.Models.Order
         [DataType(DataType.Date)]
         public DateTime DateTime { get; set; }
         [Required(ErrorMessage ="Введите значение")]
-        [Display(Name ="Name")]
+        [Display(Name ="Имя")]
         public string Client { get; set; }
         [Required(ErrorMessage ="Введите значение")]
-        [Display(Name = "Product")]
+        [Display(Name = "Продукт")]
         public string Product { get; set; }
 
         public SelectList Clients;
