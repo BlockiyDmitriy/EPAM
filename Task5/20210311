@@ -1,0 +1,45 @@
+2021-03-11 20:03:12.072 +03:00 [INF] Метод Index, SaleController
+2021-03-11 20:03:18.595 +03:00 [INF] Метод OrderSearch, SaleController, POST
+2021-03-11 20:03:18.595 +03:00 [INF] Метод OrderSearch, SaleController, POST
+2021-03-11 20:03:19.360 +03:00 [INF] Метод OrderSearch, SaleController, POST
+2021-03-11 20:03:19.367 +03:00 [INF] Метод OrderSearch, SaleController, POST
+2021-03-11 20:03:27.649 +03:00 [INF] Метод Index, ProductController
+2021-03-11 20:03:28.378 +03:00 [INF] Метод ProductSearch, ProductController
+2021-03-11 20:03:30.320 +03:00 [INF] Метод Create, ProductController, GET
+2021-03-11 20:03:38.390 +03:00 [INF] Метод Create, ProductController, POST
+2021-03-11 20:03:38.425 +03:00 [INF] Метод Index, ProductController
+2021-03-11 20:03:38.646 +03:00 [INF] Метод ProductSearch, ProductController
+2021-03-11 20:03:41.170 +03:00 [INF] Метод ProductSearch, ProductController
+2021-03-11 20:03:41.173 +03:00 [INF] Метод ProductSearch, ProductController
+2021-03-11 20:03:44.172 +03:00 [INF] Метод Index, ProductController
+2021-03-11 20:03:44.400 +03:00 [INF] Метод ProductSearch, ProductController
+2021-03-11 20:03:46.351 +03:00 [INF] Метод Create, ProductController, GET
+2021-03-11 20:04:01.225 +03:00 [INF] Метод Create, ProductController, POST
+2021-03-11 20:04:01.237 +03:00 [INF] Метод Index, ProductController
+2021-03-11 20:04:01.444 +03:00 [INF] Метод ProductSearch, ProductController
+2021-03-11 20:04:03.180 +03:00 [INF] Метод Index, ClientController
+2021-03-11 20:04:03.875 +03:00 [INF] Метод ClientSearch, ClientController, GET
+2021-03-11 20:04:05.974 +03:00 [INF] Метод Index, SaleController
+2021-03-11 20:04:07.792 +03:00 [INF] Метод Create, SaleController, GET
+2021-03-11 20:04:20.259 +03:00 [INF] Метод Index, ClientController
+2021-03-11 20:04:20.461 +03:00 [INF] Метод ClientSearch, ClientController, GET
+2021-03-11 20:04:21.985 +03:00 [INF] Метод ClientSearch, ClientController, GET
+2021-03-11 20:04:21.988 +03:00 [INF] Метод ClientSearch, ClientController, GET
+2021-03-11 20:04:23.293 +03:00 [INF] Метод ClientSearch, ClientController, GET
+2021-03-11 20:04:28.227 +03:00 [INF] Метод Create, ClientController, POST
+2021-03-11 20:04:28.244 +03:00 [INF] Метод Index, ClientController
+2021-03-11 20:04:28.448 +03:00 [INF] Метод ClientSearch, ClientController, GET
+2021-03-11 20:04:30.210 +03:00 [INF] Метод Index, SaleController
+2021-03-11 20:04:31.421 +03:00 [INF] Метод Create, SaleController, GET
+2021-03-11 20:04:37.922 +03:00 [INF] Метод Create, SaleController, POST
+2021-03-11 20:04:37.956 +03:00 [INF] Метод Index, SaleController
+2021-03-11 20:04:39.814 +03:00 [INF] Метод Details, SaleController, GET
+2021-03-11 20:04:45.823 +03:00 [INF] Метод Edit, SaleController, GET
+2021-03-11 20:04:49.708 +03:00 [WRN] Метод Edit, SaleController, POST, ошибка с влидацией
+2021-03-11 20:04:53.199 +03:00 [INF] Метод Edit, SaleController, POST
+2021-03-11 20:04:53.224 +03:00 [INF] Метод Index, SaleController
+2021-03-11 20:04:56.044 +03:00 [INF] Метод Edit, SaleController, GET
+2021-03-11 20:04:57.030 +03:00 [INF] Метод Index, SaleController
+2021-03-11 20:04:59.086 +03:00 [INF] Метод Delete, SaleController, GET
+2021-03-11 20:05:00.156 +03:00 [INF] Метод Delete, SaleController, POST
+2021-03-11 20:05:00.182 +03:00 [INF] Метод Index, SaleController

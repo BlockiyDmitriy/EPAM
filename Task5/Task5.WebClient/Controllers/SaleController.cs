@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Ninject.Extensions.Logging;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +23,20 @@ namespace Task5.WebClient.Controllers
         private readonly IProductService productService;
         private readonly IOrderService orderService;
 
-        public SaleController(IClientService clientService, IProductService productService, IOrderService orderService)
+        private ILogger _logger;
+
+        public SaleController(IClientService clientService, IProductService productService, IOrderService orderService, ILogger logger)
         {
             this.clientService = clientService;
             this.productService = productService;
             this.orderService = orderService;
+            this._logger = logger;
         }
 
         // GET: Sale
         public ActionResult Index(int? page)
         {
+            _logger.Info("Метод Index, SaleController");
             ViewBag.CurrentPage = page ?? 1;
             return View();
         }
@@ -46,6 +51,7 @@ namespace Task5.WebClient.Controllers
             }
             catch
             {
+                _logger.Error("Метод OrderSearch, SaleController, GET");
                 return View("Error");
             }
 
@@ -55,6 +61,7 @@ namespace Task5.WebClient.Controllers
         [Authorize]
         public ActionResult OrderSearch(OrderFilter filterModel)
         {
+            _logger.Info("Метод OrderSearch, SaleController, POST");
             var orderModel = MapperHelper.Mapper.Map<IEnumerable<OrderDTO>, IEnumerable<HomeOrderViewModel>>(orderService.Get());
 
             var orders = from s in orderModel
@@ -84,6 +91,7 @@ namespace Task5.WebClient.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
+            _logger.Info("Метод Details, SaleController, GET");
             return PartialView(MapperHelper.Mapper.Map<OrderDTO, DetailsOrderViewModel>(orderService.Get(id)));
         }
 
@@ -91,6 +99,7 @@ namespace Task5.WebClient.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Create(int? page)
         {
+            _logger.Info("Метод Create, SaleController, GET");
             var model = new CreateOrderViewModel()
             {
                 Clients = new SelectList(MapperHelper.Mapper.Map<IEnumerable<ClientDTO>, IEnumerable<ClientViewModel>>(clientService.Get()), "Name", "Name"),
@@ -114,11 +123,13 @@ namespace Task5.WebClient.Controllers
             }
             try
             {
+                _logger.Info("Метод Create, SaleController, POST");
                 orderService.Create(MapperHelper.Mapper.Map<CreateOrderViewModel, OrderDTO>(model));
                 return RedirectToAction("Index", new { page = page });
             }
             catch
             {
+                _logger.Error("Метод Create, SaleController, POST");
                 return View("Error");
             }
         }
@@ -127,6 +138,7 @@ namespace Task5.WebClient.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, int? page)
         {
+            _logger.Info("Метод Edit, SaleController, GET");
             ViewBag.CurrentPage = page;
             return View(MapperHelper.Mapper.Map<OrderDTO, EditOrderViewModel>(orderService.Get(id)));
         }
@@ -140,13 +152,16 @@ namespace Task5.WebClient.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    _logger.Info("Метод Edit, SaleController, POST");
                     orderService.Update(MapperHelper.Mapper.Map<EditOrderViewModel, OrderDTO>(model));
                     return RedirectToAction("Index", new { page = page });
                 }
+                _logger.Warn("Метод Edit, SaleController, POST, ошибка с влидацией");
                 return View();
             }
             catch
             {
+                _logger.Error("Метод Edit, SaleController, POST");
                 return View("Error");
             }
         }
@@ -154,6 +169,7 @@ namespace Task5.WebClient.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Delete(int id, int? page)
         {
+            _logger.Info("Метод Delete, SaleController, GET");
             ViewBag.CurrentPage = page;
             return View(MapperHelper.Mapper.Map<OrderDTO, HomeOrderViewModel>(orderService.Get(id)));
         }
@@ -165,11 +181,13 @@ namespace Task5.WebClient.Controllers
         {
             try
             {
+                _logger.Info("Метод Delete, SaleController, POST");
                 orderService.Remove(MapperHelper.Mapper.Map<HomeOrderViewModel, OrderDTO>(model));
                 return RedirectToAction("Index", new { page = page });
             }
             catch
             {
+                _logger.Error("Метод Delete, SaleController, POST");
                 return View("Delete");
             }
         }

@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Ninject.Extensions.Logging;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +19,17 @@ namespace Task5.WebClient.Controllers
 
         private readonly IClientService clientService;
 
-        public ClientController(IClientService clientService)
+        private ILogger _logger;
+        public ClientController(IClientService clientService, ILogger logger)
         {
             this.clientService = clientService;
+            this._logger = logger;
         }
 
         // GET: Client
         public ActionResult Index(int? page)
         {
+            _logger.Info("Метод Index, ClientController");
             ViewBag.CurrentPage = page ?? 1;
             return View();
         }
@@ -34,12 +38,14 @@ namespace Task5.WebClient.Controllers
         {
             try
             {
+                _logger.Info("Метод ClientSearch, ClientController, GET");
                 var clientModel = MapperHelper.Mapper.Map<IEnumerable<ClientDTO>, IEnumerable<ClientViewModel>>(clientService.Get());
                 ViewBag.CurrentPage = page;
                 return PartialView("List", clientModel.ToPagedList(page ?? 1, pageSize));
             }
             catch
             {
+                _logger.Error("Метод ClientSearch, ClientController, GET");
                 return View("Error");
             }
         }
@@ -49,6 +55,7 @@ namespace Task5.WebClient.Controllers
         [Authorize]
         public ActionResult ClientSearch(ClientFilter filterModel)
         {
+            _logger.Info("Метод ClientSearch, ClientController, POST");
             var clientModel = MapperHelper.Mapper.Map<IEnumerable<ClientDTO>, IEnumerable<ClientViewModel>>(clientService.Get());
 
             var clients = from s in clientModel
@@ -70,6 +77,7 @@ namespace Task5.WebClient.Controllers
         // GET: Client/Create
         public ActionResult Create(int? page)
         {
+            _logger.Info("Метод ClientSearch, ClientController, GET");
             var model = new CreateClientViewModel();
             ViewBag.CurrentPage = page;
             return View(model);
@@ -84,13 +92,16 @@ namespace Task5.WebClient.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    _logger.Info("Метод Create, ClientController, POST");
                     clientService.Create(MapperHelper.Mapper.Map<CreateClientViewModel, ClientDTO>(model));
                     return RedirectToAction("Index", new { page = page });
                 }
+                _logger.Error("Метод Create, ClientController, POST, ошибка с влидацией");
                 return View();
             }
             catch
             {
+                _logger.Error("Метод Create, ClientController, POST");
                 return View("Error");
             }
         }
@@ -99,6 +110,7 @@ namespace Task5.WebClient.Controllers
         // GET: Client/Edit/5
         public ActionResult Edit(int id, int? page)
         {
+            _logger.Info("Метод Edit, ClientController, GET");
             ViewBag.CurrentPage = page;
             return View(MapperHelper.Mapper.Map<ClientDTO, EditClientViewModel>(clientService.Get(id)));
         }
@@ -112,13 +124,16 @@ namespace Task5.WebClient.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    _logger.Info("Метод Edit, ClientController, POST");
                     clientService.Update(MapperHelper.Mapper.Map<EditClientViewModel, ClientDTO>(model));
                     return RedirectToAction("Index", new { page = page });
                 }
+                _logger.Error("Метод Edit, ClientController, POST, ошибка с влидацией");
                 return View();
             }
             catch
             {
+                _logger.Error("Метод Edit, ClientController, POST");
                 return View("Error");
             }
         }
@@ -127,6 +142,7 @@ namespace Task5.WebClient.Controllers
         // GET: Client/Delete/5
         public ActionResult Delete(int id, int? page)
         {
+            _logger.Info("Метод Delete, ClientController, GET");
             ViewBag.CurrentPage = page;
             return View(MapperHelper.Mapper.Map<ClientDTO, ClientViewModel>(clientService.Get(id)));
         }
@@ -138,11 +154,13 @@ namespace Task5.WebClient.Controllers
         {
             try
             {
+                _logger.Info("Метод Delete, ClientController, POST");
                 clientService.Remove(MapperHelper.Mapper.Map<ClientViewModel, ClientDTO>(model));
                 return RedirectToAction("Index", new { page = page });
             }
             catch
             {
+                _logger.Error("Метод Delete, ClientController, POST");
                 return View("Delete");
             }
         }

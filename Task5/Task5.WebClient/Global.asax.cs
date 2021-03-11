@@ -33,6 +33,8 @@ namespace Task5.WebClient
             var kernel = new StandardKernel(bllRegistrations, webRegistrations);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
             kernel.Unbind<ModelValidatorProvider>();
+
+            LogConfigWeb.GetLogger();
         }
     }
 }
