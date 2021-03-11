@@ -42,10 +42,10 @@
                         @Html.DisplayFor(modelItem => item.DateTime)
                     </td>
                     <td>
-                        <button type="button"  onclick="onOrderDetails(@item.Id)">Подробно</button>
                         @if (User.IsInRole("admin"))
                         {
-                            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id, page = ViewBag.CurrentPage })
+                            <button type="button" class="btn btn-link" onclick="onOrderDetails(@item.Id) ">Подробно</button>
+                            @Html.ActionLink("Редактировать ", "Edit", new { id = item.Id, page = ViewBag.CurrentPage })
                             @Html.ActionLink("Удалить ", "Delete", new { id = item.Id, page = ViewBag.CurrentPage })
                         }
                     </td>
