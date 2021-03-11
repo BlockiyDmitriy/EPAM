@@ -9,11 +9,11 @@ namespace Task5.WebClient.Models.Filters
     public class OrderFilter
     {
         [DataType(DataType.Date)]
-        [Display(Name ="Date")]
+        [Display(Name ="Дата")]
         public DateTime DateTime { get; set; }
-        [Display(Name ="Name")]
+        [Display(Name ="Имя")]
         public string ClientName { get; set; }
-        [Display(Name ="Product")]
+        [Display(Name ="Продукт")]
         public string ProductName { get; set; }
     }
 }

@@ -192,6 +192,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Extensions\MapperHelper.cs" />
     <Compile Include="Extensions\WebNinjectRegistrations.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Models\Client\EditClientViewModel.cs" />
     <Compile Include="Models\Filters\ClientFilter.cs" />
     <Compile Include="Models\Filters\OrderFilter.cs" />
+    <Compile Include="Models\Filters\ProductFilter.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order\CreateOrderViewModel.cs" />
@@ -287,6 +289,11 @@
     <Content Include="Views\Client\Create.cshtml" />
     <Content Include="Views\Client\Edit.cshtml" />
     <Content Include="Views\Client\Delete.cshtml" />
+    <Content Include="Views\Product\List.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

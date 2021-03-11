@@ -4,16 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Task5.WebClient.Models.Product
+namespace Task5.WebClient.Models.Filters
 {
-    public class ProductViewModel
+    public class ProductFilter
     {
-        public int Id { get; set; }
-        [Required]
-        [StringLength(50, MinimumLength = 1)]
-        [Display(Name ="Продукт")]
+        [Display(Name = "Имя")]
         public string Name { get; set; }
-        [Required]
         [Display(Name = "Сумма")]
         public double Sum { get; set; }
     }

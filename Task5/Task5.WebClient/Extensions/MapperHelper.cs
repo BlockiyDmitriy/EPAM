@@ -26,7 +26,10 @@ namespace Task5.WebClient.Extensions
             {
                 cfg.CreateMap<ClientDTO, ClientViewModel>().ReverseMap();
                 cfg.CreateMap<ClientDTO, EditClientViewModel>().ReverseMap();
-                cfg.CreateMap<ProductDTO, ProductViewModel>();
+
+                cfg.CreateMap<ProductDTO, ProductViewModel>().ReverseMap();
+                cfg.CreateMap<ProductDTO, EditProductViewModel>().ReverseMap();
+
                 cfg.CreateMap<OrderDTO, HomeOrderViewModel>()
                 .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client.Name))
                 .ForPath(x => x.Product.Name, y => y.MapFrom(x => x.Product.Name));
@@ -42,6 +45,8 @@ namespace Task5.WebClient.Extensions
 
                 cfg.CreateMap<ClientViewModel, ClientDTO>();
                 cfg.CreateMap<CreateClientViewModel, ClientDTO>();
+                cfg.CreateMap<CreateProductViewModel, ProductDTO>();
+
                 cfg.CreateMap<CreateOrderViewModel, OrderDTO>();
                 cfg.CreateMap<HomeOrderViewModel, OrderDTO>()
                 .ForPath(x => x.Client.Name, y => y.MapFrom(x => x.Client.Name))

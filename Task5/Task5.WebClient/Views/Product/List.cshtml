@@ -1,0 +1,55 @@
+﻿@model PagedList.IPagedList<Task5.WebClient.Models.Product.ProductViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "List";
+}
+
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Создать новый", "Create", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-success border border-dark rounded-pill" })
+    </p>
+}
+@if (Model != null && Model.Count > 0)
+{
+    <h4>Список продуктов</h4>
+    <hr />
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.ActionLink("Продукт", "Index", new { sortOrder = ViewBag.ProductSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("Сумма", "Index", new { sortOrder = ViewBag.SumSortParam })
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sum)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id, page = ViewBag.CurrentPage })
+                            @Html.ActionLink("Удалить ", "Delete", new { id = item.Id, page = ViewBag.CurrentPage })
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    @Html.PagedListPager(Model, page => Url.Action("ProductSearch", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { UpdateTargetId = "productsTable" }))
+
+}
+else
+{
+    <div>Нет записей</div>
+}

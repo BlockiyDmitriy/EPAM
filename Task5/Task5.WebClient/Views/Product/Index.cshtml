@@ -1,0 +1,71 @@
+﻿@model  Task5.WebClient.Models.Filters.ProductFilter
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to product manager </h1>
+</div>
+@using (Ajax.BeginForm("ProductSearch", new AjaxOptions { UpdateTargetId = "productsTable" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="col">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Sum)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Sum, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-10">
+                <hr />
+                <input type="submit" value="Поиск" class="btn btn-success border border-dark rounded-pill" />
+                <input type="button" id="clear" value="Сбросить" class="btn btn-secondary border border-dark rounded-pill" />
+                <hr />
+            </div>
+        </div>
+    </div>
+}
+<div id="productsTable"></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $(document).ready(function () {
+        getProducts();
+    });
+
+    function getProducts() {
+        jQuery.ajax(
+            {
+                url: "@Url.Action("ProductSearch", "Product")",
+                data: { page:@ViewBag.CurrentPage},
+                type: "GET",
+                success: function (data, textStatus, XHR) {
+                    jQuery("#productsTable").html(data);
+                },
+                dataType: "html"
+            }
+        );
+    }
+
+    $("#clear").on("click", function () {
+        $('#Name').val('');
+        $('#Sum').val('');
+        getProducts();
+    });
+</script>
