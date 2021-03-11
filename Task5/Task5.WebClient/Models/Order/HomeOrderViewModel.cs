@@ -15,10 +15,10 @@ namespace Task5.WebClient.Models.Order
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DateTime { get; set; }
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Имя")]
         public ClientViewModel Client { get; set; }
         [Required]
-        [Display(Name = "Product")]
+        [Display(Name = "Продукт")]
         public ProductViewModel Product { get; set; }
     }
 }
