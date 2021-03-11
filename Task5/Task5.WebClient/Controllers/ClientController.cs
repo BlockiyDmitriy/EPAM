@@ -23,14 +23,13 @@ namespace Task5.WebClient.Controllers
             this.clientService = clientService;
         }
 
-        [Authorize]
         // GET: Client
         public ActionResult Index(int? page)
         {
             ViewBag.CurrentPage = page ?? 1;
             return View();
         }
-
+        [Authorize]
         public ActionResult ClientSearch(int? page)
         {
             try
@@ -47,6 +46,7 @@ namespace Task5.WebClient.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult ClientSearch(ClientFilter filterModel)
         {
             var clientModel = MapperHelper.Mapper.Map<IEnumerable<ClientDTO>, IEnumerable<ClientViewModel>>(clientService.Get());

@@ -30,7 +30,7 @@ namespace Task5.WebClient.Controllers
             ViewBag.CurrentPage = page ?? 1;
             return View();
         }
-
+        [Authorize]
         public ActionResult ProductSearch(int? page)
         {
             try
@@ -47,6 +47,7 @@ namespace Task5.WebClient.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult ProductSearch(ProductFilter filterModel)
         {
             var productModel = MapperHelper.Mapper.Map<IEnumerable<ProductDTO>, IEnumerable<ProductViewModel>>(productService.Get());

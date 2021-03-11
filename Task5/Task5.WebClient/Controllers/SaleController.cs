@@ -35,6 +35,7 @@ namespace Task5.WebClient.Controllers
             ViewBag.CurrentPage = page ?? 1;
             return View();
         }
+        [Authorize]
         public ActionResult OrderSearch(int? page)
         {
             try
@@ -51,6 +52,7 @@ namespace Task5.WebClient.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult OrderSearch(OrderFilter filterModel)
         {
             var orderModel = MapperHelper.Mapper.Map<IEnumerable<OrderDTO>, IEnumerable<HomeOrderViewModel>>(orderService.Get());
